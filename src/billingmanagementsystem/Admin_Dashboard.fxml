@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1126.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="billingmanagementsystem.Admin_DashboardController">
+    <stylesheets>
+        <URL value="@admin_dashboard.css" />
+    </stylesheets>
+   <children>
+      <BorderPane prefHeight="654.0" prefWidth="1127.0">
+         <left>
+            <AnchorPane prefHeight="654.0" prefWidth="186.0" style="-fx-background-color: #DDA0DD;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="dashboard_btn" contentDisplay="CENTER" layoutY="191.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Dashboard">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="customer_btn" contentDisplay="CENTER" layoutY="224.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Customer">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="product_btn" contentDisplay="CENTER" layoutY="257.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Product">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="billing_btn" contentDisplay="CENTER" layoutY="290.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Billings">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="about_us_btn" contentDisplay="CENTER" layoutY="323.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="About Us">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="sign_out_btn" contentDisplay="CENTER" layoutY="559.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Sign Out">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="654.0" prefWidth="1119.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="dashboard_pane" prefHeight="654.0" prefWidth="940.0" style="-fx-background-color: lime;" />
+                  <AnchorPane fx:id="customer_pane" prefHeight="654.0" prefWidth="941.0" style="-fx-background-color: #967BB6;" visible="false" />
+                  <AnchorPane fx:id="product_pane" prefHeight="654.0" prefWidth="941.0" style="-fx-background-color: #ee82ee;" visible="false" />
+                  <AnchorPane fx:id="billing_pane" prefHeight="654.0" prefWidth="940.0" style="-fx-background-color: blue;" visible="false" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
