@@ -3,5 +3,14 @@
  */
 
 .mainFxmlClass {
+    -fx-background-color: #ffffff;
+}
 
+.dashboard_bttn{
+    -fx-fill: #0047AB; /* Set the fill color */
+    -fx-stroke: #333333; /* Set the stroke color */
+    -fx-stroke-width: 2; /* Set the stroke width */
+    -fx-arc-width: 20; /* Set the width of the arc */
+    -fx-arc-height: 20; /* Set the height of the arc */
+    
 }
