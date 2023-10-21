@@ -40,7 +40,7 @@
                         <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button fx:id="about_us_btn" contentDisplay="CENTER" layoutX="12.0" layoutY="341.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="174.0" styleClass="dashboard_bttn" stylesheets="@admin_dashboard.css" text="About Us">
+                  <Button fx:id="about_us_btn" contentDisplay="CENTER" layoutY="29.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="216.0" styleClass="dashboard_bttn" stylesheets="@admin_dashboard.css" text="calvinnnnnnnnn">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
