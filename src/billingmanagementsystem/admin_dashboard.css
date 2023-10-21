@@ -2,15 +2,15 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-    -fx-background-color: #ffffff;
+.billing_btn, .customer_btn, .product_btn, .dashboard_btn{
+    -fx-background-color: forestgreen;
+}
+.dashboard_btn:active , .customer_btn:active, .product_btn:active, .billing_btn:active{
+     -fx-background-color: white;
+    -fx-background-radius: 100 0 0 100;
 }
 
-.dashboard_bttn{
-    -fx-fill: #0047AB; /* Set the fill color */
-    -fx-stroke: #333333; /* Set the stroke color */
-    -fx-stroke-width: 2; /* Set the stroke width */
-    -fx-arc-width: 20; /* Set the width of the arc */
-    -fx-arc-height: 20; /* Set the height of the arc */
-    
+
+.mainFxmlClass {
+    -fx-background-color: white;
 }

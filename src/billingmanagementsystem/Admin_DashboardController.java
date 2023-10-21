@@ -6,10 +6,12 @@ package billingmanagementsystem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -105,6 +107,14 @@ public class Admin_DashboardController implements Initializable {
             button.getStyleClass().remove("selected-button");
         }
     }*/
+
+   @FXML
+    private void changestyle(MouseEvent event) {
+    dashboard_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == dashboard_btn);
+    customer_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == customer_btn);
+    product_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == product_btn);
+    billing_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == billing_btn);
+}
     
 
     
