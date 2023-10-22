@@ -27,7 +27,7 @@ public class BillingManagementSystem extends Application {
         String icon = getClass().getResource("/Graphics/capybara.png").toExternalForm();
         primaryStage.getIcons().add(new javafx.scene.image.Image(icon));       
         try {
-            root = FXMLLoader.load(getClass().getResource("Admin_Dashboard.fxml"));
+            root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(BillingManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
