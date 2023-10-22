@@ -47,15 +47,13 @@ public class LogInController implements Initializable {
         Logger.getLogger(BillingManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    Stage primaryStage = new Stage(); // Create a new Stage
+    Stage primaryStage = new Stage(); 
     Scene scene = new Scene(root);
 
     primaryStage.setTitle("Billing Management System");
     primaryStage.setScene(scene);
     primaryStage.show();
     
-    String icon = getClass().getResource("/Graphics/capybara.png").toExternalForm();
-    primaryStage.getIcons().add(new javafx.scene.image.Image(icon));   
 
     // Hide the current window if needed
     ((Node)(event.getSource())).getScene().getWindow().hide();

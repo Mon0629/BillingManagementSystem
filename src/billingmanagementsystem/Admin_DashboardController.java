@@ -4,20 +4,25 @@
  */
 package billingmanagementsystem;
 
-import java.awt.Color;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -59,6 +64,8 @@ public class Admin_DashboardController implements Initializable {
     private ImageView icon5;
     @FXML
     private AnchorPane about_us_pane;
+    @FXML
+    private ImageView icon51;
 
     /**
      * Initializes the controller class.
@@ -147,7 +154,30 @@ private void changestyle(MouseEvent event) {
   
 }
 
+    @FXML
+    private void logout(ActionEvent event) {
+    
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Logout Confirmation");
+    alert.setHeaderText(null);
+    alert.setContentText("Are you sure you want to log out?");
+
+    // Get the user's response
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
+    }
     
 
-    
+    }
 }
