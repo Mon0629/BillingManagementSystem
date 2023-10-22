@@ -20,7 +20,7 @@
                <children>
                   <Button fx:id="dashboard_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="181.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="dashboard_btn" text="Dashboard" textFill="#f5f5f5">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="154.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="button_icon">
+                        <ImageView fx:id="icon1" fitHeight="25.0" fitWidth="154.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="dashboard_btn">
                            <image>
                               <Image url="@../Graphics/dashboard.png" />
                            </image>
@@ -29,7 +29,7 @@
                   </Button>
                   <Button fx:id="customer_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="customer_btn" stylesheets="@admin_dashboard.css" text="Customer" textAlignment="JUSTIFY" textFill="WHITE">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="icon2" fitHeight="25.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" styleClass="customer_btn">
                            <image>
                               <Image url="@../Graphics/customer.png" />
                            </image></ImageView>
@@ -37,7 +37,7 @@
                   </Button>
                   <Button fx:id="product_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="product_btn" stylesheets="@admin_dashboard.css" text="Product" textFill="#f8f5f5">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="icon3" fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" styleClass="product_btn">
                            <image>
                               <Image url="@../Graphics/package.png" />
                            </image></ImageView>
@@ -45,7 +45,7 @@
                   </Button>
                   <Button fx:id="billing_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="billing_btn" stylesheets="@admin_dashboard.css" text="Billings" textFill="#f5f3f3">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="icon4" fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" styleClass="billing_btn">
                            <image>
                               <Image url="@../Graphics/invoice.png" />
                            </image></ImageView>
@@ -53,7 +53,7 @@
                   </Button>
                   <Button fx:id="about_us_btn" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="174.0" styleClass="about_us_btn" stylesheets="@admin_dashboard.css" text="About Us" textFill="#f8f5f5">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="about_us_btn">
                            <image>
                               <Image url="@../Graphics/information-button.png" />
                            </image>

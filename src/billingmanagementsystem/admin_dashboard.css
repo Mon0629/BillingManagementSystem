@@ -16,7 +16,18 @@
     -fx-text-fill:black;
 }
 
+.dashboard_btn:active , .customer_btn:active, .product_btn:active, .billing_btn:active{
+     -fx-background-color: white;
+    -fx-background-radius: 100 0 0 100;
+    -fx-text-fill:black;
+}
+
+.dashboard_btn:active #icon1, .customer_btn:active #icon2, .product_btn:active #icon3, .billing_btn:active #icon4{
+     -fx-effect: innershadow(gaussian, rgba(0,0,0,1), 10, 1, 1, 1); 
+}
 
 .mainFxmlClass {
     -fx-background-color: white;
 }
+
+

@@ -4,13 +4,18 @@
  */
 package billingmanagementsystem;
 
+import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -42,6 +47,14 @@ public class Admin_DashboardController implements Initializable {
     private Button customer_btn;
     @FXML
     private AnchorPane dashboard_pane;
+    @FXML
+    private ImageView icon1;
+    @FXML
+    private ImageView icon2;
+    @FXML
+    private ImageView icon3;
+    @FXML
+    private ImageView icon4;
 
     /**
      * Initializes the controller class.
@@ -109,13 +122,16 @@ public class Admin_DashboardController implements Initializable {
         }
     }*/
 
-   @FXML
-    private void changestyle(MouseEvent event) {
+@FXML
+private void changestyle(MouseEvent event) {
     dashboard_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == dashboard_btn);
     customer_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == customer_btn);
     product_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == product_btn);
     billing_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == billing_btn);
+
+  
 }
+
     
 
     

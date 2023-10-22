@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="729.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="729.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
     <stylesheets>
         <URL value="@login.css" />
     </stylesheets>
@@ -48,7 +48,7 @@
             <Image url="@../Graphics/shoe%20effect.png" />
          </image>
       </ImageView>
-      <Button layoutX="552.0" layoutY="389.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="188.0" style="-fx-background-color: #40E0D0; -fx-background-radius: 50;" text="SIGN IN">
+      <Button layoutX="552.0" layoutY="389.0" mnemonicParsing="false" onAction="#login" prefHeight="55.0" prefWidth="188.0" style="-fx-background-color: #40E0D0; -fx-background-radius: 50;" text="SIGN IN">
          <font>
             <Font name="SansSerif Bold" size="18.0" />
          </font>
