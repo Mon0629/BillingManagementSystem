@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="729.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
     <stylesheets>
-        <URL value="@login.css"/>
+        <URL value="@login.css" />
     </stylesheets>
+   <children>
+      <ImageView fitHeight="476.0" fitWidth="837.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Screenshot%202023-10-22%20192411.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="239.0" fitWidth="239.0" layoutX="246.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Tanjiro_020_High_Tops_Shoes_-_8_US_Men__10_US_Women-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="549.0" layoutY="235.0" prefHeight="26.0" prefWidth="194.0" promptText="HELLO">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </TextField>
+      <Label layoutX="549.0" layoutY="198.0" text="Username:" textFill="#4bc0dd" />
+      <Label layoutX="549.0" layoutY="286.0" text="Password:" textFill="#4bc0dd" />
+      <TextField layoutX="549.0" layoutY="304.0" prefHeight="26.0" prefWidth="194.0" promptText="HELLO" />
+      <ImageView fitHeight="317.0" fitWidth="284.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Text.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="197.0" fitWidth="230.0" layoutX="37.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="197.0" fitWidth="239.0" layoutX="310.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/shoe%20effect.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="552.0" layoutY="389.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="188.0" style="-fx-background-color: #40E0D0; -fx-background-radius: 50;" text="SIGN IN">
+         <font>
+            <Font name="SansSerif Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="552.0" layoutY="338.0" text="Forgot Password?" />
+      <ImageView fitHeight="82.0" fitWidth="230.0" layoutX="531.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Welcome.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="133.0" layoutX="584.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Userin.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
