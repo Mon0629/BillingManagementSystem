@@ -8,10 +8,12 @@
     -fx-font-size: 15;
     -fx-alignment: baseline-left;
     -fx-content-display: left;
+    -fx-text-fill: white;
 }
 .dashboard_btn:active , .customer_btn:active, .product_btn:active, .billing_btn:active{
      -fx-background-color: white;
     -fx-background-radius: 100 0 0 100;
+    -fx-text-fill:black;
 }
 
 

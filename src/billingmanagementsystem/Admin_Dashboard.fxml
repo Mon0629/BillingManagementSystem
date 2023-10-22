@@ -2,10 +2,12 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1126.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.Admin_DashboardController">
     <stylesheets>
@@ -64,10 +66,38 @@
          <center>
             <AnchorPane prefHeight="654.0" prefWidth="1119.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="dashboard_pane" prefHeight="654.0" prefWidth="940.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false" />
-                  <AnchorPane fx:id="customer_pane" prefHeight="654.0" prefWidth="941.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" />
-                  <AnchorPane fx:id="product_pane" prefHeight="654.0" prefWidth="941.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" />
-                  <AnchorPane fx:id="billing_pane" prefHeight="654.0" prefWidth="940.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" />
+                  <AnchorPane fx:id="dashboard_pane" prefHeight="654.0" prefWidth="940.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
+                     <children>
+                        <Label layoutX="193.0" layoutY="186.0" prefHeight="266.0" prefWidth="549.0" text="Dashboard pane">
+                           <font>
+                              <Font name="Britannic Bold" size="61.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="customer_pane" prefHeight="654.0" prefWidth="941.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
+                     <children>
+                        <Label layoutX="89.0" layoutY="174.0" prefHeight="221.0" prefWidth="426.0" text="Customer">
+                           <font>
+                              <Font size="84.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="product_pane" prefHeight="654.0" prefWidth="941.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
+                     <children>
+                        <Label layoutX="179.0" layoutY="217.0" prefHeight="125.0" prefWidth="358.0" text="Product">
+                           <font>
+                              <Font size="85.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="billing_pane" prefHeight="654.0" prefWidth="940.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
+                     <children>
+                        <Label layoutX="92.0" layoutY="160.0" prefHeight="185.0" prefWidth="438.0" text="Billing">
+                           <font>
+                              <Font size="96.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
                </children>
             </AnchorPane>
          </center>
