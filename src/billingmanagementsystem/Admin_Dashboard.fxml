@@ -51,9 +51,9 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="about_us_btn" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="174.0" styleClass="about_us_btn" stylesheets="@admin_dashboard.css" text="About Us" textFill="#f8f5f5">
+                  <Button fx:id="about_us_btn" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="about_us_btn" stylesheets="@admin_dashboard.css" text="About Us" textFill="#f8f5f5">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="about_us_btn">
+                        <ImageView fx:id="icon5" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="about_us_btn">
                            <image>
                               <Image url="@../Graphics/information-button.png" />
                            </image>
@@ -108,6 +108,15 @@
                            </font>
                         </Label>
                      </children></AnchorPane>
+                  <AnchorPane fx:id="about_us_pane" prefHeight="654.0" prefWidth="941.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
+                     <children>
+                        <Label layoutX="183.0" layoutY="241.0" prefHeight="184.0" prefWidth="327.0" text="about us">
+                           <font>
+                              <Font size="74.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>

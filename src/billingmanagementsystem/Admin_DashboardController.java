@@ -55,6 +55,10 @@ public class Admin_DashboardController implements Initializable {
     private ImageView icon3;
     @FXML
     private ImageView icon4;
+    @FXML
+    private ImageView icon5;
+    @FXML
+    private AnchorPane about_us_pane;
 
     /**
      * Initializes the controller class.
@@ -81,16 +85,18 @@ public class Admin_DashboardController implements Initializable {
         }
 
         if (clickedButton == dashboard_btn) {
-            // ... (rest of the code remains the same)
+           
         }
 
         // Update the last clicked button
         lastClickedButton = clickedButton;
+        
         if (clickedButton == dashboard_btn) {
             dashboard_pane.setVisible(true);
             customer_pane.setVisible(false);
             product_pane.setVisible(false);
             billing_pane.setVisible(false);
+            about_us_pane.setVisible(false);
 
 
         } else if (clickedButton == customer_btn) {
@@ -98,19 +104,28 @@ public class Admin_DashboardController implements Initializable {
             customer_pane.setVisible(true);
             product_pane.setVisible(false);
             billing_pane.setVisible(false);
+            about_us_pane.setVisible(false);
 
         } else if (clickedButton == product_btn) {
             dashboard_pane.setVisible(false);
             customer_pane.setVisible(false);
             product_pane.setVisible(true);
             billing_pane.setVisible(false);
+            about_us_pane.setVisible(false);
             
         } else if (clickedButton == billing_btn) {
             dashboard_pane.setVisible(false);
             customer_pane.setVisible(false);
             product_pane.setVisible(false);
             billing_pane.setVisible(true);
+            about_us_pane.setVisible(false);
 
+        } else if (clickedButton == about_us_btn) {
+            dashboard_pane.setVisible(false);
+            customer_pane.setVisible(false);
+            product_pane.setVisible(false);
+            billing_pane.setVisible(false);
+            about_us_pane.setVisible(true);
         } 
     }
     
@@ -128,7 +143,7 @@ private void changestyle(MouseEvent event) {
     customer_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == customer_btn);
     product_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == product_btn);
     billing_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == billing_btn);
-
+    about_us_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == about_us_btn);
   
 }
 

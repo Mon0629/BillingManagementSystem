@@ -36,13 +36,7 @@ public class LogInController implements Initializable {
 
     
     
-    
-    
-    
-
- 
-        
-    
+  
 
     @FXML
     private void login(ActionEvent event) {
