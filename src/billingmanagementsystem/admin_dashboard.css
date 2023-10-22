@@ -2,8 +2,12 @@
  * Empty Stylesheet file.
  */
 
-.billing_btn, .customer_btn, .product_btn, .dashboard_btn{
-    -fx-background-color: forestgreen;
+.billing_btn, .customer_btn, .product_btn, .dashboard_btn, .about_us_btn{
+    -fx-background-color: transparent;
+    -fx-font-family: Sans Serif;
+    -fx-font-size: 15;
+    -fx-alignment: baseline-left;
+    -fx-content-display: left;
 }
 .dashboard_btn:active , .customer_btn:active, .product_btn:active, .billing_btn:active{
      -fx-background-color: white;
