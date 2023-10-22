@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1126.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.Admin_DashboardController">
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1126.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.Admin_DashboardController">
     <stylesheets>
         <URL value="@admin_dashboard.css" />
     </stylesheets>
@@ -18,48 +18,58 @@
          <left>
             <AnchorPane prefHeight="654.0" prefWidth="186.0" style="-fx-background-color: #0047AB;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="dashboard_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="12.0" layoutY="141.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="dashboard_btn" text="Dashboard" textFill="#f5f5f5">
+                  <Button fx:id="dashboard_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="181.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="dashboard_btn" text="Dashboard" textFill="#f5f5f5">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="154.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="button_icon">
                            <image>
-                              <Image url="@../Graphics/capybara.png" />
+                              <Image url="@../Graphics/dashboard.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="customer_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="12.0" layoutY="191.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="customer_btn" stylesheets="@admin_dashboard.css" text="Customer" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Button fx:id="customer_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="customer_btn" stylesheets="@admin_dashboard.css" text="Customer" textAlignment="JUSTIFY" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Graphics/capybara.png" />
+                              <Image url="@../Graphics/customer.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="product_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="12.0" layoutY="241.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="product_btn" stylesheets="@admin_dashboard.css" text="Product" textFill="#f8f5f5">
+                  <Button fx:id="product_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="product_btn" stylesheets="@admin_dashboard.css" text="Product" textFill="#f8f5f5">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Graphics/capybara.png" />
+                              <Image url="@../Graphics/package.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="billing_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="12.0" layoutY="291.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="billing_btn" stylesheets="@admin_dashboard.css" text="Billings" textFill="#f5f3f3">
+                  <Button fx:id="billing_btn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#Switch_Pane" onMouseClicked="#changestyle" prefHeight="55.0" prefWidth="174.0" styleClass="billing_btn" stylesheets="@admin_dashboard.css" text="Billings" textFill="#f5f3f3">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Graphics/capybara.png" />
+                              <Image url="@../Graphics/invoice.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="about_us_btn" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="12.0" layoutY="346.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="174.0" styleClass="about_us_btn" stylesheets="@admin_dashboard.css" text="About Us" textFill="#f8f5f5">
+                  <Button fx:id="about_us_btn" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="174.0" styleClass="about_us_btn" stylesheets="@admin_dashboard.css" text="About Us" textFill="#f8f5f5">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Graphics/capybara.png" />
+                              <Image url="@../Graphics/information-button.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
                   <Button fx:id="sign_out_btn" contentDisplay="CENTER" layoutY="559.0" mnemonicParsing="false" onAction="#Switch_Pane" prefHeight="25.0" prefWidth="186.0" text="Sign Out" />
+                  <ImageView fitHeight="114.0" fitWidth="128.0" layoutX="36.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="127.0" layoutX="38.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/pngwing.com%20(12).png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </left>
