@@ -8,18 +8,18 @@
     -fx-font-size: 15;
     -fx-alignment: baseline-left;
     -fx-content-display: left;
-    -fx-text-fill: white;
+    -fx-text-fill: #00072D;
 }
 .dashboard_btn:hover , .customer_btn:hover, .product_btn:hover, .billing_btn:hover, .about_us_btn:hover{
     -fx-background-radius: 100 0 0 100;
-    -fx-text-fill:black;
-    -fx-background-color:white;
+    -fx-text-fill:white;
+    -fx-background-color:#040720;
 }
 
 
 
 .dashboard_btn:hover #icon1, .customer_btn:hover #icon2, .product_btn:hover #icon3, .billing_btn:hover #icon4, .about_us_btn:hover #icon5{
-     -fx-effect: innershadow(gaussian, rgba(0,0,0,1), 10, 1, 1, 1); 
+     -fx-effect: innershadow(gaussian, rgba(4,7,32,1), 10, 1, 1, 1); 
 }
 .dashboard_btn:active , .customer_btn:active, .product_btn:active, .billing_btn:active, .about_us_btn:active{
      -fx-background-color: white;
@@ -34,7 +34,7 @@
 }
 
 .mainFxmlClass {
-    -fx-background-color: white;
+    -fx-background-color: #040720;
 }
 
 
