@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -49,7 +50,8 @@ public class LogInController implements Initializable {
 
     Stage primaryStage = new Stage(); 
     Scene scene = new Scene(root);
-
+    
+    
     primaryStage.setTitle("Billing Management System");
     primaryStage.setScene(scene);
     primaryStage.show();
