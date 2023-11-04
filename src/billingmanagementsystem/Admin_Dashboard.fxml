@@ -2,15 +2,10 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="698.0" prefWidth="1086.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.Admin_DashboardController">
     <stylesheets>
@@ -100,44 +95,6 @@
             <AnchorPane prefHeight="698.0" prefWidth="1086.0" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane fx:id="dashboard_pane" layoutX="11.0" prefHeight="669.0" prefWidth="1075.0" styleClass="anchor_pane" stylesheets="@admin_dashboard.css" />
-                  <AnchorPane fx:id="customer_pane" prefHeight="698.0" prefWidth="1086.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
-                     <children>
-                        <Label layoutX="89.0" layoutY="174.0" prefHeight="221.0" prefWidth="426.0" text="Customer">
-                           <font>
-                              <Font size="84.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="product_pane" prefHeight="698.0" prefWidth="1086.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
-                     <children>
-                        <VBox layoutX="25.0" layoutY="55.0" prefHeight="248.0" prefWidth="1086.0" style="-fx-background-color: white; -fx-background-radius: 20 20 20 20;" />
-                        <TextField layoutX="21.0" layoutY="17.0" prefHeight="22.0" prefWidth="271.0" promptText="Search" style="-fx-background-radius: 10 10 10 10;" />
-                        <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="264.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Graphics/search.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="billing_pane" layoutX="10.0" prefHeight="698.0" prefWidth="1086.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane" stylesheets="@admin_dashboard.css">
-                           <children>
-                              <ScrollPane prefHeight="661.0" prefWidth="1044.0" styleClass="anchor_pane" stylesheets="@admin_dashboard.css" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="about_us_pane" prefHeight="698.0" prefWidth="1086.0" styleClass="mainFxmlClass" stylesheets="@admin_dashboard.css" visible="false">
-                     <children>
-                        <Label layoutX="183.0" layoutY="241.0" prefHeight="184.0" prefWidth="327.0" text="about us">
-                           <font>
-                              <Font size="74.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>
