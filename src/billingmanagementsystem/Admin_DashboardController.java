@@ -66,6 +66,12 @@ public class Admin_DashboardController implements Initializable {
     private AnchorPane about_us_pane;
     @FXML
     private ImageView icon51;
+    @FXML
+    private ImageView exit;
+    @FXML
+    private ImageView maximize;
+    @FXML
+    private ImageView minimize;
 
     /**
      * Initializes the controller class.
@@ -81,68 +87,31 @@ public class Admin_DashboardController implements Initializable {
     }    
 
     
-    private Button lastClickedButton = null;
-    @FXML
-    private void Switch_Pane(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-
-        if (clickedButton == lastClickedButton) {
-            // Ignore the click if the same button was clicked twice in a row
-            return;
+    private void loadFXML(String SwitchFXML) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(SwitchFXML));
+            Parent root = loader.load();
+            dashboard_pane.getChildren().setAll(root);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        if (clickedButton == dashboard_btn) {
-           
-        }
-
-        // Update the last clicked button
-        lastClickedButton = clickedButton;
-        
-        if (clickedButton == dashboard_btn) {
-            dashboard_pane.setVisible(true);
-            customer_pane.setVisible(false);
-            product_pane.setVisible(false);
-            billing_pane.setVisible(false);
-            about_us_pane.setVisible(false);
-
-
-        } else if (clickedButton == customer_btn) {
-            dashboard_pane.setVisible(false);
-            customer_pane.setVisible(true);
-            product_pane.setVisible(false);
-            billing_pane.setVisible(false);
-            about_us_pane.setVisible(false);
-
-        } else if (clickedButton == product_btn) {
-            dashboard_pane.setVisible(false);
-            customer_pane.setVisible(false);
-            product_pane.setVisible(true);
-            billing_pane.setVisible(false);
-            about_us_pane.setVisible(false);
-            
-        } else if (clickedButton == billing_btn) {
-            dashboard_pane.setVisible(false);
-            customer_pane.setVisible(false);
-            product_pane.setVisible(false);
-            billing_pane.setVisible(true);
-            about_us_pane.setVisible(false);
-
-        } else if (clickedButton == about_us_btn) {
-            dashboard_pane.setVisible(false);
-            customer_pane.setVisible(false);
-            product_pane.setVisible(false);
-            billing_pane.setVisible(false);
-            about_us_pane.setVisible(true);
-        } 
     }
     
-    /*private void setButtonColor(Button button, boolean isSelected) {
-        if (isSelected) {
-            button.getStyleClass().add("selected-button");
-        } else {
-            button.getStyleClass().remove("selected-button");
+    @FXML
+    private void Switch_Pane(ActionEvent event) {
+        if (event.getSource() == dashboard_btn) {
+            loadFXML("Dashboard.fxml");
+        }else if (event.getSource() == customer_btn){
+            loadFXML("Customer.fxml");
+        }else if (event.getSource() == product_btn){
+            loadFXML("Product.fxml");
+        }else if (event.getSource() == billing_btn) {
+            loadFXML("Billings.fxml");
         }
-    }*/
+      
+    }
+    
+
 
 @FXML
 private void changestyle(MouseEvent event) {
@@ -179,6 +148,28 @@ private void changestyle(MouseEvent event) {
     }
     
 
+    }
+
+    @FXML
+    private void exit(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void maximize(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        if(stage.isMaximized()){
+        stage.setMaximized(false);
+        }else{
+        stage.setMaximized(true);
+        }
+    }
+
+    @FXML
+    private void minimize(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
     
     

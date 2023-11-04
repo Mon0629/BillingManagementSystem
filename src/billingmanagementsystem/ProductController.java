@@ -6,19 +6,14 @@ package billingmanagementsystem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.LineChart;
 
 /**
  * FXML Controller class
  *
  * @author User
  */
-public class SuperAdminController implements Initializable {
-
-    @FXML
-    private LineChart<?, ?> linegraph;
+public class ProductController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -29,5 +24,3 @@ public class SuperAdminController implements Initializable {
     }    
     
 }
-
-
