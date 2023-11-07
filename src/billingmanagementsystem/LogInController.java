@@ -16,8 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -25,6 +28,9 @@ import javafx.stage.Stage;
  * @author User
  */
 public class LogInController implements Initializable {
+
+    @FXML
+    private Label forget_password;
        
     /**
      * Initializes the controller class.
@@ -37,28 +43,29 @@ public class LogInController implements Initializable {
 
     
     
-  
-
     @FXML
     private void login(ActionEvent event) {
-        Parent root = null;
     try {
-        root = FXMLLoader.load(getClass().getResource("Admin_Dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Admin_Dashboard.fxml"));
+        Stage primaryStage = new Stage(); 
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Billing Management System");
+        primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.show();
+        
+        
+        
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     } catch (IOException ex) {
-        Logger.getLogger(BillingManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error loading Admin_Dashboard.fxml", ex);
     }
+}
 
-    Stage primaryStage = new Stage(); 
-    Scene scene = new Scene(root);
-    
-    
-    primaryStage.setTitle("Billing Management System");
-    primaryStage.setScene(scene);
-    primaryStage.show();
-    
 
-    // Hide the current window if needed
-    ((Node)(event.getSource())).getScene().getWindow().hide();
+    @FXML
+    private void forgetpassword(MouseEvent event) {
+        
     }
     
 }

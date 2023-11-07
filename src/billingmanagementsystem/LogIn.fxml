@@ -44,7 +44,7 @@
             <Image url="@../Graphics/shoe%20effect.png" />
          </image>
       </ImageView>
-      <Label layoutX="552.0" layoutY="338.0" text="Forgot Password?" />
+      <Label fx:id="forget_password" layoutX="552.0" layoutY="338.0" onMouseClicked="#forgetpassword" text="Forgot Password?" />
       <ImageView fitHeight="82.0" fitWidth="230.0" layoutX="531.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/Welcome.png" />
