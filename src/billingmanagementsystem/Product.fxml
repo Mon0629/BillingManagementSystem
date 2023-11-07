@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="699.0" prefWidth="1075.0" style="-fx-background-color: #040720;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="billingmanagementsystem.ProductController">
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.ProductController">
    <children>
-      <AnchorPane prefHeight="705.0" prefWidth="1081.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
+      <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
             <Label layoutX="241.0" layoutY="140.0" text="product">
                <font>
