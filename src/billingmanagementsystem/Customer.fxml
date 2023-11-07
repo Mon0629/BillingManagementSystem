@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
    <children>
       <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
@@ -13,7 +13,9 @@
                   <Font size="81.0" />
                </font>
             </Label>
+            <Label layoutX="246.0" layoutY="121.0" text="adudhsudhuwdwyadhuhdausd" />
          </children>
       </AnchorPane>
+      <Label text="Label" />
    </children>
 </AnchorPane>
