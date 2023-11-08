@@ -25,7 +25,8 @@ public class CustomerController implements Initializable {
     @FXML private TableView<Customer> tableView;
     @FXML private TableColumn<Customer, Integer> customerIdCol; 
     @FXML private TableColumn<Customer,Timestamp> creationDateCol;
-    @FXML private TableColumn<Customer,String> customerNameCol;
+    @FXML private TableColumn<Customer,String> customerFirstNameCol;
+    @FXML private TableColumn<Customer,String> customerLastNameCol;
     @FXML private TableColumn<Customer,String> emailCol;
     @FXML private TableColumn<Customer,String> townCol;
     @FXML private TableColumn<Customer,String> addressCol;

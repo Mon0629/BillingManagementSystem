@@ -5,18 +5,20 @@ import java.sql.*;
 public class Customer {
 	private int customerId;
 	private Timestamp creationDate;
-	private String name;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String address;
 	private String town;
 	private String country;
 	private int postal;
 	
-	Customer(int customerId, Timestamp creationDate, String name, String email, String address, String town,
+	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String email, String address, String town,
 			String country, int postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.address = address;
 		this.town = town;
@@ -35,11 +37,17 @@ public class Customer {
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getEmail() {
 		return email;

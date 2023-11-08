@@ -1,6 +1,6 @@
 package customer;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +33,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        	Customer customer = new Customer(
 	        		resultSet.getInt("customerID"),
 	        		resultSet.getTimestamp("creationDate"),
-	        		resultSet.getString("name"),
+	        		resultSet.getString("firstName"),
+	        		resultSet.getString("lastName")
 	        		resultSet.getString("email"),
 	        		resultSet.getString("town"),
 	        		resultSet.getString("address"),
@@ -41,7 +42,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getInt("postal")
 	        		);
 	        	customersData.add(customer);
-	        	System.out.println(customer);
+	        	System.out.println(customer.getName());
 	        }
 	        resultSet.close();
 	        statement.close();
