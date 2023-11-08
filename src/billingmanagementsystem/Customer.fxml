@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
    <children>
       <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
-            <Label layoutX="166.0" layoutY="216.0" text="Customer pane">
-               <font>
-                  <Font size="81.0" />
-               </font>
-            </Label>
-            <Label layoutX="246.0" layoutY="121.0" text="adudhsudhuwdwyadhuhdausd" />
+            <TableView fx:id="customerTavleView" layoutX="24.0" layoutY="23.0" prefHeight="200.0" prefWidth="726.0">
+              <columns>
+                <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="Customer ID" />
+                <TableColumn fx:id="creationDateCol" prefWidth="75.0" text="Creation Date" />
+                  <TableColumn fx:id="customerFirstNameCol" prefWidth="75.0" text="First Name" />
+                  <TableColumn fx:id="customerLastNameCol" prefWidth="75.0" text="Last Name" />
+                  <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
+                  <TableColumn fx:id="townCol" prefWidth="75.0" text="Town" />
+                  <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
+                  <TableColumn fx:id="countryCol" prefWidth="75.0" text="Country " />
+                  <TableColumn fx:id="postalCol" prefWidth="75.0" text="Postal" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
-      <Label text="Label" />
 
    </children>
 </AnchorPane>
