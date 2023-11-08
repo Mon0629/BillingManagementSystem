@@ -10,3 +10,16 @@
     -fx-background-radius: 20 20 20 20;
     
 }
+.tabpane{
+    -fx-background-radius: 20 20 20 20;
+   -fx-border-radius: 20 20 20 20;
+}
+.scrollpane{
+    -fx-background-color:white;
+}
+
+.pane1{
+    -fx-border-color:#f2f3f5;
+    
+
+}
