@@ -34,7 +34,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getInt("customerID"),
 	        		resultSet.getTimestamp("creationDate"),
 	        		resultSet.getString("firstName"),
-	        		resultSet.getString("lastName")
+	        		resultSet.getString("lastName"),
 	        		resultSet.getString("email"),
 	        		resultSet.getString("town"),
 	        		resultSet.getString("address"),
@@ -42,7 +42,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getInt("postal")
 	        		);
 	        	customersData.add(customer);
-	        	System.out.println(customer.getName());
+	        	System.out.println(customer.getFirstName() + customer.getLastName());
 	        }
 	        resultSet.close();
 	        statement.close();
