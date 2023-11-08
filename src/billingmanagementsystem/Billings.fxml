@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="699.0" prefWidth="1075.0" style="-fx-background-color: #040720;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="billingmanagementsystem.BillingsController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="699.0" prefWidth="1075.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
+         <children>
+            <TabPane layoutX="22.0" layoutY="19.0" prefHeight="658.0" prefWidth="1027.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Untitled Tab 1" />
+                <Tab text="Untitled Tab 2" />
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

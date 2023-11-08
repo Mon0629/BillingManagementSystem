@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="669.0" prefWidth="1075.0" style="-fx-background-color: #040720;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="billingmanagementsystem.DashboardController">
+    <stylesheets>
+        <URL value="@dashboard.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="161.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane layoutX="2.0" layoutY="-1.0" prefHeight="669.0" prefWidth="1075.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
+         <children>
+            <AreaChart layoutX="62.0" layoutY="49.0" prefHeight="187.0" prefWidth="255.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
+            <BarChart layoutX="344.0" layoutY="87.0" prefHeight="391.0" prefWidth="490.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
