@@ -13,7 +13,7 @@ public class Customer {
 	private String country;
 	private int postal;
 	
-	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String email, String address, String town,
+	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String email,  String town, String address,
 			String country, int postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;

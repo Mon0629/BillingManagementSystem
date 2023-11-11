@@ -37,7 +37,7 @@ public class CustomerController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+     	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
     	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
     	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
