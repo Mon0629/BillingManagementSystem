@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import databaseSQL.DatabaseManager;
@@ -13,9 +14,15 @@ import javafx.collections.ObservableList;
 import customer.Customer;
 
 public class CustomerDAOImpl implements CustomerDAO {
+	
+	private ObservableList <Customer> customersData = FXCollections.observableArrayList();
+
+	public ObservableList<Customer> getCustomersData() {
+		return customersData;
+	}
 
 	@Override
-	public void createCustomer(int customerID, Timestamp creationDate, String name, String email, String address, String town, String country, int postal) {
+	public void createCustomer(int customerID, Timestamp creationDate, String firstName, String lastName, String email, String address, String town, String country, int postal) {
 		
 		
 	}
@@ -24,7 +31,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void fetchAllCustomers() {
 		
 		try {
-			ObservableList<Customer> customersData = FXCollections.observableArrayList();
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement("SELECT * from bms.customers");
 	        ResultSet resultSet = statement.executeQuery();
@@ -42,7 +48,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getInt("postal")
 	        		);
 	        	customersData.add(customer);
-	        	System.out.println(customer.getFirstName() + customer.getLastName());
+	        	System.out.println(customer.getCustomerId() + customer.getFirstName() + customer.getLastName());
 	        }
 	        resultSet.close();
 	        statement.close();
@@ -51,12 +57,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 			e.printStackTrace();
 		}
 		
-	}
-
-	@Override
-	public ObservableList<Customer> getAllCustomer() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

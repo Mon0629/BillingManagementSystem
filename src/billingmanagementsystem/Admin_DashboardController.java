@@ -83,8 +83,7 @@ public class Admin_DashboardController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
-    	CustomerDAO.fetchAllCustomers();
+    	
        
        loadFXML("Dashboard.fxml");
 
