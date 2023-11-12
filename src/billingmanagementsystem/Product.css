@@ -20,3 +20,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: linear-gradient(to bottom left,#00008B,#4bc0dd) ;
     -fx-background-radius: 50 50 50 50;
 }
+
+.anchor_pane{
+    
+   -fx-background-color:white;
+}
