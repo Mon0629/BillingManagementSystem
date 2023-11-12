@@ -32,7 +32,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			Connection connection = DatabaseManager.getConnection();
-			PreparedStatement statement = connection.prepareStatement("SELECT * from bms.customers");
+			PreparedStatement statement = connection.prepareStatement("SELECT * from customers");
 	        ResultSet resultSet = statement.executeQuery();
 	        
 	        while(resultSet.next()) {
