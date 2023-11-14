@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
+   <children>
+      <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
+         <children>
+            <TableView fx:id="customerTableView" layoutX="24.0" layoutY="74.0" prefHeight="200.0" prefWidth="1009.0">
+              <columns>
+                <TableColumn fx:id="customerIdCol" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="Customer ID" />
+                <TableColumn fx:id="creationDateCol" editable="false" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" resizable="false" sortable="false" text="Creation Date" />
+                  <TableColumn fx:id="customerFirstNameCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="First Name" />
+                  <TableColumn fx:id="customerLastNameCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Last Name" />
+                  <TableColumn fx:id="emailCol" editable="false" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" sortable="false" text="Email" />
+                  <TableColumn fx:id="addressCol" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" resizable="false" sortable="false" text="Address" />
+                  <TableColumn fx:id="townCol" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" sortable="false" text="Town" />
+                  <TableColumn fx:id="countryCol" editable="false" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" sortable="false" text="Country " />
+                  <TableColumn fx:id="postalCol" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="Postal" />
+                  <TableColumn fx:id="editCol" editable="false" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="Edit" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+
+   </children>
+</AnchorPane>
