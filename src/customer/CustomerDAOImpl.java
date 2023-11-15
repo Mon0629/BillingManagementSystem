@@ -72,8 +72,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void deleteCustomer() {
-		// TODO Auto-generated method stub
+	public void deleteCustomer(int customerID) {
+		
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customerID = " + customerID);
+			statement.executeUpdate();
+			
+			statement.close();
+	        connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

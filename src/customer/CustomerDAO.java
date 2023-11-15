@@ -20,7 +20,7 @@ public interface CustomerDAO {
 	void fetchAllCustomers();
 	Customer getCustomerByID();
 	void updateCustomer();
-	void deleteCustomer();
+	void deleteCustomer(int customerID);
 	
 	
 }
