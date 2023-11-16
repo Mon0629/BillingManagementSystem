@@ -208,7 +208,66 @@
                   </Tab>
                   <Tab text="Manage Invoice">
                      <content>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <AnchorPane prefHeight="594.0" prefWidth="1030.0">
+                                 <children>
+                                    <Label prefHeight="66.0" prefWidth="363.0" style="-fx-text-fill: #4bbc45;" text="Invoice List" textFill="#4bbc45">
+                                       <font>
+                                          <Font name="Arial" size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="6.0" layoutY="54.0" prefHeight="3.0" prefWidth="1025.0" />
+                                    <AnchorPane layoutX="14.0" layoutY="107.0" prefHeight="407.0" prefWidth="1006.0" style="-fx-border-color: #f2f3f5;">
+                                       <children>
+                                          <Label layoutX="36.0" layoutY="59.0" prefHeight="34.0" prefWidth="42.0" text="Show">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="756.0" layoutY="59.0" prefHeight="34.0" prefWidth="56.0" text="Search:">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TableView layoutX="33.0" layoutY="106.0" prefHeight="219.0" prefWidth="937.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="Invoice" />
+                                              <TableColumn prefWidth="130.40000915527344" text="Customer" />
+                                                <TableColumn prefWidth="120.0" text="Issue Date" />
+                                                <TableColumn prefWidth="134.4000244140625" text="Due Date" />
+                                                <TableColumn prefWidth="122.4000244140625" text="Type" />
+                                                <TableColumn prefWidth="142.4000244140625" text="Status" />
+                                                <TableColumn prefWidth="208.79995117187502" text="Action" />
+                                            </columns>
+                                          </TableView>
+                                          <Button layoutX="812.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Previous" />
+                                          <Button layoutX="907.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" text="Next" />
+                                          <TextField layoutX="812.0" layoutY="64.0" />
+                                          <Label layoutX="166.0" layoutY="58.0" prefHeight="34.0" prefWidth="64.0" text="Entries">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane prefHeight="57.0" prefWidth="1006.0" style="-fx-background-color: #f2f3f5;">
+                                             <children>
+                                                <Label layoutX="14.0" layoutY="9.0" text="Manage Invoices">
+                                                   <font>
+                                                      <Font size="26.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                          <Label layoutX="46.0" layoutY="347.0" prefHeight="26.0" prefWidth="207.0" text="Showing 1 to 5 of 5 Entries">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </content></ScrollPane>
                      </content>
                   </Tab>
 
