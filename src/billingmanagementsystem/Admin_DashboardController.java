@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import customer.*;
+import customerPane.*;
 /**
  * FXML Controller class
  *

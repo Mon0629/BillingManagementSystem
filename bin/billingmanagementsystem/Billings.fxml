@@ -131,9 +131,9 @@
                                                 </Label>
                                              </children>
                                           </AnchorPane>
-                                          <TextField fx:id="textField1" layoutX="21.0" layoutY="79.0" prefHeight="25.0" prefWidth="248.0" promptText="Product Name" />
+                                          <TextField fx:id="textField1" editable="false" layoutX="21.0" layoutY="79.0" prefHeight="25.0" prefWidth="248.0" promptText="Product Name" />
                                           <Separator layoutX="435.0" layoutY="2.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="6.0" />
-                                          <TextField fx:id="textField2" layoutX="283.0" layoutY="79.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="61.0" promptText="Price ($):" />
+                                          <TextField fx:id="textField2" editable="false" layoutX="283.0" layoutY="79.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="61.0" promptText="Price ($):" />
                                           <TextField fx:id="textField4" layoutX="21.0" layoutY="115.0" prefHeight="25.0" prefWidth="397.0" promptText="Discounts" />
                                           <TextField fx:id="textField5" layoutX="335.0" layoutY="148.0" prefHeight="25.0" prefWidth="83.0" />
                                           <TextField fx:id="textField3" layoutX="356.0" layoutY="79.0" onKeyReleased="#subtotal" prefHeight="25.0" prefWidth="61.0" promptText="Quantity" />
