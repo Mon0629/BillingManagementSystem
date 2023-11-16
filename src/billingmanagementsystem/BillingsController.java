@@ -16,7 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -91,7 +91,7 @@ public class BillingsController implements Initializable {
     @FXML
     private TextField telephone;
     @FXML 
-    private Button addtoorder;
+    private ComboBox docTypeComboBox; 
 
     /**
      * Initializes the controller class.
@@ -100,6 +100,7 @@ public class BillingsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setCurrentDate();
         setDueDate();
+        setupDocTypeComboBox();
        
     }    
     
@@ -253,6 +254,10 @@ public class BillingsController implements Initializable {
     textField2.setText(String.valueOf(productData.getPrice()));
 }
     
+    private void setupDocTypeComboBox() {
+    	docTypeComboBox.getItems().removeAll(docTypeComboBox.getItems());
+        docTypeComboBox.getItems().addAll("Receipt", "Bill", "Invoice");
+    }
     
     
 }
