@@ -141,4 +141,5 @@ public class CustomerTableController implements Initializable {
             Logger.getLogger(CustomerTableController.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+
 }

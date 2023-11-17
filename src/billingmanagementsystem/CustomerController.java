@@ -67,6 +67,7 @@ public class CustomerController implements Initializable {
     	CustomerDAO.fetchAllCustomers();
     	customerTableView.setItems(CustomerDAO.getCustomersData());
     	
+
     }
     
 }

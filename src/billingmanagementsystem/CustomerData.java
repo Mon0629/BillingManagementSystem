@@ -79,3 +79,4 @@ public class CustomerData {
     this.postal = postal;
     }
 }
+

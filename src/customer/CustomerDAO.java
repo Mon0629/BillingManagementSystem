@@ -3,9 +3,6 @@ package customer;
 import java.sql.Timestamp;
 import java.util.List;
 
-
-
-
 public interface CustomerDAO {
 	void createCustomer(
 		int customerID, 
@@ -21,6 +18,4 @@ public interface CustomerDAO {
 	Customer getCustomerByID();
 	void updateCustomer();
 	void deleteCustomer(int customerID);
-	
-	
 }
