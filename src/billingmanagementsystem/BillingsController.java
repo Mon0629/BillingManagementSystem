@@ -314,7 +314,7 @@ private void CREATEINVOICE(ActionEvent event) {
         contentStream.close();
 
         // kung saan mo isesave na folder
-        String outputPath = "C:\\Users\\Salupado\\Downloads\\Invoice.pdf";
+        String outputPath = "C:\\Users\\User\\Downloads/"+fname.getText()+" "+ lname.getText()+" Invoice.pdf";
         document.save(outputPath);
 
         document.close();
