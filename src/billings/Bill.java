@@ -1,4 +1,4 @@
-package src.billings;
+package billings;
 
 import java.sql.Date;
 import java.sql.Timestamp;
