@@ -58,6 +58,7 @@ public class CustomerController implements Initializable {
     	countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
     	postalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
         editCol.setCellFactory(new ButtonTableCellFactory());
+        editCol.setCellFactory(new ButtonTableCellFactory());
     	
     	refreshCustomerTableview();
     	

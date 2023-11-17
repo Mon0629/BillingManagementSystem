@@ -3,11 +3,12 @@ package billingmanagementsystem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import customer.Customer;
-import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import customer.CustomerDAOImpl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>> {
     
@@ -19,29 +20,50 @@ public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Bo
     }
 
     private class ButtonTableCell extends TableCell<Customer, Boolean> {
-        final Button deleteButton = new Button("Delete");
+    final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/delete1.png")));
+    final ImageView updateIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/arrow.png")));
 
-        ButtonTableCell() {
-            deleteButton.setOnAction(event -> {
-                Customer customer = getTableView().getItems().get(getIndex());
-                // Call a method to handle the delete operation
-                handleDelete(customer);
-            });
-        }
+    ButtonTableCell() {
+        // Handle delete icon action
+        deleteIcon.setOnMouseClicked(event -> {
+            Customer customer = getTableView().getItems().get(getIndex());
+            // Call a method to handle the delete operation
+            handleDelete(customer);
+        });
 
-        @Override
-        protected void updateItem(Boolean item, boolean empty) {
-            super.updateItem(item, empty);
-            if (!empty) {
-                setGraphic(deleteButton);
-            } else {
-                setGraphic(null);
-            }
-        }
+        // Handle update icon action
+        updateIcon.setOnMouseClicked(event -> {
+            Customer customer = getTableView().getItems().get(getIndex());
+            // Call a method to handle the update operation
+            handleUpdate(customer);
+        });
 
-        private void handleDelete(Customer customer) {
-        	customerDAO.deleteCustomer(customer.getCustomerId());
-            getTableView().getItems().remove(customer);
+        // Set icons side by side
+        setGraphic(new HBox(deleteIcon, updateIcon));
+    }
+
+    @Override
+    protected void updateItem(Boolean item, boolean empty) {
+        super.updateItem(item, empty);
+        if (!empty) {
+
+            setGraphic(new HBox(deleteIcon, updateIcon));
+        } else {
+
+            setGraphic(null);
         }
     }
+
+    private void handleDelete(Customer customer) {
+        customerDAO.deleteCustomer(customer.getCustomerId());
+        getTableView().getItems().remove(customer);
+    }
+
+    private void handleUpdate(Customer customer) {
+        // Add your logic to handle the update operation
+        // You can open a dialog or navigate to another view for updating
+        System.out.println("Update icon clicked for customer: " + customer.getCustomerId());
+    }
+}
+
 }
