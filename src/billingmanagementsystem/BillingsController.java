@@ -285,48 +285,38 @@ public class BillingsController implements Initializable {
     @FXML
 private void CREATEINVOICE(ActionEvent event) {
     try {
-        // Create a new PDF document
+ 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
 
-        // Create a content stream for the page
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-        // Your JavaFX pane to be rendered (replace 'yourAnchorPane' with your actual ID)
+        //eto yung i kokonvert mo sa image na node
         AnchorPane billingsPane = billingpane;
 
-        // Render the JavaFX pane to an image
         WritableImage snapshot = billingsPane.snapshot(new SnapshotParameters(), null);
-
-        // Convert the JavaFX image to a BufferedImage
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
-
-        // Convert the BufferedImage to a PDImageXObject
         PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
 
-        // Assuming standard letter size in portrait orientation (8.5 by 11 inches)
-        float pageWidth = 612; // points
-        float pageHeight = 792; // points
+        // suakt nya sa pdf file like location nung image
+        float pageWidth = 612; 
+        float pageHeight = 792; 
 
-        float imageWidth = 7.5f * 72; // Convert inches to points (1 inch = 72 points)
-        float imageHeight = 10f * 72; // Convert inches to points
+        float imageWidth = 7.5f * 72; 
+        float imageHeight = 10f * 72;
 
-        // Calculate the position at the center of the page
-        float x = (pageWidth - imageWidth) / 2; // Centered horizontally
-        float y = (pageHeight - imageHeight) / 2; // Centered vertically
-
-        // Draw the image onto the PDF page
+        // para nasa gitna yungimage
+        float x = (pageWidth - imageWidth) / 2; 
+        float y = (pageHeight - imageHeight) / 2; 
         contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
 
-        // Close the content stream
         contentStream.close();
 
-        // Save the PDF to a file (replace 'outputPath' with your desired file path)
+        // kung saan mo isesave na folder
         String outputPath = "C:\\Users\\User\\Downloads\\Invoice.pdf";
         document.save(outputPath);
 
-        // Close the PDF document
         document.close();
 
         System.out.println("PDF created successfully!");
