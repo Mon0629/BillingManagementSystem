@@ -4,32 +4,42 @@
  */
 package billingmanagementsystem;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 /**
  * FXML Controller class
  *
@@ -89,6 +99,12 @@ public class BillingsController implements Initializable {
     private TextField postal;
     @FXML
     private TextField telephone;
+    @FXML
+    private CheckBox VAT;
+    @FXML
+    private Button TEST;
+    @FXML
+    private AnchorPane billingpane;
 
     /**
      * Initializes the controller class.
@@ -251,6 +267,65 @@ public class BillingsController implements Initializable {
     textField1.setText(productData.getProductName());
     textField2.setText(String.valueOf(productData.getPrice()));
 }
+
+    @FXML
+    private void VATButton(ActionEvent event) {
+        double vat = Double.parseDouble(totalamount.getText());
+        double tax = vat * 0.12;
+        if (VAT.isSelected()){ 
+            double taxes = vat - tax;
+            String taxed = String.valueOf(taxes);
+            totalamount.setText(taxed);
+        
+        }else {
+        updateTotalAmountLabel();
+        }
+    }
+
+    @FXML
+private void CREATEINVOICE(ActionEvent event) {
+    try {
+ 
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
+
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+        //eto yung i kokonvert mo sa image na node
+        AnchorPane billingsPane = billingpane;
+
+        WritableImage snapshot = billingsPane.snapshot(new SnapshotParameters(), null);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+        PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
+
+        // suakt nya sa pdf file like location nung image
+        float pageWidth = 612; 
+        float pageHeight = 792; 
+
+        float imageWidth = 7.5f * 72; 
+        float imageHeight = 10f * 72;
+
+        // para nasa gitna yungimage
+        float x = (pageWidth - imageWidth) / 2; 
+        float y = (pageHeight - imageHeight) / 2; 
+        contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
+
+        contentStream.close();
+
+        // kung saan mo isesave na folder
+        String outputPath = "C:\\Users\\User\\Downloads\\Invoice.pdf";
+        document.save(outputPath);
+
+        document.close();
+
+        System.out.println("PDF created successfully!");
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
     
     
     
