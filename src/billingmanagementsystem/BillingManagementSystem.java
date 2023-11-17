@@ -29,8 +29,6 @@ import javafx.stage.StageStyle;
 
 
 public class BillingManagementSystem extends Application {
-
-	
 		
     @Override
     public void start(Stage primaryStage){
@@ -43,11 +41,7 @@ public class BillingManagementSystem extends Application {
         } catch (IOException ex) {
             Logger.getLogger(BillingManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-       
-        
+                
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("Billing Management System");
