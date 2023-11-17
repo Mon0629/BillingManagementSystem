@@ -4,32 +4,42 @@
  */
 package billingmanagementsystem;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 /**
  * FXML Controller class
  *
@@ -89,6 +99,12 @@ public class BillingsController implements Initializable {
     private TextField postal;
     @FXML
     private TextField telephone;
+    @FXML
+    private CheckBox VAT;
+    @FXML
+    private Button TEST;
+    @FXML
+    private AnchorPane billingpane;
 
     /**
      * Initializes the controller class.
@@ -251,6 +267,75 @@ public class BillingsController implements Initializable {
     textField1.setText(productData.getProductName());
     textField2.setText(String.valueOf(productData.getPrice()));
 }
+
+    @FXML
+    private void VATButton(ActionEvent event) {
+        double vat = Double.parseDouble(totalamount.getText());
+        double tax = vat * 0.12;
+        if (VAT.isSelected()){ 
+            double taxes = vat - tax;
+            String taxed = String.valueOf(taxes);
+            totalamount.setText(taxed);
+        
+        }else {
+        updateTotalAmountLabel();
+        }
+    }
+
+    @FXML
+private void CREATEINVOICE(ActionEvent event) {
+    try {
+        // Create a new PDF document
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
+
+        // Create a content stream for the page
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+        // Your JavaFX pane to be rendered (replace 'yourAnchorPane' with your actual ID)
+        AnchorPane billingsPane = billingpane;
+
+        // Render the JavaFX pane to an image
+        WritableImage snapshot = billingsPane.snapshot(new SnapshotParameters(), null);
+
+        // Convert the JavaFX image to a BufferedImage
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+
+        // Convert the BufferedImage to a PDImageXObject
+        PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
+
+        // Assuming standard letter size in portrait orientation (8.5 by 11 inches)
+        float pageWidth = 612; // points
+        float pageHeight = 792; // points
+
+        float imageWidth = 7.5f * 72; // Convert inches to points (1 inch = 72 points)
+        float imageHeight = 10f * 72; // Convert inches to points
+
+        // Calculate the position at the center of the page
+        float x = (pageWidth - imageWidth) / 2; // Centered horizontally
+        float y = (pageHeight - imageHeight) / 2; // Centered vertically
+
+        // Draw the image onto the PDF page
+        contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
+
+        // Close the content stream
+        contentStream.close();
+
+        // Save the PDF to a file (replace 'outputPath' with your desired file path)
+        String outputPath = "C:\\Users\\User\\Downloads\\Invoice.pdf";
+        document.save(outputPath);
+
+        // Close the PDF document
+        document.close();
+
+        System.out.println("PDF created successfully!");
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
     
     
     
