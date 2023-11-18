@@ -47,7 +47,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getString("postal")
 	        		);
 	        	customersData.add(customer);
-	        	System.out.println(customer.getCustomerId() + customer.getFirstName() + customer.getLastName());
 	        }
 	        resultSet.close();
 	        statement.close();

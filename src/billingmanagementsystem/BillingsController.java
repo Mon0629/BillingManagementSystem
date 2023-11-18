@@ -40,6 +40,8 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+
+import customer.Customer;
 /**
  * FXML Controller class
  *
@@ -150,14 +152,15 @@ public class BillingsController implements Initializable {
     }
     }
     
-     public void setCustomerData(CustomerData customerData) {
+     public void setCustomerData(Customer customerData) {
     fname.setText(customerData.getFirstName());
     lname.setText(customerData.getLastName());
+    cnumber.setText(customerData.getContactNumber());
     email.setText(customerData.getEmail());
     address.setText(customerData.getAddress());
     town.setText(customerData.getTown());
     country.setText(customerData.getCountry());
-    postal.setText(String.valueOf(customerData.getPostal()));
+    postal.setText(customerData.getPostal());
 }
 
     

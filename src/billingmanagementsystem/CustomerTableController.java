@@ -5,6 +5,7 @@
 package billingmanagementsystem;
 import billingmanagementsystem.BillingsController;
 import customer.Customer;
+import customer.CustomerDAOImpl;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -35,28 +36,29 @@ import javafx.collections.ObservableList;
 public class CustomerTableController implements Initializable {
 
     @FXML
-    private TableView<CustomerData> customer_table;
+    private TableView<Customer> customer_table;
     @FXML
-    private TableColumn<CustomerData, Integer> customerID;
+    private TableColumn<Customer, Integer> customerID;
     @FXML
-    private TableColumn<CustomerData, String> firstName;
+    private TableColumn<Customer, String> firstName;
     @FXML
-    private TableColumn<CustomerData, String> lastName;
+    private TableColumn<Customer, String> lastName;
     @FXML 
-    private TableColumn<CustomerData,String> contactNumCol;
+    private TableColumn<Customer,String> contactNumCol;
     @FXML
-    private TableColumn<CustomerData, String> email;
+    private TableColumn<Customer, String> email;
     @FXML
-    private TableColumn<CustomerData, String> address;
+    private TableColumn<Customer, String> address;
     @FXML
-    private TableColumn<CustomerData, String> town;
+    private TableColumn<Customer, String> town;
     @FXML
-    private TableColumn<CustomerData, String> country;
+    private TableColumn<Customer, String> country;
     @FXML
-    private TableColumn<CustomerData, Integer> postal;
+    private TableColumn<Customer, String> postal;
     @FXML
     private TextField searchbox;
 
+    CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
     /**
      * Initializes the controller class.
      */
@@ -74,7 +76,7 @@ public class CustomerTableController implements Initializable {
     @FXML
     private void tableclicked(MouseEvent event) {
         if (event.getClickCount() == 1) {
-        CustomerData customer = customer_table.getSelectionModel().getSelectedItem();
+        Customer customer = customer_table.getSelectionModel().getSelectedItem();
         if (customer != null && billingsController != null) {
             billingsController.setCustomerData(customer);
           ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -86,11 +88,11 @@ public class CustomerTableController implements Initializable {
     private void searchcustomer(KeyEvent event) throws SQLException {
         String input = searchbox.getText();
     if (!input.isEmpty()) {
-        ObservableList<CustomerData> originalList = customer_table.getItems();
-        ObservableList<CustomerData> filteredList = FXCollections.observableArrayList();
+        ObservableList<Customer> originalList = customer_table.getItems();
+        ObservableList<Customer> filteredList = FXCollections.observableArrayList();
 
-        for (CustomerData customer : originalList) {
-            if (String.valueOf(customer.getCustomerID()).contains(input)
+        for (Customer customer : originalList) {
+            if (String.valueOf(customer.getCustomerId()).contains(input)
                     || customer.getFirstName().toLowerCase().contains(input.toLowerCase())
                     || customer.getLastName().toLowerCase().contains(input.toLowerCase())) {
                 filteredList.add(customer);
@@ -108,7 +110,7 @@ public class CustomerTableController implements Initializable {
 
     private void customerTable(){
         
-        customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
@@ -118,34 +120,10 @@ public class CustomerTableController implements Initializable {
         country.setCellValueFactory(new PropertyValueFactory<>("country"));
         postal.setCellValueFactory(new PropertyValueFactory<>("postal"));
         
+        CustomerDAO.fetchAllCustomers();
+        customer_table.setItems(CustomerDAO.getCustomersData());
         
-        try
-        {
-            Connection con = DatabaseManager.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * from customers");
-            
-            while(rs.next()){
-                customer_table.getItems().add(new CustomerData(
-                rs.getInt("customerID"),
-                rs.getString("firstName"),
-                rs.getString("lastName"),
-                rs.getInt("contactNumber"),
-                rs.getString("email"),
-                rs.getString("address"),
-                rs.getString("town"),
-                rs.getString("country"),
-                rs.getInt("postal")
-                ));
-            
-        } 
-    
-    
-    
-}catch (SQLException ex)
-        {
-            Logger.getLogger(CustomerTableController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
 }
 
 }
