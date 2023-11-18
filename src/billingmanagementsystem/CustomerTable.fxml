@@ -15,6 +15,7 @@
             <TableColumn fx:id="customerID" prefWidth="75.0" text="CustomerID" />
             <TableColumn fx:id="firstName" prefWidth="75.0" text="firstName" />
             <TableColumn fx:id="lastName" prefWidth="124.0" text="lastName" />
+            <TableColumn fx:id="contactNumCol" prefWidth="124.0" text="Contact Number" />
             <TableColumn fx:id="email" prefWidth="211.0" text="email" />
             <TableColumn fx:id="address" prefWidth="242.0" text="address" />
             <TableColumn fx:id="town" prefWidth="142.0" text="town" />

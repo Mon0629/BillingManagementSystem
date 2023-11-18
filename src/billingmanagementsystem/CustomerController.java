@@ -37,6 +37,7 @@ public class CustomerController implements Initializable {
     @FXML private TableColumn<Customer,Timestamp> creationDateCol;
     @FXML private TableColumn<Customer,String> customerFirstNameCol;
     @FXML private TableColumn<Customer,String> customerLastNameCol;
+    @FXML private TableColumn<Customer,String> contactNumCol;
     @FXML private TableColumn<Customer,String> emailCol;
     @FXML private TableColumn<Customer,String> townCol;
     @FXML private TableColumn<Customer,String> addressCol;
@@ -52,6 +53,7 @@ public class CustomerController implements Initializable {
     	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
     	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
     	emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
     	townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
     	addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));

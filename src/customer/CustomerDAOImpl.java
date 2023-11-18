@@ -41,6 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getTimestamp("creationDate"),
 	        		resultSet.getString("firstName"),
 	        		resultSet.getString("lastName"),
+	        		resultSet.getInt("contactNumber"),
 	        		resultSet.getString("email"),
 	        		resultSet.getString("town"),
 	        		resultSet.getString("address"),

@@ -4,6 +4,8 @@
  */
 package billingmanagementsystem;
 import billingmanagementsystem.BillingsController;
+import customer.Customer;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,6 +42,8 @@ public class CustomerTableController implements Initializable {
     private TableColumn<CustomerData, String> firstName;
     @FXML
     private TableColumn<CustomerData, String> lastName;
+    @FXML 
+    private TableColumn<CustomerData,String> contactNumCol;
     @FXML
     private TableColumn<CustomerData, String> email;
     @FXML
@@ -107,6 +111,7 @@ public class CustomerTableController implements Initializable {
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         town.setCellValueFactory(new PropertyValueFactory<>("town"));
@@ -125,6 +130,7 @@ public class CustomerTableController implements Initializable {
                 rs.getInt("customerID"),
                 rs.getString("firstName"),
                 rs.getString("lastName"),
+                rs.getInt("contactNumber"),
                 rs.getString("email"),
                 rs.getString("address"),
                 rs.getString("town"),
