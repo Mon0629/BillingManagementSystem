@@ -4,26 +4,17 @@
  */
 package billingmanagementsystem;
 
-import java.awt.Button;
 import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-
-import java.sql.Connection;
 import java.sql.Timestamp;
+import java.util.ResourceBundle;
 
 import customer.Customer;
 import customer.CustomerDAOImpl;
-import databaseSQL.DatabaseManager;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class

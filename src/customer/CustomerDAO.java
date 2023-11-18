@@ -15,6 +15,7 @@ public interface CustomerDAO {
 		String country, 
 		int postal);
 	void fetchAllCustomers();
+	void addCustomer(Customer customer);
 	Customer getCustomerByID();
 	void updateCustomer();
 	void deleteCustomer(int customerID);
