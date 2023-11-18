@@ -49,18 +49,7 @@ public class CustomerController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-    	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-    	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
-    	emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-    	townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
-    	addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-    	countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
-    	postalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
-        editCol.setCellFactory(new ButtonTableCellFactory());
-        editCol.setCellFactory(new ButtonTableCellFactory());
+     	
     	
     	refreshCustomerTableview();
     	
@@ -86,7 +75,19 @@ public class CustomerController implements Initializable {
     	refreshCustomerTableview();
     }
     private void refreshCustomerTableview() {
-    	
+    	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+    	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+    	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+    	emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+    	townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
+    	addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+    	countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+    	postalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
+        editCol.setCellFactory(new ButtonTableCellFactory());
+        editCol.setCellFactory(new ButtonTableCellFactory());
+        
     	CustomerDAO.fetchAllCustomers();
     	customerTableView.setItems(CustomerDAO.getCustomersData());
     	

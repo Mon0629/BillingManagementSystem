@@ -28,7 +28,7 @@ public class Customer {
 		this.postal = postal;
 	}
 	
-	Customer(String firstName, String lastName, int contactNumber, String email,  String town, String address,
+	public Customer(String firstName, String lastName, int contactNumber, String email,  String town, String address,
 			String country, int postal) {
 		this.firstName = firstName;
 		this.lastName = lastName;

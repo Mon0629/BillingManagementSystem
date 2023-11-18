@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxWidth="1057.0" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
+<AnchorPane id="AnchorPane" maxWidth="1057.0" minWidth="1057.0" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.CustomerController">
 	<children>
-		<AnchorPane maxWidth="1057.0" prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
+		<AnchorPane maxWidth="1057.0" minWidth="1057.0" prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
 			<children>
-            <VBox layoutX="24.0" layoutY="38.0" maxWidth="1057.0" prefHeight="559.0" prefWidth="1057.0">
+            <VBox layoutX="24.0" layoutY="38.0" maxWidth="1057.0" prefHeight="559.0" prefWidth="1014.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -26,7 +26,7 @@
                               <Font name="Corbel Light" size="45.0" />
                            </font>
                         </Label>
-                        <Line endX="897.878662109375" endY="2.384185791015625E-6" startX="80.50010681152344" stroke="#435585" strokeLineCap="ROUND" strokeWidth="5.0">
+                        <Line endX="897.878662109375" endY="2.384185791015625E-6" startX="117.00010681152344" stroke="#435585" strokeLineCap="ROUND" strokeWidth="5.0">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
