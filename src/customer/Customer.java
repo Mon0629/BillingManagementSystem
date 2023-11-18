@@ -7,15 +7,15 @@ public class Customer {
 	private Timestamp creationDate;
 	private String firstName;
 	private String lastName;
-	private int contactNumber;
+	private String contactNumber;
 	private String email;
 	private String address;
 	private String town;
 	private String country;
-	private int postal;
+	private String postal;
 	
-	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, int contactNumber, String email,  String town, String address,
-			String country, int postal) {
+	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
+			String country, String postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
 		this.firstName = firstName;
@@ -28,8 +28,8 @@ public class Customer {
 		this.postal = postal;
 	}
 	
-	public Customer(String firstName, String lastName, int contactNumber, String email,  String town, String address,
-			String country, int postal) {
+	public Customer(String firstName, String lastName, String contactNumber, String email,  String town, String address,
+			String country, String postal) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber; 
@@ -39,10 +39,10 @@ public class Customer {
 		this.country = country;
 		this.postal = postal;
 	}
-	public int getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(int contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public int getCustomerId() {
@@ -93,10 +93,10 @@ public class Customer {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public int getPostal() {
+	public String getPostal() {
 		return postal;
 	}
-	public void setPostal(int postal) {
+	public void setPostal(String postal) {
 		this.postal = postal;
 	}
 	

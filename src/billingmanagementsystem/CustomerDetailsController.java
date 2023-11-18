@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -46,6 +45,7 @@ public class CustomerDetailsController implements Initializable {
     private TextField townFid;
 
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -58,25 +58,25 @@ public class CustomerDetailsController implements Initializable {
 
     @FXML
     void save(MouseEvent event) {
-    	validateTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
-    
-    	Customer customer = new Customer(
-    			firstNameFid.getText(),
-    			lastNameFid.getText(),
-    			Integer.parseInt(contactFid.getText()),
-    			emailFid.getText(),
-    			addressFid.getText(), 
-    			townFid.getText(), 
-    			countryFid.getText(), 
-    			Integer.parseInt(postalFid.getText())
-    			);
+    	boolean canSave = validateTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     	
-    	CustomerDAO.addCustomer(customer);
-    	
-    	
+    	if (canSave) {
+    		Customer customer = new Customer(
+        			firstNameFid.getText(),
+        			lastNameFid.getText(),
+        			contactFid.getText(),
+        			emailFid.getText(),
+        			addressFid.getText(), 
+        			townFid.getText(), 
+        			countryFid.getText(), 
+        			postalFid.getText()
+        			);
+        	
+        	CustomerDAO.addCustomer(customer);
+    	}
     }
 
-    private void validateTextFields(TextField... textFields) {
+    private boolean validateTextFields(TextField... textFields) {
         boolean allFieldsFilled = true;
 
         for (TextField textField : textFields) {
@@ -87,11 +87,13 @@ public class CustomerDetailsController implements Initializable {
         }
 
         if(!allFieldsFilled){
-        	  Alert alert = new Alert(Alert.AlertType.ERROR);
-              alert.setHeaderText(null);
-              alert.setContentText("Please Fill All DATA");
-              alert.showAndWait();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please Fill All DATA");
+			alert.showAndWait();
+			return false;
         }
+        return true;
     }
 
 }

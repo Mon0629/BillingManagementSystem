@@ -1,7 +1,6 @@
 package customer;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public interface CustomerDAO {
 	void createCustomer(
@@ -13,7 +12,7 @@ public interface CustomerDAO {
 		String address, 
 		String town, 
 		String country, 
-		int postal);
+		String postal);
 	void fetchAllCustomers();
 	void addCustomer(Customer customer);
 	Customer getCustomerByID();

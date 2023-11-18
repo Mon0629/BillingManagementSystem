@@ -1,17 +1,15 @@
 package customer;
 
-import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
 
 import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import customer.Customer;
+
 
 public class CustomerDAOImpl implements CustomerDAO {
 	
@@ -22,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void createCustomer(int customerID, Timestamp creationDate, String firstName, String lastName, String email, String address, String town, String country, int postal) {
+	public void createCustomer(int customerID, Timestamp creationDate, String firstName, String lastName, String email, String address, String town, String country, String postal) {
 		
 		
 	}
@@ -41,12 +39,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getTimestamp("creationDate"),
 	        		resultSet.getString("firstName"),
 	        		resultSet.getString("lastName"),
-	        		resultSet.getInt("contactNumber"),
+	        		resultSet.getString("contactNumber"),
 	        		resultSet.getString("email"),
 	        		resultSet.getString("town"),
 	        		resultSet.getString("address"),
 	        		resultSet.getString("country"),
-	        		resultSet.getInt("postal")
+	        		resultSet.getString("postal")
 	        		);
 	        	customersData.add(customer);
 	        	System.out.println(customer.getCustomerId() + customer.getFirstName() + customer.getLastName());
@@ -96,12 +94,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			PreparedStatement statement = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, customer.getFirstName());
 			statement.setString(2, customer.getLastName());
-			statement.setInt(3, customer.getContactNumber());
+			statement.setString(3, customer.getContactNumber());
 			statement.setString(4, customer.getEmail());
 			statement.setString(5, customer.getAddress());
 			statement.setString(6, customer.getTown());
 			statement.setString(7, customer.getCountry());
-			statement.setInt(8, customer.getPostal());
+			statement.setString(8, customer.getPostal());
 
 			statement.executeUpdate();
 

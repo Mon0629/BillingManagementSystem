@@ -44,7 +44,7 @@ public class CustomerController implements Initializable {
     @FXML private TableColumn<Customer,String> countryCol;
     @FXML private TableColumn<Customer,Integer> postalCol;
     @FXML private TableColumn<Customer,Boolean> editCol;
-     
+    
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
     
     @Override
@@ -74,7 +74,7 @@ public class CustomerController implements Initializable {
     void refreshCustomerTable(MouseEvent event) {
     	refreshCustomerTableview();
     }
-    private void refreshCustomerTableview() {
+    public void refreshCustomerTableview() {
     	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
     	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
     	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
