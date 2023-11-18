@@ -53,7 +53,7 @@ public class CustomerDetailsController implements Initializable {
 	}
     @FXML
     void clear(MouseEvent event) {
-    	
+    	clearTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     }
 
     @FXML
@@ -76,6 +76,12 @@ public class CustomerDetailsController implements Initializable {
     	}
     }
 
+    private void clearTextFields(TextField... textFields) {
+    	for (TextField textField : textFields) {
+    		textField.clear();
+        }
+    }
+    
     private boolean validateTextFields(TextField... textFields) {
         boolean allFieldsFilled = true;
 
