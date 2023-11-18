@@ -29,7 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void fetchAllCustomers() {
-		
+		customersData.clear();
 		try {
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement("SELECT * from customers");

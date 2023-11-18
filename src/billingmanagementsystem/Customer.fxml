@@ -35,7 +35,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="1106.0">
                      <children>
-                        <ImageView fx:id="addButton" fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="addButton" fitHeight="25.0" fitWidth="35.0" onMouseClicked="#openCustomerDetails" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Graphics/user-add.png" />
                            </image>
@@ -43,7 +43,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="refreshButton" fitHeight="25.0" fitWidth="35.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="refreshButton" fitHeight="25.0" fitWidth="35.0" layoutX="30.0" layoutY="28.0" onMouseClicked="#refreshCustomerTable" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Graphics/rotate-right.png" />
                            </image>

@@ -4,17 +4,26 @@
  */
 package billingmanagementsystem;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import customer.Customer;
 import customer.CustomerDAOImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -44,7 +53,7 @@ public class CustomerController implements Initializable {
     	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
     	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
     	emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
     	townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
     	addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -57,7 +66,27 @@ public class CustomerController implements Initializable {
     	
     }    
     
+    @FXML
+    void openCustomerDetails(MouseEvent event) {
+		try {
+		     Parent parent = FXMLLoader.load(getClass().getResource("CustomerDetails.fxml"));
+		     Scene scene = new Scene(parent);
+		     Stage stage = new Stage();
+		     stage.setScene(scene);
+		     stage.initStyle(StageStyle.UTILITY);
+		     stage.show();
+		 } catch (IOException ex) {
+		     Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+		 }
+ 
+    }
+
+    @FXML
+    void refreshCustomerTable(MouseEvent event) {
+    	refreshCustomerTableview();
+    }
     private void refreshCustomerTableview() {
+    	
     	CustomerDAO.fetchAllCustomers();
     	customerTableView.setItems(CustomerDAO.getCustomersData());
     	
