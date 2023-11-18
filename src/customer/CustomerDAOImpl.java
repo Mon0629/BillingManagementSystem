@@ -88,4 +88,29 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 	}
 
+	@Override
+	public void addCustomer(Customer customer) {
+		String insertQuery = "INSERT INTO customers (firstName,lastName,contactNumber,email,address,town,country,postal) values(?,?,?,?,?,?,?,?)";
+		try (
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+			statement.setString(1, customer.getFirstName());
+			statement.setString(2, customer.getLastName());
+			statement.setInt(3, customer.getContactNumber());
+			statement.setString(4, customer.getEmail());
+			statement.setString(5, customer.getAddress());
+			statement.setString(6, customer.getTown());
+			statement.setString(7, customer.getCountry());
+			statement.setInt(8, customer.getPostal());
+
+			statement.executeUpdate();
+
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

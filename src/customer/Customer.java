@@ -27,6 +27,18 @@ public class Customer {
 		this.country = country;
 		this.postal = postal;
 	}
+	
+	Customer(String firstName, String lastName, int contactNumber, String email,  String town, String address,
+			String country, int postal) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.contactNumber = contactNumber; 
+		this.email = email;
+		this.address = address;
+		this.town = town;
+		this.country = country;
+		this.postal = postal;
+	}
 	public int getContactNumber() {
 		return contactNumber;
 	}
