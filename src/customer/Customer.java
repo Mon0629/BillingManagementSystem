@@ -7,23 +7,31 @@ public class Customer {
 	private Timestamp creationDate;
 	private String firstName;
 	private String lastName;
+	private int contactNumber;
 	private String email;
 	private String address;
 	private String town;
 	private String country;
 	private int postal;
 	
-	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String email,  String town, String address,
+	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, int contactNumber, String email,  String town, String address,
 			String country, int postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.contactNumber = contactNumber; 
 		this.email = email;
 		this.address = address;
 		this.town = town;
 		this.country = country;
 		this.postal = postal;
+	}
+	public int getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(int contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 	public int getCustomerId() {
 		return customerId;
