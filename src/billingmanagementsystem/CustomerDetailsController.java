@@ -44,6 +44,7 @@ public class CustomerDetailsController implements Initializable {
     @FXML
     private TextField townFid;
 
+    TextField textfields[] = {firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid};
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
     
     @Override
@@ -73,6 +74,8 @@ public class CustomerDetailsController implements Initializable {
         			);
         	
         	CustomerDAO.addCustomer(customer);
+        	clearTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
+        	
     	}
     }
 

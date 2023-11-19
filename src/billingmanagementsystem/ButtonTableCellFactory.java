@@ -1,5 +1,6 @@
-package billingmanagementsystem;
+	package billingmanagementsystem;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import customer.Customer;
@@ -20,8 +21,8 @@ public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Bo
     }
 
     private class ButtonTableCell extends TableCell<Customer, Boolean> {
-    final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/delete1.png")));
-    final ImageView updateIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/arrow.png")));
+    final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/circle-trash.png")));
+    final ImageView updateIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/pen-circle.png")));
 
     ButtonTableCell() {
         // Handle delete icon action
@@ -39,7 +40,9 @@ public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Bo
         });
 
         // Set icons side by side
-        setGraphic(new HBox(deleteIcon, updateIcon));
+        HBox buttonHBox = new HBox(deleteIcon, updateIcon);
+        HBox.setMargin(deleteIcon, new Insets(0, 5, 0, 0));
+        setGraphic(buttonHBox);
     }
 
     @Override

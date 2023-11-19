@@ -65,7 +65,7 @@
             						<TableColumn fx:id="creationDateCol" editable="false" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" resizable="false" sortable="false" text="Creation Date" />
             						<TableColumn fx:id="customerFirstNameCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="First Name" />
             						<TableColumn fx:id="customerLastNameCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Last Name" />
-                              <TableColumn fx:id="contactNumCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Contact Number" />
+                              		<TableColumn fx:id="contactNumCol" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Contact Number" />
             						<TableColumn fx:id="emailCol" editable="false" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" sortable="false" text="Email" />
             						<TableColumn fx:id="addressCol" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" resizable="false" sortable="false" text="Address" />
             						<TableColumn fx:id="townCol" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" sortable="false" text="Town" />
