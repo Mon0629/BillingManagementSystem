@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class CustomerDetailsController implements Initializable {
 
@@ -43,8 +44,10 @@ public class CustomerDetailsController implements Initializable {
 
     @FXML
     private TextField townFid;
-
-    TextField textfields[] = {firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid};
+    
+    @FXML
+    private Text messageBox;
+    
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
     
     @Override
@@ -74,8 +77,8 @@ public class CustomerDetailsController implements Initializable {
         			);
         	
         	CustomerDAO.addCustomer(customer);
+        	messageBox.setText("Successfully added "+ customer.getFirstName() +" "+ customer.getLastName());
         	clearTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
-        	
     	}
     }
 
@@ -96,10 +99,7 @@ public class CustomerDetailsController implements Initializable {
         }
 
         if(!allFieldsFilled){
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setContentText("Please Fill All DATA");
-			alert.showAndWait();
+			messageBox.setText("Please fill All Fields");
 			return false;
         }
         return true;

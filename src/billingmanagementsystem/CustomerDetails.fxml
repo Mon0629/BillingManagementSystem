@@ -61,14 +61,19 @@
 				<TextField fx:id="postalFid" alignment="BASELINE_LEFT" prefHeight="25.0" prefWidth="100.0" />
 			</children>
 		</HBox>
+      <HBox alignment="CENTER" prefHeight="41.0" prefWidth="570.0">
+         <children>
+            <Text fx:id="messageBox" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </HBox>
 		<HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
 			<children>
-				<Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#save" style="-fx-background-color: rgb(54, 48, 98); -fx-border-radius: 10;" text="Save">
+				<Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#save" style="-fx-background-color: rgb(54, 48, 98); -fx-border-radius: 10;" text="Save" textFill="WHITE">
 					<HBox.margin>
 						<Insets right="10.0" />
 					</HBox.margin>
 				</Button>
-				<Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#clear" style="-fx-background-color: rgb(54, 48, 98); -fx-border-radius: 500;" text="Clear">
+				<Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#clear" style="-fx-background-color: rgb(54, 48, 98); -fx-border-radius: 500;" text="Clear" textFill="WHITE">
 					<HBox.margin>
 						<Insets left="10.0" />
 					</HBox.margin>
