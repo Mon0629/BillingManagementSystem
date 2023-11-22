@@ -21,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,16 +46,36 @@ public class CustomerController implements Initializable {
     @FXML private TableColumn<Customer,String> countryCol;
     @FXML private TableColumn<Customer,Integer> postalCol;
     @FXML private TableColumn<Customer,Boolean> editCol;
+    @FXML private ImageView addButton;
+    @FXML private ImageView refreshButton;
     
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     	
-    	
-    	refreshCustomerTableview();
-    	
+    	refreshCustomerTableview();    	
     }    
+    
+    @FXML
+    void buttonHover(MouseEvent event) {
+    	Image buttonAddHover = new Image("/Graphics/user-add-full.png");
+    	Image buttonRefreshHover = new Image("/Graphics/refresh-full.png");
+    	
+    	if (event.getSource() == addButton) {
+    		addButton.setImage(buttonAddHover);
+    	} else if (event.getSource() == refreshButton) {
+    		refreshButton.setImage(buttonRefreshHover);
+    	}
+    	
+    }
+
+    @FXML
+    void buttonUnhover(MouseEvent event) {
+    	Image buttonAddUnhover = new Image("/Graphics/user-add.png");
+    	Image buttonRefreshUnhover = new Image("/Graphics/refresh.png");
+    	addButton.setImage(buttonAddUnhover);
+    	refreshButton.setImage(buttonRefreshUnhover);
+    }
     
     @FXML
     void openCustomerDetails(MouseEvent event) {
@@ -67,7 +89,6 @@ public class CustomerController implements Initializable {
 		 } catch (IOException ex) {
 		     Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
 		 }
- 
     }
 
     @FXML
