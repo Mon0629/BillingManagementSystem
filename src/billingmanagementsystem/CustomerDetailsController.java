@@ -2,6 +2,7 @@ package billingmanagementsystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 import customer.Customer;
@@ -25,10 +26,10 @@ public class CustomerDetailsController implements Initializable {
     private Button clearButton, saveButton;
 
     @FXML
-    private Text messageBox;
+    private Text messageBox, customerIDText, creationDateText;
     
     
-    
+    boolean updateFlag = false;
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
     
     
@@ -37,29 +38,67 @@ public class CustomerDetailsController implements Initializable {
 		// TODO Auto-generated method stub
 		
 	}
+    
+    public void setCustomerInfo(Customer customer) {
+    	customerIDText.setText(String.valueOf(customer.getCustomerId()));
+    	creationDateText.setText(String.valueOf(customer.getCreationDate()));
+    	firstNameFid.setText(customer.getFirstName());
+    	lastNameFid.setText(customer.getLastName());
+    	contactFid.setText(customer.getContactNumber());
+    	emailFid.setText(customer.getEmail());
+    	addressFid.setText(customer.getAddress());
+    	townFid.setText(customer.getTown());
+    	countryFid.setText(customer.getCountry());
+    	postalFid.setText(customer.getPostal());
+    	updateFlag = true;
+    }
+    
     @FXML
     void clear(MouseEvent event) {
     	clearTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     }
+    
+    
 
     @FXML
     void save(MouseEvent event) throws IOException {
     	boolean canSave = validateTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     	
     	if (canSave) {
-    		Customer customer = new Customer(
-        			firstNameFid.getText(),
-        			lastNameFid.getText(),
-        			contactFid.getText(),
-        			emailFid.getText(),
-        			addressFid.getText(), 
-        			townFid.getText(), 
-        			countryFid.getText(), 
-        			postalFid.getText()
-        			);
+    		
+    		if (updateFlag) {
+    			Customer customer = new Customer(
+    					Integer.parseInt(customerIDText.getText()),
+    					Timestamp.valueOf(creationDateText.getText()),
+            			firstNameFid.getText(),
+            			lastNameFid.getText(),
+            			contactFid.getText(),
+            			emailFid.getText(),
+            			addressFid.getText(), 
+            			townFid.getText(), 
+            			countryFid.getText(), 
+            			postalFid.getText()
+            			);
+            	
+    			CustomerDAO.updateCustomer(customer);
+    			messageBox.setText("Successfully updated "+ customer.getFirstName() +" "+ customer.getLastName());
+    			updateFlag = false;
+    		} else {
+    			Customer customer = new Customer(
+            			firstNameFid.getText(),
+            			lastNameFid.getText(),
+            			contactFid.getText(),
+            			emailFid.getText(),
+            			addressFid.getText(), 
+            			townFid.getText(), 
+            			countryFid.getText(), 
+            			postalFid.getText()
+            			);
+            	
+    			CustomerDAO.addCustomer(customer);
+            	messageBox.setText("Successfully added "+ customer.getFirstName() +" "+ customer.getLastName());
+    		}
         	
-        	CustomerDAO.addCustomer(customer);
-        	messageBox.setText("Successfully added "+ customer.getFirstName() +" "+ customer.getLastName());
         	clearTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     	}
     }

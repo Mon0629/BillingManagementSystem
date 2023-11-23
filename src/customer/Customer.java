@@ -14,7 +14,7 @@ public class Customer {
 	private String country;
 	private String postal;
 	
-	Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
 			String country, String postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
@@ -39,6 +39,7 @@ public class Customer {
 		this.country = country;
 		this.postal = postal;
 	}
+	
 	public String getContactNumber() {
 		return contactNumber;
 	}

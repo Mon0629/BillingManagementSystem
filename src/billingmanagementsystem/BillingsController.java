@@ -131,119 +131,119 @@ public class BillingsController implements Initializable {
    }
 
   
-    @FXML
-    private void opencustomertable(MouseEvent event) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerTable.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+   @FXML
+   private void opencustomertable(MouseEvent event) {
+	   try {
+		   FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerTable.fxml"));
+		   Parent root = loader.load();
+		   Scene scene = new Scene(root);
 
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
-        
-        CustomerTableController customerTableController = loader.getController();
-        customerTableController.setBillingsController(this);
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    }
+		   Stage stage = new Stage();
+		   stage.setScene(scene);
+		   stage.initModality(Modality.APPLICATION_MODAL);
+		   stage.initStyle(StageStyle.UNDECORATED);
+		   stage.show();
+
+		   CustomerTableController customerTableController = loader.getController();
+		   customerTableController.setBillingsController(this);
+
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+   }
     
-     public void setCustomerData(Customer customerData) {
-    fname.setText(customerData.getFirstName());
-    lname.setText(customerData.getLastName());
-    cnumber.setText(customerData.getContactNumber());
-    email.setText(customerData.getEmail());
-    address.setText(customerData.getAddress());
-    town.setText(customerData.getTown());
-    country.setText(customerData.getCountry());
-    postal.setText(customerData.getPostal());
-}
+    public void setCustomerData(Customer customerData) {
+    	fname.setText(customerData.getFirstName());
+    	lname.setText(customerData.getLastName());
+    	cnumber.setText(customerData.getContactNumber());
+    	email.setText(customerData.getEmail());
+    	address.setText(customerData.getAddress());
+    	town.setText(customerData.getTown());
+    	country.setText(customerData.getCountry());
+    	postal.setText(customerData.getPostal());
+    }
 
     
 
     @FXML
     private void enterprice(KeyEvent event) {
-        String price = textField2.getText();
-       String qty = textField3.getText();
+    	String price = textField2.getText();
+    	String qty = textField3.getText();
 
-    if (!price.isEmpty() && !qty.isEmpty()) {
-    double subtotal = Double.parseDouble(price) * Double.parseDouble(qty);
-    textField5.setText(String.valueOf(subtotal));
-    warningtext.setText("");
-    }else if (!price.isEmpty() && qty.isEmpty()){
-    warningtext.setText("Enter Quantity");
-    } else {
-   warningtext.setText("Enter Price");
-   textField5.setText("");
-}
+    	if (!price.isEmpty() && !qty.isEmpty()) {
+    		double subtotal = Double.parseDouble(price) * Double.parseDouble(qty);
+    		textField5.setText(String.valueOf(subtotal));
+    		warningtext.setText("");
+    	}else if (!price.isEmpty() && qty.isEmpty()){
+    		warningtext.setText("Enter Quantity");
+    	} else {
+    		warningtext.setText("Enter Price");
+    		textField5.setText("");
+    	}
     }
 
     @FXML
     private void subtotal(KeyEvent event) {
-        String price = textField2.getText();
-       String qty = textField3.getText();
+    	String price = textField2.getText();
+    	String qty = textField3.getText();
 
-    if (!price.isEmpty() && !qty.isEmpty()) {
-    double subtotal = Double.parseDouble(price) * Double.parseDouble(qty);
-    textField5.setText(String.valueOf(subtotal));
-    warningtext.setText("");
-    }else if (price.isEmpty() && !qty.isEmpty()){
-    warningtext.setText("Enter Price");
-    } else {
-   warningtext.setText("Enter Quantity");
-   textField5.setText("");
-}
+    	if (!price.isEmpty() && !qty.isEmpty()) {
+    		double subtotal = Double.parseDouble(price) * Double.parseDouble(qty);
+    		textField5.setText(String.valueOf(subtotal));
+    		warningtext.setText("");
+    	}else if (price.isEmpty() && !qty.isEmpty()){
+    		warningtext.setText("Enter Price");
+    	} else {
+    		warningtext.setText("Enter Quantity");
+    		textField5.setText("");
+    	}
     }
 
-     private ObservableList<OrderList> tableItems = FXCollections.observableArrayList();
+    private ObservableList<OrderList> tableItems = FXCollections.observableArrayList();
     @FXML
     private void addtoorder(ActionEvent event) {
-        String productID = prodID.getText();
-    String productName = textField1.getText();
-    String price = textField2.getText();
-    String quantity = textField3.getText();
-    String amount = textField5.getText();
+    	String productID = prodID.getText();
+    	String productName = textField1.getText();
+    	String price = textField2.getText();
+    	String quantity = textField3.getText();
+    	String amount = textField5.getText();
 
-    System.out.println("Adding to order - Product ID: " + productID + ", Product Name: " + productName +
-            ", Price: " + price + ", Quantity: " + quantity + ", Amount: " + amount);
+    	System.out.println("Adding to order - Product ID: " + productID + ", Product Name: " + productName +
+    			", Price: " + price + ", Quantity: " + quantity + ", Amount: " + amount);
 
-    if (!productID.isEmpty() && !productName.isEmpty() && !price.isEmpty() && !quantity.isEmpty() && !amount.isEmpty()) {
-        OrderList orderlist = new OrderList(productID, productName, Double.parseDouble(price), Double.parseDouble(quantity), Double.parseDouble(amount));
-        
-        order_product_id.setCellValueFactory(new PropertyValueFactory<>("productID"));
-        order_product_name.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        order_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        order_qty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        order_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        
- 
-        tableItems.add(orderlist);
-        OrderListTable.setItems(tableItems);
-        updateTotalAmountLabel();
-        
-        prodID.clear();
-        textField1.clear();
-        textField2.clear();
-        textField3.clear();
-        textField5.clear();
-    } else {
-        System.out.println("One or more fields are empty. Not adding to order.");
+    	if (!productID.isEmpty() && !productName.isEmpty() && !price.isEmpty() && !quantity.isEmpty() && !amount.isEmpty()) {
+    		OrderList orderlist = new OrderList(productID, productName, Double.parseDouble(price), Double.parseDouble(quantity), Double.parseDouble(amount));
+
+    		order_product_id.setCellValueFactory(new PropertyValueFactory<>("productID"));
+    		order_product_name.setCellValueFactory(new PropertyValueFactory<>("productName"));
+    		order_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+    		order_qty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+    		order_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+
+    		tableItems.add(orderlist);
+    		OrderListTable.setItems(tableItems);
+    		updateTotalAmountLabel();
+
+    		prodID.clear();
+    		textField1.clear();
+    		textField2.clear();
+    		textField3.clear();
+    		textField5.clear();
+    	} else {
+    		System.out.println("One or more fields are empty. Not adding to order.");
+    	}
     }
-    }
-    
+
     private void updateTotalAmountLabel() {
-    double totalAmount = 0.0;
+    	double totalAmount = 0.0;
 
-    for (OrderList orderItem : tableItems) {
-        totalAmount += orderItem.getAmount();
+    	for (OrderList orderItem : tableItems) {
+    		totalAmount += orderItem.getAmount();
+    	}
+
+    	totalamount.setText(String.valueOf(totalAmount));
     }
-
-    totalamount.setText(String.valueOf(totalAmount));
-}
     
 
     @FXML

@@ -14,7 +14,7 @@
 			<children>
 				<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Details" textAlignment="CENTER" wrappingWidth="444.13671875">
 					<font>
-						<Font name="HP Simplified Light" size="36.0" />
+						<Font name="Verdana Bold" size="36.0" />
 					</font>
 					<HBox.margin>
 						<Insets />
@@ -22,9 +22,32 @@
 				</Text>
 			</children>
 		</HBox>
+      <HBox prefHeight="32.0" prefWidth="570.0">
+         <children>
+            <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: ">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="customerIDText" strokeType="OUTSIDE" strokeWidth="0.0">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Text>
+            <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Added: ">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="creationDateText" layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </HBox>
 		<HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="600.0">
 			<children>
-				<Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="79.0" />
+				<Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="79.0">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font></Text>
 				<TextField fx:id="firstNameFid" alignment="BASELINE_LEFT" prefHeight="26.0" prefWidth="200.0" />
 				<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" wrappingWidth="90.0" />
 				<TextField fx:id="lastNameFid" alignment="BASELINE_LEFT" prefHeight="25.0" prefWidth="200.0" />
@@ -72,6 +95,9 @@
 					<HBox.margin>
 						<Insets right="10.0" />
 					</HBox.margin>
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
 				</Button>
 				<Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#clear" style="-fx-background-color: rgb(54, 48, 98); -fx-border-radius: 500;" text="Clear" textFill="WHITE">
 					<HBox.margin>
