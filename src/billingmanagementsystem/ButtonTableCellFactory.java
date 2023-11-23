@@ -1,8 +1,16 @@
 	package billingmanagementsystem;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import customer.Customer;
 import javafx.util.Callback;
 
@@ -10,6 +18,9 @@ import customer.CustomerDAOImpl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>> {
     
@@ -63,9 +74,17 @@ public class ButtonTableCellFactory implements Callback<TableColumn<Customer, Bo
     }
 
     private void handleUpdate(Customer customer) {
-        // Add your logic to handle the update operation
-        // You can open a dialog or navigate to another view for updating
-        System.out.println("Update icon clicked for customer: " + customer.getCustomerId());
+    	try {
+		     Parent parent = FXMLLoader.load(getClass().getResource("CustomerDetails.fxml"));
+		     Scene scene = new Scene(parent);
+		     Stage stage = new Stage();
+		     stage.setScene(scene);
+		     stage.initModality(Modality.APPLICATION_MODAL);
+		     stage.initStyle(StageStyle.UTILITY);
+		     stage.show();
+		 } catch (IOException ex) {
+		     Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+		 }
     }
 }
 

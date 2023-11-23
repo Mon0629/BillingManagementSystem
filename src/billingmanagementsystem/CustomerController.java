@@ -24,6 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,85 +35,87 @@ import javafx.stage.StageStyle;
  */
 public class CustomerController implements Initializable {
 
-    @FXML private TableView<Customer> customerTableView;
-    @FXML private TableColumn<Customer, Integer> customerIdCol; 
-    @FXML private TableColumn<Customer,Timestamp> creationDateCol;
-    @FXML private TableColumn<Customer,String> customerFirstNameCol;
-    @FXML private TableColumn<Customer,String> customerLastNameCol;
-    @FXML private TableColumn<Customer,String> contactNumCol;
-    @FXML private TableColumn<Customer,String> emailCol;
-    @FXML private TableColumn<Customer,String> townCol;
-    @FXML private TableColumn<Customer,String> addressCol;
-    @FXML private TableColumn<Customer,String> countryCol;
-    @FXML private TableColumn<Customer,Integer> postalCol;
-    @FXML private TableColumn<Customer,Boolean> editCol;
-    @FXML private ImageView addButton;
-    @FXML private ImageView refreshButton;
-    
-    CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	refreshCustomerTableview();    	
-    }    
-    
-    @FXML
-    void buttonHover(MouseEvent event) {
-    	Image buttonAddHover = new Image("/Graphics/user-add-full.png");
-    	Image buttonRefreshHover = new Image("/Graphics/refresh-full.png");
-    	
-    	if (event.getSource() == addButton) {
-    		addButton.setImage(buttonAddHover);
-    	} else if (event.getSource() == refreshButton) {
-    		refreshButton.setImage(buttonRefreshHover);
-    	}
-    	
-    }
+	@FXML private TableView<Customer> customerTableView;
+	@FXML private TableColumn<Customer, Integer> customerIdCol; 
+	@FXML private TableColumn<Customer,Timestamp> creationDateCol;
+	@FXML private TableColumn<Customer,String> customerFirstNameCol;
+	@FXML private TableColumn<Customer,String> customerLastNameCol;
+	@FXML private TableColumn<Customer,String> contactNumCol;
+	@FXML private TableColumn<Customer,String> emailCol;
+	@FXML private TableColumn<Customer,String> townCol;
+	@FXML private TableColumn<Customer,String> addressCol;
+	@FXML private TableColumn<Customer,String> countryCol;
+	@FXML private TableColumn<Customer,Integer> postalCol;
+	@FXML private TableColumn<Customer,Boolean> editCol;
+	@FXML private ImageView addButton;
+	@FXML private ImageView refreshButton;
 
-    @FXML
-    void buttonUnhover(MouseEvent event) {
-    	Image buttonAddUnhover = new Image("/Graphics/user-add.png");
-    	Image buttonRefreshUnhover = new Image("/Graphics/refresh.png");
-    	addButton.setImage(buttonAddUnhover);
-    	refreshButton.setImage(buttonRefreshUnhover);
-    }
-    
-    @FXML
-    void openCustomerDetails(MouseEvent event) {
+	CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
+	
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		refreshCustomerTableview();    	
+	}    
+
+	@FXML
+	void buttonHover(MouseEvent event) {
+		Image buttonAddHover = new Image("/Graphics/user-add-full.png");
+		Image buttonRefreshHover = new Image("/Graphics/refresh-full.png");
+
+		if (event.getSource() == addButton) {
+			addButton.setImage(buttonAddHover);
+		} else if (event.getSource() == refreshButton) {
+			refreshButton.setImage(buttonRefreshHover);
+		}
+
+	}
+
+	@FXML
+	void buttonUnhover(MouseEvent event) {
+		Image buttonAddUnhover = new Image("/Graphics/user-add.png");
+		Image buttonRefreshUnhover = new Image("/Graphics/refresh.png");
+		addButton.setImage(buttonAddUnhover);
+		refreshButton.setImage(buttonRefreshUnhover);
+	}
+
+	@FXML
+	void openCustomerDetails(MouseEvent event) {
 		try {
-		     Parent parent = FXMLLoader.load(getClass().getResource("CustomerDetails.fxml"));
-		     Scene scene = new Scene(parent);
-		     Stage stage = new Stage();
-		     stage.setScene(scene);
-		     stage.initStyle(StageStyle.UTILITY);
-		     stage.show();
-		 } catch (IOException ex) {
-		     Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
-		 }
-    }
+			Parent parent = FXMLLoader.load(getClass().getResource("CustomerDetails.fxml"));
+			Scene scene = new Scene(parent);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initStyle(StageStyle.UTILITY);
+			stage.show();
+			
+		} catch (IOException ex) {
+			Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    @FXML
-    void refreshCustomerTable(MouseEvent event) {
-    	refreshCustomerTableview();
-    }
-    public void refreshCustomerTableview() {
-    	customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-    	creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-    	customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
-    	emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-    	townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
-    	addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-    	countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
-    	postalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
-        editCol.setCellFactory(new ButtonTableCellFactory());
-        editCol.setCellFactory(new ButtonTableCellFactory());
-        
-    	CustomerDAO.fetchAllCustomers();
-    	customerTableView.setItems(CustomerDAO.getCustomersData());
-    	
+	@FXML
+	void refreshCustomerTable(MouseEvent event) {
+		refreshCustomerTableview();
+	}
+	public void refreshCustomerTableview() {
+		customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+		creationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+		customerFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+		customerLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+		contactNumCol.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+		emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+		townCol.setCellValueFactory(new PropertyValueFactory<>("town"));
+		addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+		countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+		postalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
+		editCol.setCellFactory(new ButtonTableCellFactory());
+		editCol.setCellFactory(new ButtonTableCellFactory());
 
-    }
-    
+		CustomerDAO.fetchAllCustomers();
+		customerTableView.setItems(CustomerDAO.getCustomersData());
+
+
+	}
+
 }

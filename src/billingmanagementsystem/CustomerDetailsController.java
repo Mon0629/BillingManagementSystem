@@ -1,12 +1,15 @@
 package billingmanagementsystem;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import customer.Customer;
 import customer.CustomerDAOImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -16,39 +19,18 @@ import javafx.scene.text.Text;
 public class CustomerDetailsController implements Initializable {
 
     @FXML
-    private TextField addressFid;
+    private TextField countryFid, firstNameFid, lastNameFid, postalFid, townFid, emailFid, contactFid, addressFid;
 
     @FXML
-    private Button clearButton;
+    private Button clearButton, saveButton;
 
-    @FXML
-    private TextField contactFid;
-
-    @FXML
-    private TextField countryFid;
-
-    @FXML
-    private TextField emailFid;
-
-    @FXML
-    private TextField firstNameFid;
-
-    @FXML
-    private TextField lastNameFid;
-
-    @FXML
-    private TextField postalFid;
-
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private TextField townFid;
-    
     @FXML
     private Text messageBox;
     
+    
+    
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
+    
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -61,7 +43,7 @@ public class CustomerDetailsController implements Initializable {
     }
 
     @FXML
-    void save(MouseEvent event) {
+    void save(MouseEvent event) throws IOException {
     	boolean canSave = validateTextFields(firstNameFid, lastNameFid, contactFid, emailFid, addressFid, townFid, countryFid, postalFid);
     	
     	if (canSave) {
