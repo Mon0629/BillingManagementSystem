@@ -24,17 +24,18 @@ public class CustomerDetailsController implements Initializable {
     private Button clearButton, saveButton;
 
     @FXML
-    private Text messageBox, customerIDText, creationDateText;
+    private Text messageBox, customerIDText, creationDateText, customerIDLabel, creationDateLabel;
     
     
-    boolean updateFlag = false;
+    boolean isUpdate = false;
     CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
     
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+    	customerIDLabel.setVisible(false); 
+		creationDateLabel.setVisible(false);
+	
 	}
     
     public void setCustomerInfo(Customer customer) {
@@ -48,7 +49,9 @@ public class CustomerDetailsController implements Initializable {
     	townFid.setText(customer.getTown());
     	countryFid.setText(customer.getCountry());
     	postalFid.setText(customer.getPostal());
-    	updateFlag = true;
+    	isUpdate = true;
+    	customerIDLabel.setVisible(true); 
+		creationDateLabel.setVisible(true);
     }
     
     @FXML
@@ -64,7 +67,7 @@ public class CustomerDetailsController implements Initializable {
     	
     	if (canSave) {
     		
-    		if (updateFlag) {
+    		if (isUpdate) {
     			System.out.println(creationDateText.getText());
     			Customer customer = new Customer(
     					Integer.parseInt(customerIDText.getText()),
@@ -81,7 +84,7 @@ public class CustomerDetailsController implements Initializable {
             	
     			CustomerDAO.updateCustomer(customer);
     			messageBox.setText("Successfully updated "+ customer.getFirstName() +" "+ customer.getLastName());
-    			updateFlag = false;
+    			isUpdate = false;
     		} else {
     			Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
