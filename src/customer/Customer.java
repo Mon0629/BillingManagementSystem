@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Customer {
 	private int customerId;
-	private Timestamp creationDate;
+	private String creationDate;
 	private String firstName;
 	private String lastName;
 	private String contactNumber;
@@ -14,7 +14,7 @@ public class Customer {
 	private String country;
 	private String postal;
 	
-	public Customer(int customerId, Timestamp creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(int customerId, String creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
 			String country, String postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
@@ -28,8 +28,9 @@ public class Customer {
 		this.postal = postal;
 	}
 	
-	public Customer(String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(String creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
 			String country, String postal) {
+		this.creationDate = creationDate;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber; 
@@ -39,6 +40,7 @@ public class Customer {
 		this.country = country;
 		this.postal = postal;
 	}
+	
 	
 	public String getContactNumber() {
 		return contactNumber;
@@ -52,10 +54,10 @@ public class Customer {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-	public Timestamp getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(Timestamp creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 	public String getFirstName() {

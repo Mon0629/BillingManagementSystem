@@ -1,11 +1,9 @@
 package customer;
 
-import java.sql.Timestamp;
-
 public interface CustomerDAO {
 	void createCustomer(
 		int customerID, 
-		Timestamp creationDate, 
+		String creationDate, 
 		String firstName, 
 		String lastName, 
 		String email, 

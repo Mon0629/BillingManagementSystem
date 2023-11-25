@@ -20,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void createCustomer(int customerID, Timestamp creationDate, String firstName, String lastName, String email, String address, String town, String country, String postal) {
+	public void createCustomer(int customerID, String creationDate, String firstName, String lastName, String email, String address, String town, String country, String postal) {
 		
 		
 	}
@@ -36,7 +36,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        while(resultSet.next()) {
 	        	Customer customer = new Customer(
 	        		resultSet.getInt("customerID"),
-	        		resultSet.getTimestamp("creationDate"),
+	        		resultSet.getString("creationDate"),
 	        		resultSet.getString("firstName"),
 	        		resultSet.getString("lastName"),
 	        		resultSet.getString("contactNumber"),
@@ -48,6 +48,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		);
 	        	customersData.add(customer);
 	        }
+	        
 	        resultSet.close();
 	        statement.close();
 	        connection.close();
@@ -65,29 +66,30 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void updateCustomer(Customer customer) {
-		System.out.println(customer.getCustomerId());
-		String updateQuery = "UPDATE customers SET firstName = ?,"
-												+ "lastName = ?,"
-												+ "contactNumber = ?, "
-												+ "email = ?,"
-												+ "address = ?,"
-												+ "town = ?,"
-												+ "country = ?,"
-												+ "postal = ? "
-												+ "WHERE customerID = ?";
+		String updateQuery = "UPDATE customers SET "
+			+ "creationDate = ?,"
+			+ "firstName = ?,"
+			+ "lastName = ?,"
+			+ "contactNumber = ?, "
+			+ "email = ?,"
+			+ "address = ?,"
+			+ "town = ?,"
+			+ "country = ?,"
+			+ "postal = ? "
+			+ "WHERE customerID = ?";
 		try (
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(updateQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
-			statement.setString(1, customer.getFirstName());
-			statement.setString(2, customer.getLastName());
-			statement.setString(3, customer.getContactNumber());
-			statement.setString(4, customer.getEmail());
-			statement.setString(5, customer.getAddress());
-			statement.setString(6, customer.getTown());
-			statement.setString(7, customer.getCountry());
-			statement.setString(8, customer.getPostal());
-			statement.setInt(9, customer.getCustomerId());
-
+			statement.setTimestamp(1, Timestamp.valueOf(customer.getCreationDate()));
+			statement.setString(2, customer.getFirstName());
+			statement.setString(3, customer.getLastName());
+			statement.setString(4, customer.getContactNumber());
+			statement.setString(5, customer.getEmail());
+			statement.setString(6, customer.getAddress());
+			statement.setString(7, customer.getTown());
+			statement.setString(8, customer.getCountry());
+			statement.setString(9, customer.getPostal());
+			
 			statement.executeUpdate();
 
 			statement.close();
@@ -117,18 +119,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void addCustomer(Customer customer) {
-		String insertQuery = "INSERT INTO customers (firstName,lastName,contactNumber,email,address,town,country,postal) values(?,?,?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO customers (creationDate,firstName,lastName,contactNumber,email,address,town,country,postal) values(?,?,?,?,?,?,?,?,?)";
 		try (
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
-			statement.setString(1, customer.getFirstName());
-			statement.setString(2, customer.getLastName());
-			statement.setString(3, customer.getContactNumber());
-			statement.setString(4, customer.getEmail());
-			statement.setString(5, customer.getAddress());
-			statement.setString(6, customer.getTown());
-			statement.setString(7, customer.getCountry());
-			statement.setString(8, customer.getPostal());
+			statement.setTimestamp(1, Timestamp.valueOf(customer.getCreationDate()));
+			statement.setString(2, customer.getFirstName());
+			statement.setString(3, customer.getLastName());
+			statement.setString(4, customer.getContactNumber());
+			statement.setString(5, customer.getEmail());
+			statement.setString(6, customer.getAddress());
+			statement.setString(7, customer.getTown());
+			statement.setString(8, customer.getCountry());
+			statement.setString(9, customer.getPostal());
 
 			statement.executeUpdate();
 

@@ -3,15 +3,13 @@ package billingmanagementsystem;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import customer.Customer;
 import customer.CustomerDAOImpl;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -67,9 +65,10 @@ public class CustomerDetailsController implements Initializable {
     	if (canSave) {
     		
     		if (updateFlag) {
+    			System.out.println(creationDateText.getText());
     			Customer customer = new Customer(
     					Integer.parseInt(customerIDText.getText()),
-    					Timestamp.valueOf(creationDateText.getText()),
+    					String.valueOf(creationDateText.getText()),
             			firstNameFid.getText(),
             			lastNameFid.getText(),
             			contactFid.getText(),
@@ -84,7 +83,12 @@ public class CustomerDetailsController implements Initializable {
     			messageBox.setText("Successfully updated "+ customer.getFirstName() +" "+ customer.getLastName());
     			updateFlag = false;
     		} else {
+    			Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String creationDate = String.valueOf(dateFormat.format(currentTimestamp));
+    			System.out.println(creationDate);
     			Customer customer = new Customer(
+    					creationDate,
             			firstNameFid.getText(),
             			lastNameFid.getText(),
             			contactFid.getText(),
