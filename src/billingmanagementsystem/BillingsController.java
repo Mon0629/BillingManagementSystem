@@ -4,22 +4,26 @@
  */
 package billingmanagementsystem;
 
-import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import customer.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -28,25 +32,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
-import customer.Customer;
 /**
  * FXML Controller class
  *
  * @author User
  */
+
+
 public class BillingsController implements Initializable {
 
 	@FXML
@@ -286,8 +284,27 @@ public class BillingsController implements Initializable {
 	 }
 	 
 	 @FXML
-	 private void CREATEINVOICE(ActionEvent event) {
+	 private void CREATEINVOICE(ActionEvent event) throws IOException {
 		 
+		 
+		 try {
+	            // Create a PdfWriter
+	            PdfWriter writer = new PdfWriter("example.pdf");
+
+	            // Create a PdfDocument
+	            PdfDocument pdf = new PdfDocument(writer);
+
+	            // Create a Document
+	            Document document = new Document(pdf);
+
+	            // Add content to the document
+	            document.add(new Paragraph("Hello, iText!"));
+
+	            // Close the document
+	            document.close();
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        }
 	 }
 	 
 //	 @FXML
