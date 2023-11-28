@@ -15,6 +15,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 
+import billings.Bill;
 import customer.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -47,6 +49,8 @@ import javafx.stage.StageStyle;
 
 public class BillingsController implements Initializable {
 
+	@FXML
+	private ComboBox<Bill.DocType> docTypeComboBox;
 	@FXML
 	private DatePicker current_datepicker;
 	@FXML
@@ -113,6 +117,8 @@ public class BillingsController implements Initializable {
 	 public void initialize(URL url, ResourceBundle rb) {
 		 setCurrentDate();
 		 setDueDate();
+		 
+		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL, Bill.DocType.INVOICE);
 
 	 }    
 
