@@ -12,10 +12,31 @@ public class Bill {
 	private int billID;
 	private int customerID;
 	private int shipCustomerID;
-	private Timestamp issueDate;
+	private Date issueDate;
 	private Date dueDate;
+	private Timestamp transactionAdded;
 	private DocType doctype;
 	
+	public Bill(int customerID, int shipCustomerID, Date issueDate, Date dueDate, DocType doctype) {
+		super();
+		this.customerID = customerID;
+		this.shipCustomerID = shipCustomerID;
+		this.issueDate = issueDate;
+		this.dueDate = dueDate;
+		this.doctype = doctype;
+	}
+	
+	public Bill() {
+	}
+	
+	public Timestamp getTransactionAdded() {
+		return transactionAdded;
+	}
+
+//	public void setTransactionAdded(Timestamp transactionAdded) {
+//		this.transactionAdded = transactionAdded;
+//	}
+
 	public DocType getDoctype() {
 		return doctype;
 	}
@@ -40,10 +61,10 @@ public class Bill {
 	public void setShipCustomerID(int shipCustomerID) {
 		this.shipCustomerID = shipCustomerID;
 	}
-	public Timestamp getIssueDate() {
+	public Date getIssueDate() {
 		return issueDate;
 	}
-	public void setIssueDate(Timestamp issueDate) {
+	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
 	public Date getDueDate() {

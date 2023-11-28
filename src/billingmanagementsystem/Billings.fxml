@@ -85,27 +85,21 @@
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="321.0" layoutY="7.0" style="-fx-text-fill: #2558bc;" text="Same Customer info" textFill="#2558bc" underline="true">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </Label>
+                                                <Button fx:id="copyCustomerButton" layoutX="334.0" layoutY="2.0" mnemonicParsing="false" onAction="#copyCustomerData" prefHeight="30.0" prefWidth="142.0" text="Copy Customer Data" />
                                              </children>
                                           </AnchorPane>
-                                          <TextField layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="Full Name:" />
-                                          <TextField layoutX="26.0" layoutY="99.0" prefHeight="25.0" prefWidth="439.0" promptText="Unit/ Block/ Lot No. / Street/ Brgy." />
-                                          <TextField layoutX="251.0" layoutY="60.0" prefHeight="25.0" prefWidth="213.0" promptText="Contact Number" />
-                                          <TextField layoutX="28.0" layoutY="133.0" prefHeight="25.0" prefWidth="211.0" promptText="City Address" />
-                                          <TextField layoutX="256.0" layoutY="133.0" prefHeight="25.0" prefWidth="208.0" promptText="Country" />
-                                          <TextField layoutX="27.0" layoutY="172.0" prefHeight="25.0" prefWidth="211.0" promptText="Postal Code" />
-                                          <TextField layoutX="256.0" layoutY="172.0" prefHeight="25.0" prefWidth="209.0" promptText="Telephone" />
+                                          <TextField fx:id="fullNameShip" layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="Full Name:" />
+                                          <TextField fx:id="addressShip" layoutX="22.0" layoutY="134.0" prefHeight="25.0" prefWidth="439.0" promptText="Unit/ Block/ Lot No. / Street/ Brgy." />
+                                          <TextField fx:id="contactShip" layoutX="251.0" layoutY="60.0" prefHeight="25.0" prefWidth="213.0" promptText="Contact Number" />
+                                          <TextField fx:id="townShip" layoutX="24.0" layoutY="168.0" prefHeight="25.0" prefWidth="211.0" promptText="City Address" />
+                                          <TextField fx:id="countryShip" layoutX="252.0" layoutY="168.0" prefHeight="25.0" prefWidth="208.0" promptText="Country" />
+                                          <TextField fx:id="postalShip" layoutX="23.0" layoutY="207.0" prefHeight="25.0" prefWidth="211.0" promptText="Postal Code" />
+                                          <TextField fx:id="telephoneShip" layoutX="253.0" layoutY="96.0" prefHeight="25.0" prefWidth="209.0" promptText="Telephone" />
+                                          <TextField fx:id="emailShip" layoutX="24.0" layoutY="96.0" prefHeight="25.0" prefWidth="212.0" promptText="Email" />
                                        </children>
                                     </AnchorPane>
                                     <DatePicker fx:id="due_datepicker" layoutX="830.0" layoutY="81.0" promptText="Due Date" />
-                                    <DatePicker fx:id="current_datepicker" disable="true" layoutX="571.0" layoutY="81.0" />
+                                    <DatePicker fx:id="current_datepicker" disable="true" editable="false" layoutX="571.0" layoutY="81.0" promptText="Current Date" />
                                     <Text layoutX="768.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date:">
                                        <font>
                                           <Font size="14.0" />

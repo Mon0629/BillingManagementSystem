@@ -3,18 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package billingmanagementsystem;
-import billingmanagementsystem.BillingsController;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 import customer.Customer;
 import customer.CustomerDAOImpl;
-
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,9 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import databaseSQL.DatabaseManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  * FXML Controller class

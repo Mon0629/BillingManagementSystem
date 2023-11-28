@@ -4,16 +4,12 @@
  */
 package billingmanagementsystem;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
 
 import billings.Bill;
 import customer.Customer;
@@ -109,6 +105,11 @@ public class BillingsController implements Initializable {
 	private Button TEST;
 	@FXML
 	private AnchorPane billingpane;
+	@FXML
+	private TextField fullNameShip, contactShip, emailShip, addressShip, townShip, countryShip, postalShip;
+	
+	
+	Bill bill = new Bill();
 
 	/**
 	 * Initializes the controller class.
@@ -119,19 +120,21 @@ public class BillingsController implements Initializable {
 		 setDueDate();
 		 
 		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL, Bill.DocType.INVOICE);
-
+		 
 	 }    
 
 
 
-	 //For curretn and due date
+	 //For current and due date
 	 private void setCurrentDate(){
 		 current_datepicker.setValue(LocalDate.now());
+		 bill.setIssueDate(Date.valueOf(current_datepicker.getValue()));
 	 }
 	 private void setDueDate(){
 		 LocalDate currentDate = LocalDate.now();
 		 LocalDate dueDate = currentDate.plusDays(30);
 		 due_datepicker.setValue(dueDate);
+		 bill.setDueDate(Date.valueOf(due_datepicker.getValue()));
 	 }
 
 
@@ -165,6 +168,19 @@ public class BillingsController implements Initializable {
 		 town.setText(customerData.getTown());
 		 country.setText(customerData.getCountry());
 		 postal.setText(customerData.getPostal());
+		 
+		 bill.setCustomerID(customerData.getCustomerId());
+	 }
+	 
+	 @FXML
+	 void copyCustomerData(ActionEvent event) {
+		 fullNameShip.setText(fname.getText() + " " + lname.getText());
+		 contactShip.setText(cnumber.getText());
+		 addressShip.setText(address.getText());
+		 emailShip.setText(email.getText());
+		 townShip.setText(town.getText());
+		 countryShip.setText(country.getText());
+		 postalShip.setText(postal.getText());
 	 }
 
 
@@ -292,25 +308,26 @@ public class BillingsController implements Initializable {
 	 @FXML
 	 private void CREATEINVOICE(ActionEvent event) throws IOException {
 		 
+		 Bill bill = new Bill();
 		 
-		 try {
-	            // Create a PdfWriter
-	            PdfWriter writer = new PdfWriter("example.pdf");
-
-	            // Create a PdfDocument
-	            PdfDocument pdf = new PdfDocument(writer);
-
-	            // Create a Document
-	            Document document = new Document(pdf);
-
-	            // Add content to the document
-	            document.add(new Paragraph("Hello, iText!"));
-
-	            // Close the document
-	            document.close();
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        }
+//		 try {
+//	            // Create a PdfWriter
+//	            PdfWriter writer = new PdfWriter("example.pdf");
+//
+//	            // Create a PdfDocument
+//	            PdfDocument pdf = new PdfDocument(writer);
+//
+//	            // Create a Document
+//	            Document document = new Document(pdf);
+//
+//	            // Add content to the document
+//	            document.add(new Paragraph("Hello, iText!"));
+//
+//	            // Close the document
+//	            document.close();
+//	        } catch (FileNotFoundException e) {
+//	            e.printStackTrace();
+//	        }
 	 }
 	 
 //	 @FXML
