@@ -106,7 +106,7 @@ public class BillingsController implements Initializable {
 	@FXML
 	private AnchorPane billingpane;
 	@FXML
-	private TextField fullNameShip, contactShip, emailShip, addressShip, townShip, countryShip, postalShip;
+	private TextField firstNameShip, lastNameShip, contactShip, emailShip, addressShip, townShip, countryShip, postalShip;
 	
 	
 	Bill bill = new Bill();
@@ -174,7 +174,8 @@ public class BillingsController implements Initializable {
 	 
 	 @FXML
 	 void copyCustomerData(ActionEvent event) {
-		 fullNameShip.setText(fname.getText() + " " + lname.getText());
+		 firstNameShip.setText(fname.getText());
+		 lastNameShip.setText(lname.getText());
 		 contactShip.setText(cnumber.getText());
 		 addressShip.setText(address.getText());
 		 emailShip.setText(email.getText());
