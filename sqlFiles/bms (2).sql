@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2023 at 10:39 AM
+-- Generation Time: Nov 28, 2023 at 02:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -31,9 +31,10 @@ CREATE TABLE `bills` (
   `billID` int(11) NOT NULL,
   `customerID` int(11) NOT NULL,
   `shipCustomerID` int(11) NOT NULL,
-  `issueDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `dueDate` int(11) NOT NULL,
-  `docType` enum('Receipt','Invoice','Bill') NOT NULL
+  `issueDate` date NOT NULL,
+  `dueDate` date NOT NULL,
+  `docType` enum('RECEIPT','INVOICE','BILL') NOT NULL,
+  `transactionAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
