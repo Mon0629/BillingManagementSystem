@@ -52,6 +52,7 @@ public class CustomerTableController implements Initializable {
 	private TextField searchbox;
 
 	CustomerDAOImpl CustomerDAO = new CustomerDAOImpl();
+	boolean customerFlag = true;
 	/**
 	 * Initializes the controller class.
 	 */
@@ -71,7 +72,12 @@ public class CustomerTableController implements Initializable {
 		 if (event.getClickCount() == 1) {
 			 Customer customer = customer_table.getSelectionModel().getSelectedItem();
 			 if (customer != null && billingsController != null) {
-				 billingsController.setCustomerData(customer);
+				 if (customerFlag == true) {
+					 billingsController.setCustomerData(customer);
+				 }else {
+					 billingsController.setShipCustomerData(customer);
+				 }
+				 
 				 ((Node) (event.getSource())).getScene().getWindow().hide();
 			 }
 		 }
