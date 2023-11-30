@@ -4,6 +4,7 @@
  */
 package billingmanagementsystem;
 
+import com.mysql.cj.jdbc.Blob;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -74,7 +75,8 @@ public class ProductTableController implements Initializable {
                      rs.getString("ProductName"),
                      rs.getDouble("Price"),
                      rs.getString("Description"),
-                     rs.getString("Remarks")
+                     rs.getString("Remarks"),
+                     (Blob)rs.getBlob("Image")
                     
              ));
             }

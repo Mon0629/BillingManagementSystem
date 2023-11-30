@@ -111,6 +111,7 @@ public class CustomerController implements Initializable {
 		editCol.setCellFactory(new ButtonTableCellFactory());
 		editCol.setCellFactory(new ButtonTableCellFactory());
 
+
 		CustomerDAO.fetchAllCustomers();
 		customerTableView.setItems(CustomerDAO.getCustomersData());
 	}

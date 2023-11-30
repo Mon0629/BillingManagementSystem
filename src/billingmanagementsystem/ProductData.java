@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package billingmanagementsystem;
-
+import com.mysql.cj.jdbc.Blob;
 /**
  *
  * @author User
@@ -12,13 +12,15 @@ public class ProductData {
      private int ProductID;
     private String ProductName, Description, Remarks;
     private double Price;
+    private Blob Image;
     
-    public ProductData(int ProductID, String ProductName, double Price, String Description, String Remarks){
+    public ProductData(int ProductID, String ProductName, double Price, String Description, String Remarks, Blob Image){
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Price = Price;
         this.Description = Description;
         this.Remarks = Remarks;
+        this.Image = Image;
     }
     
     public int getProductID(){
@@ -36,6 +38,9 @@ public class ProductData {
     public String getRemarks(){
         return Remarks;
     }
+    public Blob getImage(){
+        return Image;
+    }
     
     
     public void setProductID(int ProductID){
@@ -52,5 +57,8 @@ public class ProductData {
     }
     public void setRemarks(String Remarks){
         this.Remarks = Remarks;
+    }
+    public void setImage(Blob Image){
+        this.Image = Image;
     }
 }

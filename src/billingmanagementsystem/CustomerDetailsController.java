@@ -37,7 +37,7 @@ public class CustomerDetailsController implements Initializable {
 		creationDateLabel.setVisible(false);
 	
 	}
-    
+     
     public void setCustomerInfo(Customer customer) {
     	customerIDText.setText(String.valueOf(customer.getCustomerId()));
     	creationDateText.setText(String.valueOf(customer.getCreationDate()));
