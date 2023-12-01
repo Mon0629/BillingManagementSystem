@@ -1,11 +1,10 @@
 package customer;
 
 public interface CustomerDAO {
-	void createCustomer(
-		int customerID, 
-		String creationDate, 
+	Customer createCustomer(
 		String firstName, 
 		String lastName, 
+		String contactNumber,
 		String email, 
 		String address, 
 		String town, 

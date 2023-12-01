@@ -22,9 +22,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void createCustomer(int customerID, String creationDate, String firstName, String lastName, String email, String address, String town, String country, String postal) {
-		
-		
+	public Customer createCustomer(String firstName, String lastName, String contactNumber, String email, String address, String town, String country, String postal) {
+		Customer customer = new Customer(
+				firstName,
+				lastName,
+				contactNumber,
+				email,
+				address,
+				town,
+				country,
+				postal
+				);
+		return customer;
 	}
 
 	@Override
@@ -66,7 +75,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 	
-	public boolean checkIfCustomerExists(String customerData[]) {
+	public boolean checkIfCustomerExists(Customer customer) {
 		
 		boolean customerExists = true;
 		String checkQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?, country = ?";
@@ -74,9 +83,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(checkQuery, PreparedStatement.RETURN_GENERATED_KEYS);
 	        
-	        statement.setString(1, customerData[0]);
-	        statement.setString(2, customerData[1]);
-	        statement.setString(3, customerData[2]);
+	        statement.setString(1, customer.getFirstName());
+	        statement.setString(2, customer.getLastName());
+	        statement.setString(3, customer.getCountry());
 
 	        ResultSet resultSet = statement.executeQuery();
 
