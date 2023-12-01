@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.mysql.cj.QueryReturnType;
+
 import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +64,31 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Customer getCustomerByID() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public boolean checkIfCustomerExists(String customerData[]) {
+		
+		boolean customerExists = true;
+		String checkQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?, country = ?";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(checkQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+	        
+	        statement.setString(1, customerData[0]);
+	        statement.setString(2, customerData[1]);
+	        statement.setString(3, customerData[2]);
+
+	        ResultSet resultSet = statement.executeQuery();
+
+	        if (resultSet.next()) customerExists = true;
+	        else customerExists = false;
+	        
+	        
+		} catch (Exception e) {
+			
+		}
+		
+		 return customerExists;
 	}
 
 	@Override
