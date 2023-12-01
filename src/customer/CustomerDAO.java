@@ -15,4 +15,6 @@ public interface CustomerDAO {
 	Customer getCustomerByID();
 	void updateCustomer(Customer customer);
 	void deleteCustomer(int customerID);
+	boolean checkIfCustomerExists(Customer customer);
+	Customer getCustomerByName(String firstName, String lastName);
 }

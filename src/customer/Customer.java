@@ -51,6 +51,10 @@ public class Customer {
 		this.postal = postal;
 	}
 	
+	public Customer() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getContactNumber() {
 		return contactNumber;
 	}
