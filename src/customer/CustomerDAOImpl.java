@@ -75,6 +75,46 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 	
+	@Override
+	public Customer getCustomerByName(String firstName, String lastName) {
+		
+		Customer customer = new Customer();
+		
+		String fetchQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(fetchQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+	        
+	        statement.setString(1, firstName);
+	        statement.setString(2, lastName);
+
+	        ResultSet resultSet = statement.executeQuery();
+
+	        customer.setCustomerId(resultSet.getInt("customerID"));
+	        customer.setCreationDate(resultSet.getString("creationDate"));
+	        customer.setFirstName(resultSet.getString("firstName"));
+	        customer.setLastName(resultSet.getString("lastName"));
+	        customer.setContactNumber(resultSet.getString("contactNumber"));
+	        customer.setEmail(resultSet.getString("email"));
+	        customer.setTown(resultSet.getString("town"));
+	        customer.setAddress(resultSet.getString("address"));
+	        customer.setCountry(resultSet.getString("country"));
+	        customer.setPostal(resultSet.getString("postal"));
+	        		
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	        
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return customer;
+
+	}
+	
+	@Override
 	public boolean checkIfCustomerExists(Customer customer) {
 		
 		boolean customerExists = true;
@@ -93,8 +133,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        else customerExists = false;
 	        
 	        
-		} catch (Exception e) {
-			
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		 return customerExists;
