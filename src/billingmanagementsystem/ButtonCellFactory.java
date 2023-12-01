@@ -4,6 +4,7 @@
  */
 package billingmanagementsystem;
 
+import customer.Customer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,13 +23,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import databaseSQL.DatabaseManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author User
  */
 public class ButtonCellFactory implements Callback<TableColumn<ProductData, Boolean>, TableCell<ProductData, Boolean>> {
-
+    
     @Override
     public TableCell<ProductData, Boolean> call(TableColumn<ProductData, Boolean> param) {
         return new ButtonTableCell();
@@ -44,7 +47,7 @@ public class ButtonCellFactory implements Callback<TableColumn<ProductData, Bool
                 ProductData productData = getTableView().getItems().get(getIndex());
                 
                 handleDelete(productData);
-              
+            
             });
 
             
@@ -78,21 +81,25 @@ public class ButtonCellFactory implements Callback<TableColumn<ProductData, Bool
 			statement.executeUpdate();
 			
 			statement.close();
+                        getTableView().getItems().remove(productData);
+                        
 	        connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
         }
 
-        private void handleUpdate(ProductData productData) {
+      private void handleUpdate(ProductData productData) {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("ProductDetails.fxml"));
+
     try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ProductDetails.fxml"));
-
-        Parent parent = loader.load();
-
+        loader.load();
+        ProductDetailsController productDetailsController = loader.getController();
+        productDetailsController.setProductData(productData);
         
 
+        Parent parent = loader.getRoot();
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -100,9 +107,12 @@ public class ButtonCellFactory implements Callback<TableColumn<ProductData, Bool
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     } catch (IOException ex) {
-        System.out.print(ex);
+        Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+
+
+
 
 
         

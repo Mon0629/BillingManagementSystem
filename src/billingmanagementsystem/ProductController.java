@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -50,6 +53,8 @@ public class ProductController implements Initializable {
     private TableColumn<ProductData, String> Remarks;
     @FXML
     private TableColumn<ProductData, Boolean> editcolumn;
+    @FXML
+    private TextField searchbox;
 
     /**
      * Initializes the controller class.
@@ -61,40 +66,48 @@ public class ProductController implements Initializable {
 
     
      //loading prod into the table
-     private void ProductTable(){
-         product_table.getItems().clear();
+    
+    private ObservableList<ProductData> retrieveProductsFromDatabase() throws SQLException {
+        ObservableList<ProductData> productList = FXCollections.observableArrayList();
+        
+        try (Connection con = DatabaseManager.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM products")) {
+
+            while (rs.next()) {
+                productList.add(new ProductData(
+                        rs.getInt("ProductID"),
+                        rs.getString("ProductName"),
+                        rs.getDouble("Price"),
+                        rs.getString("Description"),
+                        rs.getString("Remarks"),
+                        (com.mysql.cj.jdbc.Blob) (Blob) rs.getBlob("Image")));
+            }
+        }
+
+        return productList;
+    }
+    
+    
+    
+     private void ProductTable() {
+        try {
+        product_table.getItems().setAll(retrieveProductsFromDatabase());
         productID.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
         productName.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         Description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         Remarks.setCellValueFactory(new PropertyValueFactory<>("Remarks"));
         editcolumn.setCellFactory(new ButtonCellFactory());
-        editcolumn.setCellFactory(new ButtonCellFactory());
-        
-        try
-        {
-            Connection con = DatabaseManager.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM products");
-            
-            while(rs.next()){
-             product_table.getItems().add(new ProductData(
-                     rs.getInt("ProductID"),
-                     rs.getString("ProductName"),
-                     rs.getDouble("Price"),
-                     rs.getString("Description"),
-                     rs.getString("Remarks"),
-                     (com.mysql.cj.jdbc.Blob) (Blob) rs.getBlob("Image")));
-            }
-            
-            
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(ProductTableController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    
+        editcolumn.setCellFactory(new ButtonCellFactory()); 
+    } catch (SQLException ex) {
+        Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
+
+     
+     
+     
      
      void refresh(){
      ProductTable();
@@ -103,15 +116,37 @@ public class ProductController implements Initializable {
 
     @FXML
     private void SearchProduct(KeyEvent event) {
+         String input = searchbox.getText();
+    if (!input.isEmpty()) {
+        ObservableList<ProductData> originalList = product_table.getItems();
+        ObservableList<ProductData> filteredList = FXCollections.observableArrayList();
+
+        for (ProductData product : originalList) {
+            if (String.valueOf(product.getProductID()).contains(input)
+                    || product.getProductName().toLowerCase().contains(input.toLowerCase())) {
+                filteredList.add(product);
+            }
+        }
+
+        product_table.getItems().setAll(filteredList);
+    } else {
+        product_table.getItems().clear();
+        refresh(); // Load all data again
+    }
     }
 
     @FXML
-private void OpenProductDetails(MouseEvent event) {
+    private void OpenProductDetails(MouseEvent event) {
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDetails.fxml"));
-
+        
+       
+                
         Parent parent = loader.load();
-
+        
+         ProductDetailsController controller = loader.getController();
+         controller.setProductController(this);
+  
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -128,7 +163,7 @@ private void OpenProductDetails(MouseEvent event) {
 
     @FXML
     private void RefreshTable(MouseEvent event) {
-        ProductTable();
+        refresh();
     }
 
     

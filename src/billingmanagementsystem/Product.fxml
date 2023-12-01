@@ -22,14 +22,14 @@
             <TableView fx:id="product_table" layoutX="14.0" layoutY="157.0" prefHeight="493.0" prefWidth="1044.0">
                <columns>
                   <TableColumn fx:id="editcolumn" prefWidth="65.0" text="Actions" />
-                  <TableColumn fx:id="productID" prefWidth="280.0" text="ID" />
-                  <TableColumn fx:id="productName" prefWidth="138.0" text="Product Name" />
-                  <TableColumn fx:id="price" prefWidth="284.0" text="Price" />
-                  <TableColumn fx:id="Description" prefWidth="153.0" text="Description" />
-                  <TableColumn fx:id="Remarks" prefWidth="190.0" text="Availability" />
+                  <TableColumn fx:id="productID" prefWidth="86.0" text="ID" />
+                  <TableColumn fx:id="productName" prefWidth="267.0" text="Product Name" />
+                  <TableColumn fx:id="price" prefWidth="155.0" text="Price" />
+                  <TableColumn fx:id="Description" prefWidth="265.0" text="Description" />
+                  <TableColumn fx:id="Remarks" prefWidth="272.0" text="Remarks" />
                </columns>
             </TableView>
-            <TextField layoutX="766.0" layoutY="124.0" onKeyReleased="#SearchProduct" prefHeight="25.0" prefWidth="296.0" promptText="Search ID, Product Name:" style="-fx-background-radius: 10 10 10 10;" />
+            <TextField fx:id="searchbox" layoutX="766.0" layoutY="124.0" onKeyReleased="#SearchProduct" prefHeight="25.0" prefWidth="296.0" promptText="Search ID, Product Name:" style="-fx-background-radius: 10 10 10 10;" />
             <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="1040.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Graphics/search.png" />

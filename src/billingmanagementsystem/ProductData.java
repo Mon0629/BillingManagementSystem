@@ -14,12 +14,13 @@ public class ProductData {
     private double Price;
     private Blob Image;
     
-    public ProductData(int ProductID, String ProductName, double Price, String Description, String Remarks, Blob Image){
+    public ProductData(int ProductID, String ProductName, double Price,  String Remarks, String Description, Blob Image){
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Price = Price;
-        this.Description = Description;
         this.Remarks = Remarks;
+        this.Description = Description;
+        
         this.Image = Image;
     }
     
@@ -61,4 +62,8 @@ public class ProductData {
     public void setImage(Blob Image){
         this.Image = Image;
     }
+    
+    
+   
 }
+
