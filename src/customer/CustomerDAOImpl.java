@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.mysql.cj.QueryReturnType;
+
 import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +22,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void createCustomer(int customerID, String creationDate, String firstName, String lastName, String email, String address, String town, String country, String postal) {
-		
-		
+	public Customer createCustomer(String firstName, String lastName, String contactNumber, String email, String address, String town, String country, String postal) {
+		Customer customer = new Customer(
+				firstName,
+				lastName,
+				contactNumber,
+				email,
+				address,
+				town,
+				country,
+				postal
+				);
+		return customer;
 	}
 
 	@Override
@@ -62,6 +73,72 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Customer getCustomerByID() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Customer getCustomerByName(String firstName, String lastName) {
+		
+		Customer customer = new Customer();
+		
+		String fetchQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(fetchQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+	        
+	        statement.setString(1, firstName);
+	        statement.setString(2, lastName);
+
+	        ResultSet resultSet = statement.executeQuery();
+
+	        customer.setCustomerId(resultSet.getInt("customerID"));
+	        customer.setCreationDate(resultSet.getString("creationDate"));
+	        customer.setFirstName(resultSet.getString("firstName"));
+	        customer.setLastName(resultSet.getString("lastName"));
+	        customer.setContactNumber(resultSet.getString("contactNumber"));
+	        customer.setEmail(resultSet.getString("email"));
+	        customer.setTown(resultSet.getString("town"));
+	        customer.setAddress(resultSet.getString("address"));
+	        customer.setCountry(resultSet.getString("country"));
+	        customer.setPostal(resultSet.getString("postal"));
+	        		
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	        
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return customer;
+
+	}
+	
+	@Override
+	public boolean checkIfCustomerExists(Customer customer) {
+		
+		boolean customerExists = true;
+		String checkQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?, country = ?";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(checkQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+	        
+	        statement.setString(1, customer.getFirstName());
+	        statement.setString(2, customer.getLastName());
+	        statement.setString(3, customer.getCountry());
+
+	        ResultSet resultSet = statement.executeQuery();
+
+	        if (resultSet.next()) customerExists = true;
+	        else customerExists = false;
+	        
+	        
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		 return customerExists;
 	}
 
 	@Override
