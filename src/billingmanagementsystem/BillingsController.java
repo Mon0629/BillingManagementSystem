@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import com.itextpdf.styledxmlparser.jsoup.select.Evaluator.IsEmpty;
+
 import billings.Bill;
 import billings.BillDAOImpl;
 import customer.Customer;
@@ -34,6 +36,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -110,6 +113,8 @@ public class BillingsController implements Initializable {
 	private TextField firstNameShip, lastNameShip, contactShip, emailShip, addressShip, townShip, countryShip, postalShip;
 	@FXML
 	private Button selectCustomerBtn, selectShipCustomerBtn; 
+	@FXML
+	private Text docTypeWarning;
 
 	CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
@@ -333,7 +338,7 @@ public class BillingsController implements Initializable {
 	
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
-		
+		BillDAOImpl billDAO = new BillDAOImpl();
 		customerDataChecker();
 		//Getting data for new bill
 		Customer customer = customerDAO.getCustomerByName(fname.getText(), lname.getText());
@@ -349,10 +354,18 @@ public class BillingsController implements Initializable {
 				dueDate,
 				docTypeComboBox.getValue()
 				);
-		
+
 		//Insert bill to database
-		BillDAOImpl billDAO = new BillDAOImpl();
-		billDAO.addBill(bill);
+		if (docTypeComboBox.getValue() == null) docTypeWarning.setText("Select Document Type");
+		else {
+			docTypeWarning.setText(null);
+			billDAO.addBill(bill);
+		}
+		
+
+		
+		
+		
 		
 		
 	}			

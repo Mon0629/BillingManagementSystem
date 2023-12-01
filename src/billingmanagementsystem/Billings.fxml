@@ -30,22 +30,25 @@
                            <content>
                               <AnchorPane prefHeight="856.0" prefWidth="1022.0" style="-fx-background-color: white;">
                                  <children>
-                                    <Label layoutX="4.0" layoutY="7.0" prefHeight="66.0" prefWidth="363.0" style="-fx-text-fill: #4bbc45;" text="Create New Invoice" textFill="#4bbc45">
+                                    <Label layoutX="4.0" layoutY="7.0" prefHeight="66.0" prefWidth="363.0" style="-fx-text-fill: rgb(67, 85, 133);" text="Create New Invoice" textFill="#4bbc45">
                                        <font>
-                                          <Font name="Arial" size="40.0" />
+                                          <Font name="Franklin Gothic Demi Cond" size="40.0" />
                                        </font>
                                     </Label>
                                     <Separator layoutX="4.0" layoutY="66.0" prefHeight="0.0" prefWidth="1018.0" />
                                     <AnchorPane layoutX="11.0" layoutY="117.0" prefHeight="267.0" prefWidth="494.0" style="-fx-border-color: #f2f3f5;">
                                        <children>
-                                          <AnchorPane prefHeight="40.0" prefWidth="492.0" style="-fx-background-color: #f2f3f5;">
+                                          <AnchorPane prefHeight="40.0" prefWidth="492.0" style="-fx-background-color: rgb(67, 85, 133);">
                                              <children>
-                                                <Label layoutX="15.0" layoutY="7.0" text="Customer Information">
+                                                <Label layoutX="15.0" layoutY="7.0" style="-fx-text-fill: #eee;" styleClass="roundedButton" text="Customer Information" textFill="WHITE">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="selectCustomerBtn" layoutX="345.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" text="Select Customer" />
+                                                <Button fx:id="selectCustomerBtn" layoutX="345.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #eee; -fx-background-radius: 30; -fx-text-fill: rgb(54, 48, 98);" text="Select Customer" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Franklin Gothic Book" size="12.0" />
+                                                   </font></Button>
                                              </children>
                                           </AnchorPane>
                                           <TextField fx:id="fname" layoutX="14.0" layoutY="62.0" prefHeight="25.0" prefWidth="210.0" promptText="First Name" />
@@ -77,7 +80,7 @@
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="selectShipCustomerBtn" layoutX="334.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" text="Select Customer" />
+                                                <Button fx:id="selectShipCustomerBtn" layoutX="334.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: rgb(67, 85, 133);" text="Select Customer" />
                                              </children>
                                           </AnchorPane>
                                           <TextField fx:id="firstNameShip" layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="First Name" />
@@ -186,10 +189,12 @@
                                                 <Font size="11.0" />
                                              </font>
                                           </Label>
+                                          <Text fx:id="docTypeWarning1" fill="#d33434" layoutX="365.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="suvvess" wrappingWidth="144.0" />
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="TEST" layoutX="917.0" layoutY="699.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="25.0" prefWidth="81.0" text="test inVOICE" />
+                                    <Button fx:id="TEST" layoutX="917.0" layoutY="699.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: rgb(67, 85, 133);" text="Confirm" />
                                     <ComboBox fx:id="docTypeComboBox" layoutX="401.0" layoutY="81.0" prefWidth="150.0" promptText="Document Type" />
+                                    <Text fx:id="docTypeWarning" fill="#d33434" layoutX="240.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="144.0" />
                                  </children>
                               </AnchorPane>
                            </content>
