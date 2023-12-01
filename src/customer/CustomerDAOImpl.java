@@ -80,7 +80,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		Customer customer = new Customer();
 		
-		String fetchQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?";
+		String fetchQuery = "SELECT * from customers WHERE firstName = ? AND lastName = ?";
 		try {
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(fetchQuery, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -90,17 +90,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	        ResultSet resultSet = statement.executeQuery();
 
-	        customer.setCustomerId(resultSet.getInt("customerID"));
-	        customer.setCreationDate(resultSet.getString("creationDate"));
-	        customer.setFirstName(resultSet.getString("firstName"));
-	        customer.setLastName(resultSet.getString("lastName"));
-	        customer.setContactNumber(resultSet.getString("contactNumber"));
-	        customer.setEmail(resultSet.getString("email"));
-	        customer.setTown(resultSet.getString("town"));
-	        customer.setAddress(resultSet.getString("address"));
-	        customer.setCountry(resultSet.getString("country"));
-	        customer.setPostal(resultSet.getString("postal"));
-	        		
+	        while (resultSet.next()) {
+		        customer.setCustomerId(resultSet.getInt("customerID"));
+		        customer.setCreationDate(resultSet.getString("creationDate"));
+		        customer.setFirstName(resultSet.getString("firstName"));
+		        customer.setLastName(resultSet.getString("lastName"));
+		        customer.setContactNumber(resultSet.getString("contactNumber"));
+		        customer.setEmail(resultSet.getString("email"));
+		        customer.setTown(resultSet.getString("town"));
+		        customer.setAddress(resultSet.getString("address"));
+		        customer.setCountry(resultSet.getString("country"));
+		        customer.setPostal(resultSet.getString("postal"));
+	        }
 	        resultSet.close();
 	        statement.close();
 	        connection.close();
@@ -118,7 +119,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public boolean checkIfCustomerExists(Customer customer) {
 		
 		boolean customerExists = true;
-		String checkQuery = "SELECT * from customers WHERE firstName = ?, lastName = ?, country = ?";
+		String checkQuery = "SELECT * from customers WHERE firstName = ? AND lastName = ? AND country = ?";
 		try {
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(checkQuery, PreparedStatement.RETURN_GENERATED_KEYS);

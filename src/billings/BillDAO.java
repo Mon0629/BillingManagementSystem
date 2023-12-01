@@ -2,7 +2,8 @@ package billings;
 
 public interface BillDAO {
 	
-	void createBill();
+	Bill createBill();
+	void addBill(Bill bill);
 	void fetchBill();
 //	void updateBill();
 	void deleteBill();

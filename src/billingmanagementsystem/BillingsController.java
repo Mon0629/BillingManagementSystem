@@ -11,7 +11,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import billings.Bill;
+import billings.BillDAOImpl;
 import customer.Customer;
+import customer.CustomerDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -109,8 +111,7 @@ public class BillingsController implements Initializable {
 	@FXML
 	private Button selectCustomerBtn, selectShipCustomerBtn; 
 
-
-	Bill bill = new Bill();
+	CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
 	/**
 	 * Initializes the controller class.
@@ -127,13 +128,11 @@ public class BillingsController implements Initializable {
 	//For current and due date
 	private void setCurrentDate(){
 		current_datepicker.setValue(LocalDate.now());
-		bill.setIssueDate(Date.valueOf(current_datepicker.getValue()));
 	}
 	private void setDueDate(){
 		LocalDate currentDate = LocalDate.now();
 		LocalDate dueDate = currentDate.plusDays(30);
 		due_datepicker.setValue(dueDate);
-		bill.setDueDate(Date.valueOf(due_datepicker.getValue()));
 	}
 
 
@@ -169,8 +168,6 @@ public class BillingsController implements Initializable {
 		town.setText(customerData.getTown());
 		country.setText(customerData.getCountry());
 		postal.setText(customerData.getPostal());
-
-		bill.setCustomerID(customerData.getCustomerId());
 	}
 
 	 public void setShipCustomerData(Customer customer) {
@@ -306,10 +303,61 @@ public class BillingsController implements Initializable {
 		}
 	}
 
+	private void customerDataChecker() {
+		Customer customer = new Customer(
+				fname.getText(),
+				lname.getText(),
+				cnumber.getText(),
+				email.getText(),
+				address.getText(),
+				town.getText(),
+				country.getText(),
+				postal.getText()
+		);
+		
+		Customer shipCustomer = new Customer(
+				firstNameShip.getText(),
+				lastNameShip.getText(),
+				contactShip.getText(),
+				emailShip.getText(),
+				addressShip.getText(),
+				townShip.getText(),
+				countryShip.getText(),
+				postalShip.getText()
+		);
+		
+		if (!customerDAO.checkIfCustomerExists(customer)) customerDAO.addCustomer(customer);
+		if (!customerDAO.checkIfCustomerExists(shipCustomer)) customerDAO.addCustomer(shipCustomer);
+		
+	}
+	
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
-
-		Bill bill = new Bill();
+		
+		customerDataChecker();
+		//Getting data for new bill
+		Customer customer = customerDAO.getCustomerByName(fname.getText(), lname.getText());
+		Customer shipCustomer = customerDAO.getCustomerByName(firstNameShip.getText(), lastNameShip.getText());
+		Date issueDate = Date.valueOf(current_datepicker.getValue());
+		Date dueDate = Date.valueOf(due_datepicker.getValue());
+		
+		//New Bill Constructor
+		Bill bill = new Bill(
+				customer.getCustomerId(),
+				shipCustomer.getCustomerId(),
+				issueDate,
+				dueDate,
+				docTypeComboBox.getValue()
+				);
+		
+		//Insert bill to database
+		BillDAOImpl billDAO = new BillDAOImpl();
+		billDAO.addBill(bill);
+		
+		
+	}			
+		
+//		Bill bill = new Bill();
 
 		//		 try {
 		//	            // Create a PdfWriter
@@ -329,7 +377,6 @@ public class BillingsController implements Initializable {
 		//	        } catch (FileNotFoundException e) {
 		//	            e.printStackTrace();
 		//	        }
-	}
 
 	//	 @FXML
 	//	 private void CREATEINVOICE(ActionEvent event) {
