@@ -11,6 +11,12 @@
 	-fx-alignment: center;
 }
 
+#confirm{
+	-fx-text-fill:  #eee;
+	-fx-background-radius: 30;
+	-fx-background-color: rgb(67, 85, 133);
+	-fx-alignment: center;
+}
 #fieldPane{
 	-fx-background-radius: 30;
 	-fx-background-color: rgb(67, 85, 133);
