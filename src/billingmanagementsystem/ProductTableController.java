@@ -4,7 +4,7 @@
  */
 package billingmanagementsystem;
 
-import com.mysql.cj.jdbc.Blob;
+import java.sql.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
