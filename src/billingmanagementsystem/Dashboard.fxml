@@ -5,10 +5,10 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="billingmanagementsystem.DashboardController">
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.DashboardController">
     <stylesheets>
         <URL value="@dashboard.css" />
     </stylesheets>
@@ -32,6 +32,11 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </BarChart>
+            <AnchorPane layoutX="47.0" layoutY="283.0" prefHeight="151.0" prefWidth="190.0" style="-fx-border-color: black;">
+               <children>
+                  <Label layoutX="58.0" layoutY="59.0" text="Label" />
+               </children>
+            </AnchorPane>
             </children>
         </AnchorPane>
     </children>
