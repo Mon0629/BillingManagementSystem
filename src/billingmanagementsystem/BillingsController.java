@@ -5,12 +5,13 @@
 package billingmanagementsystem;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
-import com.itextpdf.styledxmlparser.jsoup.select.Evaluator.IsEmpty;
 
 import billings.Bill;
 import billings.BillDAOImpl;
@@ -40,6 +41,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lineItems.LineItem;
 /**
  * FXML Controller class
  *
@@ -355,6 +357,26 @@ public class BillingsController implements Initializable {
 		return bill;
 	}
 	
+	private List<LineItem> lineItemListBuilder(Bill bill) {
+		
+		List<LineItem> lineItemList = new ArrayList<>();
+		
+		for (OrderList orderList : tableItems) {
+			int intValue;
+			LineItem lineItem = new LineItem(
+					bill.getBillID(),
+					Integer.valueOf(orderList.getProductID()),
+					orderList.getProductName(),
+					intValue = (int) (orderList.getQuantity()),
+					BigDecimal.valueOf(orderList.getPrice()),
+					BigDecimal.valueOf(orderList.getAmount())
+					);
+			lineItemList.add(lineItem);
+		}
+		
+		return lineItemList;
+	}
+	
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
 		BillDAOImpl billDAO = new BillDAOImpl();
@@ -368,12 +390,8 @@ public class BillingsController implements Initializable {
 			billDAO.addBill(bill);
 		}
 		
-
-		
-		
-		
-		
-		
+		Bill createdBill = billDAO.getLastBill();
+		List<LineItem> lineItemList = lineItemListBuilder(createdBill);
 	}			
 		
 //		Bill bill = new Bill();

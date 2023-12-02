@@ -1,6 +1,6 @@
 package lineItems;
 
-public interface lineItemDAO {
+public interface LineItemDAO {
 	
 	void addLineItem();
 	void deleteLineItem();
