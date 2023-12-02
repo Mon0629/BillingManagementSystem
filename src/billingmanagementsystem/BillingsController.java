@@ -44,6 +44,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lineItems.LineItem;
 import lineItems.LineItemDAOImpl;
+import pdfGeneration.PDFGenerator;
 /**
  * FXML Controller class
  *
@@ -404,78 +405,15 @@ public class BillingsController implements Initializable {
 		//Adding lineItems
 		lineItemDAO.addLineItems(lineItemList);
 		
+		PDFGenerator pdfGenerator = new PDFGenerator(
+				createdBill, 
+				customerDAO.getCustomerByID(createdBill.getCustomerID()), 
+				customerDAO.getCustomerByID(createdBill.getShipCustomerID()), 
+				lineItemList);
+		
+		pdfGenerator.createPDF();
 		
 		confirmMessage.setText(createdBill.getDoctype() + " Created");
 		confirmMessagePane.setVisible(true);
 	}			
 }		
-//		Bill bill = new Bill();
-
-		//		 try {
-		//	            // Create a PdfWriter
-		//	            PdfWriter writer = new PdfWriter("example.pdf");
-		//
-		//	            // Create a PdfDocument
-		//	            PdfDocument pdf = new PdfDocument(writer);
-		//
-		//	            // Create a Document
-		//	            Document document = new Document(pdf);
-		//
-		//	            // Add content to the document
-		//	            document.add(new Paragraph("Hello, iText!"));
-		//
-		//	            // Close the document
-		//	            document.close();
-		//	        } catch (FileNotFoundException e) {
-		//	            e.printStackTrace();
-		//	        }
-
-	//	 @FXML
-	//	 private void CREATEINVOICE(ActionEvent event) {
-	//		 try {
-	//
-	//			 PDDocument document = new PDDocument();
-	//			 PDPage page = new PDPage();
-	//			 document.addPage(page);
-	//
-	//			 PDPageContentStream contentStream = new PDPageContentStream(document, page);
-	//
-	//			 //eto yung i kokonvert mo sa image na node
-	//			 AnchorPane billingsPane = billingpane;
-	//
-	//			 WritableImage snapshot = billingsPane.snapshot(new SnapshotParameters(), null);
-	//			 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
-	//			 PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
-	//
-	//			 // suakt nya sa pdf file like location nung image
-	//			 float pageWidth = 612; 
-	//			 float pageHeight = 792; 
-	//
-	//			 float imageWidth = 7.5f * 72; 
-	//			 float imageHeight = 10f * 72;
-	//
-	//			 // para nasa gitna yungimage
-	//			 float x = (pageWidth - imageWidth) / 2; 
-	//			 float y = (pageHeight - imageHeight) / 2; 
-	//			 contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
-	//
-	//			 contentStream.close();
-	//
-	//			 // kung saan mo isesave na folder
-	//			 String outputPath = "C:\\Users\\User\\Downloads/"+fname.getText()+" "+ lname.getText()+" Invoice.pdf";
-	//			 document.save(outputPath);
-	//
-	//			 document.close();
-	//
-	//			 System.out.println("PDF created successfully!");
-	//
-	//		 } catch (IOException e) {
-	//			 e.printStackTrace();
-	//		 }
-	//	 }
-
-
-
-
-
-

@@ -68,9 +68,40 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer getCustomerByID() {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer getCustomerByID(int customerID) {
+		Customer customer = new Customer();
+
+		String fetchQuery = "SELECT * from customers WHERE customerID = ?";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(fetchQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+	        
+	        statement.setInt(1, customerID);
+
+	        ResultSet resultSet = statement.executeQuery();
+
+	        while (resultSet.next()) {
+		        customer.setCustomerId(resultSet.getInt("customerID"));
+		        customer.setCreationDate(resultSet.getString("creationDate"));
+		        customer.setFirstName(resultSet.getString("firstName"));
+		        customer.setLastName(resultSet.getString("lastName"));
+		        customer.setContactNumber(resultSet.getString("contactNumber"));
+		        customer.setEmail(resultSet.getString("email"));
+		        customer.setTown(resultSet.getString("town"));
+		        customer.setAddress(resultSet.getString("address"));
+		        customer.setCountry(resultSet.getString("country"));
+		        customer.setPostal(resultSet.getString("postal"));
+	        }
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	        
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return customer;
 	}
 	
 	@Override

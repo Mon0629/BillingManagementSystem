@@ -12,7 +12,7 @@ public interface CustomerDAO {
 		String postal);
 	void fetchAllCustomers();
 	void addCustomer(Customer customer);
-	Customer getCustomerByID();
+	Customer getCustomerByID(int customerID);
 	void updateCustomer(Customer customer);
 	void deleteCustomer(int customerID);
 	boolean checkIfCustomerExists(Customer customer);
