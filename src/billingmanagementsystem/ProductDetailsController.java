@@ -4,7 +4,7 @@
  */
 package billingmanagementsystem;
 
-import com.mysql.cj.jdbc.Blob;
+import java.sql.*;
 import databaseSQL.DatabaseManager;
 import java.io.File;
 import java.io.IOException;
@@ -93,7 +93,7 @@ public class ProductDetailsController implements Initializable {
             prodRemarks.clear();
             prodDesc.clear();
             prodImage.setImage(null);
-            isEditMode = false; // Set flag to false since it's in add mode
+            isEditMode = false; 
         }
        
        
@@ -114,7 +114,6 @@ public class ProductDetailsController implements Initializable {
             try (InputStream inputStream = blob.getBinaryStream()) {
                 return new Image(inputStream);
             } catch (SQLException | IOException e) {
-                e.printStackTrace();
             }
         }
         return null;

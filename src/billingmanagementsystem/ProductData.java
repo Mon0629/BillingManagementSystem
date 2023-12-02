@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package billingmanagementsystem;
-import com.mysql.cj.jdbc.Blob;
+
+import java.sql.*;
 /**
  *
  * @author User

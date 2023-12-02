@@ -81,7 +81,7 @@ public class ProductController implements Initializable {
                         rs.getDouble("Price"),
                         rs.getString("Description"),
                         rs.getString("Remarks"),
-                        (com.mysql.cj.jdbc.Blob) (Blob) rs.getBlob("Image")));
+                        (Blob) rs.getBlob("Image")));
             }
         }
 
