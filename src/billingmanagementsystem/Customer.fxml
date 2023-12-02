@@ -21,9 +21,9 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label text="Customers">
+                        <Label style="-fx-text-fill: rgb(67, 85, 133);" text="Customers">
                            <font>
-                              <Font name="Corbel Light" size="45.0" />
+                              <Font name="Franklin Gothic Demi Cond" size="45.0" />
                            </font>
                         </Label>
                         <Line endX="897.878662109375" endY="2.384185791015625E-6" startX="117.00010681152344" stroke="#435585" strokeLineCap="ROUND" strokeWidth="5.0">

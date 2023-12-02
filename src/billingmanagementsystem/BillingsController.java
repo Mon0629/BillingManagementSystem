@@ -336,16 +336,13 @@ public class BillingsController implements Initializable {
 		
 	}
 	
-	@FXML
-	private void CREATEINVOICE(ActionEvent event) throws IOException {
-		BillDAOImpl billDAO = new BillDAOImpl();
-		customerDataChecker();
+	private Bill buildBill() {
 		//Getting data for new bill
 		Customer customer = customerDAO.getCustomerByName(fname.getText(), lname.getText());
 		Customer shipCustomer = customerDAO.getCustomerByName(firstNameShip.getText(), lastNameShip.getText());
 		Date issueDate = Date.valueOf(current_datepicker.getValue());
 		Date dueDate = Date.valueOf(due_datepicker.getValue());
-		
+
 		//New Bill Constructor
 		Bill bill = new Bill(
 				customer.getCustomerId(),
@@ -354,7 +351,16 @@ public class BillingsController implements Initializable {
 				dueDate,
 				docTypeComboBox.getValue()
 				);
-
+		
+		return bill;
+	}
+	
+	@FXML
+	private void CREATEINVOICE(ActionEvent event) throws IOException {
+		BillDAOImpl billDAO = new BillDAOImpl();
+		customerDataChecker();
+		Bill bill = buildBill();
+		
 		//Insert bill to database
 		if (docTypeComboBox.getValue() == null) docTypeWarning.setText("Select Document Type");
 		else {
