@@ -107,7 +107,9 @@ public class Admin_DashboardController implements Initializable {
         }else if (event.getSource() == billing_btn) {
             loadFXML("Billings.fxml");
         }
-      
+      else if (event.getSource() == about_us_btn) {
+            loadFXML("aboutUs.fxml");
+        }
     }
     
 
