@@ -37,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -117,7 +118,9 @@ public class BillingsController implements Initializable {
 	@FXML
 	private Button selectCustomerBtn, selectShipCustomerBtn; 
 	@FXML
-	private Text docTypeWarning;
+	private Text docTypeWarning, confirmMessage;
+	@FXML
+	private Pane confirmMessagePane;
 
 	CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
@@ -400,6 +403,10 @@ public class BillingsController implements Initializable {
 		
 		//Adding lineItems
 		lineItemDAO.addLineItems(lineItemList);
+		
+		
+		confirmMessage.setText(createdBill.getDoctype() + " Created");
+		confirmMessagePane.setVisible(true);
 	}			
 }		
 //		Bill bill = new Bill();

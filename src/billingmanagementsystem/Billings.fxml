@@ -15,6 +15,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -80,7 +81,7 @@
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="selectShipCustomerBtn" alignment="CENTER" layoutX="347.0" layoutY="8.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="128.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Customer" />
+                                                <Button fx:id="selectShipCustomerBtn" alignment="CENTER" layoutX="347.0" layoutY="8.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="128.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Customer" textAlignment="CENTER" />
                                              </children>
                                           </AnchorPane>
                                           <TextField fx:id="firstNameShip" layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="First Name" />
@@ -101,7 +102,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <AnchorPane fx:id="product_pane" layoutX="12.0" layoutY="397.0" prefHeight="284.0" prefWidth="993.0" style="-fx-border-color: #f2f3f5;">
+                                    <AnchorPane fx:id="product_pane" layoutX="12.0" layoutY="397.0" prefHeight="262.0" prefWidth="993.0" style="-fx-border-color: #f2f3f5;">
                                        <children>
                                           <AnchorPane id="fieldPane" prefHeight="40.0" prefWidth="991.0" stylesheets="@../cssFiles/billingsStylesheet.css">
                                              <children>
@@ -128,11 +129,11 @@
                                           <TextField fx:id="textField4" layoutX="21.0" layoutY="115.0" prefHeight="25.0" prefWidth="397.0" promptText="Discounts" />
                                           <TextField fx:id="textField5" layoutX="335.0" layoutY="148.0" prefHeight="25.0" prefWidth="83.0" />
                                           <TextField fx:id="textField3" layoutX="356.0" layoutY="79.0" onKeyReleased="#subtotal" prefHeight="25.0" prefWidth="61.0" promptText="Quantity" />
-                                          <Button layoutX="121.0" layoutY="194.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="149.0" style="-fx-background-color: white; -fx-border-color: green;" text="Add to Order">
+                                          <Button layoutX="121.0" layoutY="194.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
                                              <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../../Billing_Management_System/src/Graphics/add-button.png" />
+                                                      <Image url="@../Graphics/shopping-cart-add.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -191,10 +192,28 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <Button id="confirm" fx:id="TEST" layoutX="917.0" layoutY="699.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="25.0" prefWidth="81.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" />
-                                    <Text fx:id="docTypeWarning1" fill="#d33434" strokeType="OUTSIDE" strokeWidth="0.0" text="suvvess" wrappingWidth="144.0" />
+                                    <Button id="confirm" fx:id="TEST" alignment="TOP_LEFT" layoutX="878.0" layoutY="655.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Graphics/add-document.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
                                     <ComboBox fx:id="docTypeComboBox" layoutX="401.0" layoutY="81.0" prefWidth="150.0" promptText="Document Type" />
                                     <Text fx:id="docTypeWarning" fill="#d33434" layoutX="240.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="144.0" />
+                                    <Pane fx:id="confirmMessagePane" layoutX="736.0" layoutY="662.0" prefHeight="27.0" prefWidth="148.0" style="-fx-border-color: transparent transparent transparent#435585; -fx-border-width: 3; -fx-background-radius: 30;" visible="false">
+                                       <children>
+                                          <Text fx:id="confirmMessage" fill="#435585" layoutX="6.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="136.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
                                  </children>
                               </AnchorPane>
                            </content>
