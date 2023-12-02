@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import customer.Customer;
 import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

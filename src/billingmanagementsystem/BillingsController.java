@@ -5,12 +5,13 @@
 package billingmanagementsystem;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
-import com.itextpdf.styledxmlparser.jsoup.select.Evaluator.IsEmpty;
 
 import billings.Bill;
 import billings.BillDAOImpl;
@@ -40,6 +41,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lineItems.LineItem;
+import lineItems.LineItemDAOImpl;
 /**
  * FXML Controller class
  *
@@ -355,9 +358,32 @@ public class BillingsController implements Initializable {
 		return bill;
 	}
 	
+	private List<LineItem> lineItemListBuilder(Bill bill) {
+		
+		List<LineItem> lineItemList = new ArrayList<>();
+		
+		for (OrderList orderList : tableItems) {
+			int quantity= (int) (orderList.getQuantity());
+			LineItem lineItem = new LineItem(
+					bill.getBillID(),
+					Integer.valueOf(orderList.getProductID()),
+					orderList.getProductName(),
+					quantity,
+					BigDecimal.valueOf(orderList.getPrice()),
+					BigDecimal.valueOf(orderList.getAmount())
+					);
+			lineItemList.add(lineItem);
+		}
+		
+		return lineItemList;
+	}
+	
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
 		BillDAOImpl billDAO = new BillDAOImpl();
+		LineItemDAOImpl lineItemDAO = new LineItemDAOImpl();
+		
+		//Check if customers are already exists
 		customerDataChecker();
 		Bill bill = buildBill();
 		
@@ -368,14 +394,14 @@ public class BillingsController implements Initializable {
 			billDAO.addBill(bill);
 		}
 		
-
+		//Populate lineItemList for adding lineItems to database
+		Bill createdBill = billDAO.getLastBill();
+		List<LineItem> lineItemList = lineItemListBuilder(createdBill);
 		
-		
-		
-		
-		
+		//Adding lineItems
+		lineItemDAO.addLineItems(lineItemList);
 	}			
-		
+}		
 //		Bill bill = new Bill();
 
 		//		 try {
@@ -445,5 +471,4 @@ public class BillingsController implements Initializable {
 
 
 
-}
 

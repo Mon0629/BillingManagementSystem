@@ -8,15 +8,17 @@ package billingmanagementsystem;
 import databaseSQL.DatabaseManager;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-
+import java.sql.Timestamp;
 /**
  * FXML Controller class
  *
@@ -32,6 +34,8 @@ public class DashboardController implements Initializable {
     private Label totalproducts;
     @FXML
     private Label totalcustomer;
+    @FXML
+    private AreaChart<Date, Number> chart1;
 
     /**
      * Initializes the controller class.
@@ -40,6 +44,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         COUNTTOTALPRODUCTS();
         COUNTTOTALCUSTOMER();
+        PopulateChart1();
     }    
     
     private int COUNTTOTALPRODUCTS() {
@@ -68,12 +73,12 @@ public class DashboardController implements Initializable {
         try {
             Connection connection = DatabaseManager.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM customer");
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM customers");
 
             if (resultSet.next()) {
                 String total;
                 total = resultSet.getString("COUNT(*)");
-                totalproducts.setText(total);
+                totalcustomer.setText(total);
             }
             resultSet.close();
             statement.close();
@@ -83,5 +88,38 @@ public class DashboardController implements Initializable {
 
         return count;
     }
+    
+    private XYChart.Series<Date, Number> PopulateChart1() {
+    XYChart.Series<Date, Number> series = new XYChart.Series<>();
+
+    try {
+        // Establish a connection to your SQL database
+        Connection connection = DatabaseManager.getConnection();
+
+        // Create a statement to execute SQL queries
+        Statement statement = connection.createStatement();
+
+        // Execute the query to retrieve the data
+        ResultSet resultSet = statement.executeQuery("SELECT DATETIME(creationDate), COUNT(*) FROM customers GROUP BY creationDate");
+
+        // Iterate over the result set and add data to the series
+        while (resultSet.next()) {
+            Timestamp date = resultSet.getTimestamp("DATETIME(creationDate)");
+            int count = resultSet.getInt("COUNT(*)");
+
+            series.getData().add(new XYChart.Data<>(date, count));
+        }
+
+        chart1.getData().add(series);
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return series;
+}
+
     
 }
