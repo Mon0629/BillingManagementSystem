@@ -6,6 +6,11 @@ package billingmanagementsystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.css.PseudoClass;
@@ -43,12 +48,6 @@ public class Admin_DashboardController implements Initializable {
     @FXML
     private Button sign_out_btn;
     @FXML
-    private AnchorPane customer_pane;
-    @FXML
-    private AnchorPane product_pane;
-    @FXML
-    private AnchorPane billing_pane;
-    @FXML
     private Button customer_btn;
     @FXML
     private AnchorPane dashboard_pane;
@@ -62,8 +61,6 @@ public class Admin_DashboardController implements Initializable {
     private ImageView icon4;
     @FXML
     private ImageView icon5;
-    @FXML
-    private AnchorPane about_us_pane;
     @FXML
     private ImageView icon51;
     @FXML
@@ -175,5 +172,10 @@ private void changestyle(MouseEvent event) {
     }
     
     
-    }
+    
+    
+    
+    
+    
+ }
     

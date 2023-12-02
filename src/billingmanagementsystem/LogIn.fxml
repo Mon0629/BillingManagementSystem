@@ -10,7 +10,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="869.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
     <stylesheets>
@@ -27,7 +26,7 @@
             <Image url="@../Graphics/Tanjiro_020_High_Tops_Shoes_-_8_US_Men__10_US_Women-removebg-preview.png" />
          </image>
       </ImageView>
-      <TextField layoutX="549.0" layoutY="235.0" prefHeight="26.0" prefWidth="194.0" promptText="Enter Username" style="-fx-border-color: rgb(54, 48, 98);">
+      <TextField fx:id="usernameField" layoutX="549.0" layoutY="235.0" prefHeight="26.0" prefWidth="194.0" promptText="Enter Username" style="-fx-border-color: rgb(54, 48, 98);">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
@@ -86,6 +85,5 @@
             <Image url="@../Graphics/eye-crossed.png" />
          </image>
       </ImageView>
-      <Text fx:id="showPasswordText" disable="true" layoutX="556.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="182.0" />
    </children>
 </AnchorPane>
