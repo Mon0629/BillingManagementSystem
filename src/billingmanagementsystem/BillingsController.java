@@ -362,12 +362,12 @@ public class BillingsController implements Initializable {
 		List<LineItem> lineItemList = new ArrayList<>();
 		
 		for (OrderList orderList : tableItems) {
-			int intValue;
+			int quantity= (int) (orderList.getQuantity());
 			LineItem lineItem = new LineItem(
 					bill.getBillID(),
 					Integer.valueOf(orderList.getProductID()),
 					orderList.getProductName(),
-					intValue = (int) (orderList.getQuantity()),
+					quantity,
 					BigDecimal.valueOf(orderList.getPrice()),
 					BigDecimal.valueOf(orderList.getAmount())
 					);
@@ -392,8 +392,9 @@ public class BillingsController implements Initializable {
 		
 		Bill createdBill = billDAO.getLastBill();
 		List<LineItem> lineItemList = lineItemListBuilder(createdBill);
-	}			
 		
+	}			
+}		
 //		Bill bill = new Bill();
 
 		//		 try {
@@ -463,5 +464,4 @@ public class BillingsController implements Initializable {
 
 
 
-}
 

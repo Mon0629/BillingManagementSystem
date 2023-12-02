@@ -2,7 +2,7 @@ package lineItems;
 
 public interface LineItemDAO {
 	
-	void addLineItem();
+	void addLineItems();
 	void deleteLineItem();
 	void updateLineItem();
 }
