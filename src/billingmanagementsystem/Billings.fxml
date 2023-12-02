@@ -30,7 +30,7 @@
                            <content>
                               <AnchorPane prefHeight="856.0" prefWidth="1022.0" style="-fx-background-color: white;">
                                  <children>
-                                    <Label layoutX="4.0" layoutY="7.0" prefHeight="66.0" prefWidth="363.0" styleClass="Header" stylesheets="@../cssFiles/billingsStylesheet.css" text="Create New Invoice" textFill="#4bbc45">
+                                    <Label layoutX="4.0" layoutY="7.0" prefHeight="55.0" prefWidth="363.0" styleClass="header" stylesheets="@../cssFiles/billingsStylesheet.css" text="Create New Invoice" textFill="#4bbc45">
                                        <font>
                                           <Font name="Franklin Gothic Demi Cond" size="40.0" />
                                        </font>
@@ -38,14 +38,14 @@
                                     <Separator layoutX="4.0" layoutY="66.0" prefHeight="0.0" prefWidth="1018.0" />
                                     <AnchorPane layoutX="11.0" layoutY="117.0" prefHeight="267.0" prefWidth="494.0" style="-fx-border-color: #f2f3f5;">
                                        <children>
-                                          <AnchorPane prefHeight="40.0" prefWidth="492.0" style="-fx-background-color: rgb(67, 85, 133);">
+                                          <AnchorPane id="fieldPane" prefHeight="45.0" prefWidth="492.0" stylesheets="@../cssFiles/billingsStylesheet.css">
                                              <children>
-                                                <Label layoutX="15.0" layoutY="7.0" style="-fx-text-fill: #eee;" text="Customer Information" textFill="WHITE">
+                                                <Label id="label" layoutX="15.0" layoutY="7.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Customer Information" textFill="WHITE">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="selectCustomerBtn" layoutX="345.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #eee; -fx-background-radius: 30; -fx-text-fill: rgb(54, 48, 98);" text="Select Customer" textFill="WHITE">
+                                                <Button fx:id="selectCustomerBtn" alignment="CENTER" layoutX="345.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="29.0" prefWidth="133.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Customer" textAlignment="CENTER" textFill="WHITE">
                                                    <font>
                                                       <Font name="Franklin Gothic Book" size="12.0" />
                                                    </font></Button>
@@ -73,14 +73,14 @@
                                     </AnchorPane>
                                     <AnchorPane layoutX="521.0" layoutY="117.0" prefHeight="268.0" prefWidth="478.0" styleClass="pane1" stylesheets="@dashboard.css">
                                        <children>
-                                          <AnchorPane prefHeight="40.0" prefWidth="481.0" style="-fx-background-color: #f2f3f5;">
+                                          <AnchorPane id="fieldPane" prefHeight="40.0" prefWidth="481.0" stylesheets="@../cssFiles/billingsStylesheet.css">
                                              <children>
-                                                <Label layoutX="20.0" layoutY="7.0" text="Shipping Information">
+                                                <Label id="label" layoutX="20.0" layoutY="7.0" style="-fx-text-fill: #eee;" stylesheets="@../cssFiles/billingsStylesheet.css" text="Shipping Information">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="selectShipCustomerBtn" layoutX="334.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: rgb(67, 85, 133);" text="Select Customer" />
+                                                <Button fx:id="selectShipCustomerBtn" alignment="CENTER" layoutX="334.0" layoutY="5.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="133.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Customer" />
                                              </children>
                                           </AnchorPane>
                                           <TextField fx:id="firstNameShip" layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="First Name" />
@@ -103,19 +103,19 @@
                                     </Text>
                                     <AnchorPane fx:id="product_pane" layoutX="12.0" layoutY="397.0" prefHeight="284.0" prefWidth="993.0" style="-fx-border-color: #f2f3f5;">
                                        <children>
-                                          <AnchorPane prefHeight="40.0" prefWidth="991.0" style="-fx-background-color: #f2f3f5;">
+                                          <AnchorPane id="fieldPane" prefHeight="40.0" prefWidth="991.0" stylesheets="@../cssFiles/billingsStylesheet.css">
                                              <children>
-                                                <Label layoutX="20.0" layoutY="7.0" text="Product Information">
+                                                <Label id="label" layoutX="20.0" layoutY="7.0" text="Product Information">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="456.0" layoutY="8.0" text="Order List">
+                                                <Label id="label" layoutX="456.0" layoutY="8.0" text="Order List">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="316.0" layoutY="8.0" onMouseClicked="#openproducttable" style="-fx-text-fill: #2558bc;" text="Select Product" underline="true">
+                                                <Label layoutX="316.0" layoutY="8.0" onMouseClicked="#openproducttable" style="-fx-text-fill: #eee;" text="Select Product" underline="true">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
@@ -123,7 +123,7 @@
                                              </children>
                                           </AnchorPane>
                                           <TextField fx:id="textField1" layoutX="21.0" layoutY="79.0" prefHeight="25.0" prefWidth="248.0" promptText="Product Name" />
-                                          <Separator layoutX="435.0" layoutY="2.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="6.0" />
+                                          <Separator layoutX="435.0" layoutY="45.0" orientation="VERTICAL" prefHeight="206.0" prefWidth="7.0" />
                                           <TextField fx:id="textField2" layoutX="283.0" layoutY="79.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="61.0" promptText="Price ($):" />
                                           <TextField fx:id="textField4" layoutX="21.0" layoutY="115.0" prefHeight="25.0" prefWidth="397.0" promptText="Discounts" />
                                           <TextField fx:id="textField5" layoutX="335.0" layoutY="148.0" prefHeight="25.0" prefWidth="83.0" />
@@ -192,7 +192,7 @@
                                           <Text fx:id="docTypeWarning1" fill="#d33434" layoutX="365.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="suvvess" wrappingWidth="144.0" />
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="TEST" layoutX="917.0" layoutY="699.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: rgb(67, 85, 133);" text="Confirm" />
+                                    <Button fx:id="TEST" layoutX="917.0" layoutY="699.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="25.0" prefWidth="81.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" />
                                     <ComboBox fx:id="docTypeComboBox" layoutX="401.0" layoutY="81.0" prefWidth="150.0" promptText="Document Type" />
                                     <Text fx:id="docTypeWarning" fill="#d33434" layoutX="240.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="144.0" />
                                  </children>
