@@ -26,6 +26,10 @@ public class Bill {
 		this.doctype = doctype;
 	}
 	
+	public Bill() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Timestamp getTransactionAdded() {
 		return transactionAdded;
 	}

@@ -4,8 +4,8 @@ public interface BillDAO {
 	
 	Bill createBill();
 	void addBill(Bill bill);
-	void fetchBill();
 //	void updateBill();
 	void deleteBill();
+	Bill getLastBill();
 	
 }

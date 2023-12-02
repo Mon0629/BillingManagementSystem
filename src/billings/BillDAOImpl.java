@@ -2,9 +2,10 @@ package billings;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
+import customer.Customer;
 import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,10 +44,36 @@ public class BillDAOImpl implements BillDAO{
 		}
 
 	}
-
+	
 	@Override
-	public void fetchBill() {
-		// TODO Auto-generated method stub
+	public Bill getLastBill() {
+		Bill bill = new Bill();
+
+		String fetchQuery = "SELECT * FROM bills ORDER BY billID DESC LIMIT 1";
+		try {
+			Connection connection = DatabaseManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(fetchQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				bill.setBillID(resultSet.getInt("billID"));
+				bill.setCustomerID(resultSet.getInt("customerID"));
+				bill.setShipCustomerID(resultSet.getInt("shipCustomerID"));
+				bill.setIssueDate(resultSet.getDate("issueDate"));
+				bill.setDueDate(resultSet.getDate("dueDate"));
+				bill.setDoctype(Bill.DocType.valueOf(resultSet.getString("docType")));
+			}
+			resultSet.close();
+			statement.close();
+			connection.close();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return bill;
 		
 	}
 
