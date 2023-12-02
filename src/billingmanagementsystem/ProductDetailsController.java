@@ -4,7 +4,7 @@
  */
 package billingmanagementsystem;
 
-import com.mysql.cj.jdbc.Blob;
+import java.sql.*;
 import databaseSQL.DatabaseManager;
 import java.io.File;
 import java.io.IOException;
