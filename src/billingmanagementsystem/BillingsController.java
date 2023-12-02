@@ -42,6 +42,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lineItems.LineItem;
+import lineItems.LineItemDAOImpl;
 /**
  * FXML Controller class
  *
@@ -380,6 +381,9 @@ public class BillingsController implements Initializable {
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
 		BillDAOImpl billDAO = new BillDAOImpl();
+		LineItemDAOImpl lineItemDAO = new LineItemDAOImpl();
+		
+		//Check if customers are already exists
 		customerDataChecker();
 		Bill bill = buildBill();
 		
@@ -390,9 +394,12 @@ public class BillingsController implements Initializable {
 			billDAO.addBill(bill);
 		}
 		
+		//Populate lineItemList for adding lineItems to database
 		Bill createdBill = billDAO.getLastBill();
 		List<LineItem> lineItemList = lineItemListBuilder(createdBill);
 		
+		//Adding lineItems
+		lineItemDAO.addLineItems(lineItemList);
 	}			
 }		
 //		Bill bill = new Bill();
