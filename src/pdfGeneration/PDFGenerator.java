@@ -162,11 +162,11 @@ public class PDFGenerator {
         Table customerShipTable = new Table(UnitValue.createPercentArray(2)).useAllAvailableWidth();
         customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Shipping Information")).addStyle(header2));
         customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Name")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getFirstName()))).addStyle(paragraph));
+        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getFirstName()))).addStyle(paragraph));
         customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getLastName()))).addStyle(paragraph));
         customerShipTable.addCell(new Cell().add( new Paragraph("Contact Number")).addStyle(header3));
         customerShipTable.addCell(new Cell().add( new Paragraph("Email")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getContactNumber()))).addStyle(paragraph));
+        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getContactNumber()))).addStyle(paragraph));
         customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getEmail()))).addStyle(paragraph));
         customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Address")).addStyle(header3));
         customerShipTable.addCell(new Cell(1,2).add( new Paragraph(String.valueOf(shipCustomer.getAddress()))).addStyle(paragraph));
