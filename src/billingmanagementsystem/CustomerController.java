@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 
 import customer.Customer;
 import customer.CustomerDAOImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,9 +21,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,6 +54,8 @@ public class CustomerController implements Initializable {
 	@FXML private ImageView refreshButton;
 
 	CustomerDAOImpl CustomerDAO = new CustomerDAOImpl(); 
+    @FXML
+    private TextField searchbox;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -115,5 +121,26 @@ public class CustomerController implements Initializable {
 		CustomerDAO.fetchAllCustomers();
 		customerTableView.setItems(CustomerDAO.getCustomersData());
 	}
+
+    @FXML
+    private void SearchCustomer(KeyEvent event) {
+        String input = searchbox.getText();
+    if (!input.isEmpty()) {
+        ObservableList<Customer> originalList = customerTableView.getItems();
+        ObservableList<Customer> filteredList = FXCollections.observableArrayList();
+
+        for (Customer product : originalList) {
+            if (String.valueOf(product.getCustomerId()).contains(input)
+                    || product.getFirstName().toLowerCase().contains(input.toLowerCase()) || product.getLastName().toLowerCase().contains(input.toLowerCase())) {
+                filteredList.add(product);
+            }
+        }
+
+        customerTableView.getItems().setAll(filteredList);
+    } else {
+        customerTableView.getItems().clear();
+        refreshCustomerTableview();
+    }
+    }
 
 }

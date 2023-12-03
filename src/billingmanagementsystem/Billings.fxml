@@ -23,7 +23,7 @@
    <children>
       <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
-            <TabPane layoutX="9.0" layoutY="8.0" prefHeight="651.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="9.0" layoutY="8.0" prefHeight="645.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Create Invoice">
                      <content>
@@ -146,10 +146,11 @@
                                           <TableView fx:id="OrderListTable" layoutX="449.0" layoutY="48.0" prefHeight="181.0" prefWidth="410.0">
                                              <columns>
                                                 <TableColumn fx:id="order_product_id" prefWidth="67.0" text="ProductID" />
-                                                <TableColumn fx:id="order_product_name" prefWidth="153.0" text="ProductName" />
-                                                <TableColumn fx:id="order_price" prefWidth="76.0" text="Price" />
-                                                <TableColumn fx:id="order_qty" prefWidth="51.0" text="Qty." />
-                                                <TableColumn fx:id="order_amount" prefWidth="62.0" text="Amount" />
+                                                <TableColumn fx:id="order_product_name" prefWidth="116.0" text="ProductName" />
+                                                <TableColumn fx:id="order_price" prefWidth="57.0" text="Price" />
+                                                <TableColumn fx:id="order_qty" prefWidth="40.0" text="Qty." />
+                                                <TableColumn fx:id="order_amount" prefWidth="74.0" text="Amount" />
+                                                <TableColumn fx:id="actionColumn" prefWidth="55.0" text="Delete" />
                                              </columns>
                                           </TableView>
                                           <Label layoutX="876.0" layoutY="206.0" text="Total:">
@@ -192,7 +193,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <Button id="confirm" fx:id="TEST" alignment="TOP_LEFT" layoutX="878.0" layoutY="655.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
+                                    <Button id="confirm" fx:id="TEST" alignment="TOP_LEFT" layoutX="882.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -222,7 +223,33 @@
                   </Tab>
                   <Tab text="Manage Invoice">
                      <content>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="616.0" prefWidth="1039.0">
+                                 <children>
+                                    <Label layoutX="22.0" layoutY="14.0" style="-fx-text-fill: rgb(67, 85, 133);" text="Manage Invoices">
+                                       <font>
+                                          <Font name="Franklin Gothic Demi Cond" size="46.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="21.0" layoutY="73.0" prefHeight="11.0" prefWidth="998.0" />
+                                    <TextField layoutX="21.0" layoutY="102.0" prefHeight="25.0" prefWidth="296.0" style="-fx-background-radius: 20 20 20 20;" text="Search" />
+                                    <TableView layoutX="22.0" layoutY="154.0" prefHeight="434.0" prefWidth="998.0">
+                                      <columns>
+                                        <TableColumn text="Actions" />
+                                        <TableColumn prefWidth="93.0" text="Customer ID" />
+                                          <TableColumn prefWidth="85.0" text="Bill ID" />
+                                          <TableColumn prefWidth="105.0" text="First Name" />
+                                          <TableColumn prefWidth="143.0" text="Last Name" />
+                                          <TableColumn prefWidth="141.0" text="Total Amount" />
+                                          <TableColumn minWidth="0.0" prefWidth="193.0" text="Note(Paid/ Not)" />
+                                          <TableColumn prefWidth="157.0" text="Invoice" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </content>
                   </Tab>
 

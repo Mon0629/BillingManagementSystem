@@ -163,7 +163,25 @@ public class ProductController implements Initializable {
 
     @FXML
     private void RefreshTable(MouseEvent event) {
-        refresh();
+        //refresh();
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Invoice.fxml"));
+        
+       
+                
+        Parent parent = loader.load();
+ 
+  
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+
+    } catch (IOException ex) {
+        Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     
