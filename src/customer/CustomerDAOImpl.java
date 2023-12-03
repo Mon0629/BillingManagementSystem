@@ -196,6 +196,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			statement.setString(7, customer.getTown());
 			statement.setString(8, customer.getCountry());
 			statement.setString(9, customer.getPostal());
+			statement.setInt(10, customer.getCustomerId());
 			
 			statement.executeUpdate();
 
