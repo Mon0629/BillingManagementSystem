@@ -396,24 +396,24 @@ public class BillingsController implements Initializable {
 		else {
 			docTypeWarning.setText(null);
 			billDAO.addBill(bill);
+		
+			//Populate lineItemList for adding lineItems to database
+			Bill createdBill = billDAO.getLastBill();
+			List<LineItem> lineItemList = lineItemListBuilder(createdBill);
+			
+			//Adding lineItems
+			lineItemDAO.addLineItems(lineItemList);
+			
+			PDFGenerator pdfGenerator = new PDFGenerator(
+					createdBill, 
+					customerDAO.getCustomerByID(createdBill.getCustomerID()), 
+					customerDAO.getCustomerByID(createdBill.getShipCustomerID()), 
+					lineItemList);
+			
+			pdfGenerator.createPDF();
+			
+			confirmMessage.setText(createdBill.getDoctype() + " Created");
+			confirmMessagePane.setVisible(true);
 		}
-		
-		//Populate lineItemList for adding lineItems to database
-		Bill createdBill = billDAO.getLastBill();
-		List<LineItem> lineItemList = lineItemListBuilder(createdBill);
-		
-		//Adding lineItems
-		lineItemDAO.addLineItems(lineItemList);
-		
-		PDFGenerator pdfGenerator = new PDFGenerator(
-				createdBill, 
-				customerDAO.getCustomerByID(createdBill.getCustomerID()), 
-				customerDAO.getCustomerByID(createdBill.getShipCustomerID()), 
-				lineItemList);
-		
-		pdfGenerator.createPDF();
-		
-		confirmMessage.setText(createdBill.getDoctype() + " Created");
-		confirmMessagePane.setVisible(true);
 	}			
 }		
