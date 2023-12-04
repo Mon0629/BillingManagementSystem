@@ -26,7 +26,7 @@ public class PDFGenerator {
 	private Bill bill;
 	private Customer customer, shipCustomer;
 	private List<LineItem> lineItemList;
-	
+	private String path;
 	
 	
 	public PDFGenerator(Bill bill, Customer customer, Customer shipCustomer, List<LineItem> lineItemList) {
@@ -34,6 +34,11 @@ public class PDFGenerator {
 		this.customer = customer;
 		this.shipCustomer = shipCustomer;
 		this.lineItemList = lineItemList;
+	}
+	
+	
+	public String getPath() {
+		return path;
 	}
 
 	public Bill getBill() {
@@ -70,7 +75,7 @@ public class PDFGenerator {
 
 	public void createPDF() throws FileNotFoundException  {
 		
-		String path = "C:\\bmsPdf\\DOC" + bill.getBillID()+ bill.getIssueDate() + ".pdf";
+		path = "C:\\bmsPdf\\DOC" + bill.getBillID()+ bill.getIssueDate() + ".pdf";
 		PdfWriter pdfWriter = new PdfWriter(path);
 		PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 		pdfDocument.setDefaultPageSize(PageSize.LEGAL);

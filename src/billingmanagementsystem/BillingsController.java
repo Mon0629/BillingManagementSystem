@@ -4,6 +4,8 @@
  */
 package billingmanagementsystem;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -39,6 +41,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -381,6 +384,29 @@ public class BillingsController implements Initializable {
 		return lineItemList;
 	}
 	
+	private void openFile(String path) {
+		try {
+
+			File pdfFile = new File(path);
+			if (pdfFile.exists()) {
+
+				if (Desktop.isDesktopSupported()) {
+					Desktop.getDesktop().open(pdfFile);
+				} else {
+					System.out.println("Awt Desktop is not supported!");
+				}
+
+			} else {
+				System.out.println("File does not exists!");
+			}
+
+			System.out.println("Done");
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
 	@FXML
 	private void CREATEINVOICE(ActionEvent event) throws IOException {
 		BillDAOImpl billDAO = new BillDAOImpl();
@@ -418,6 +444,8 @@ public class BillingsController implements Initializable {
 			confirmMessage.setStyle("-fx-fill: #435585;");
 			confirmMessage.setText(createdBill.getDoctype() + " Created");
 			confirmMessagePane.setVisible(true);
+
+			openFile(pdfGenerator.getPath());
 		}
 	}			
 }		
