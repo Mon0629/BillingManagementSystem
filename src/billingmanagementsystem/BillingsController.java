@@ -400,7 +400,6 @@ public class BillingsController implements Initializable {
 				System.out.println("File does not exists!");
 			}
 
-			System.out.println("Done");
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
