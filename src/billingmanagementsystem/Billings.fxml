@@ -193,7 +193,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <Button id="confirm" fx:id="TEST" alignment="TOP_LEFT" layoutX="882.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
+                                    <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="882.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -205,10 +205,9 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font></Button>
                                     <ComboBox fx:id="docTypeComboBox" layoutX="401.0" layoutY="81.0" prefWidth="150.0" promptText="Document Type" />
-                                    <Text fx:id="docTypeWarning" fill="#d33434" layoutX="240.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="144.0" />
-                                    <Pane fx:id="confirmMessagePane" layoutX="736.0" layoutY="662.0" prefHeight="27.0" prefWidth="148.0" style="-fx-border-color: transparent transparent transparent#435585; -fx-border-width: 3; -fx-background-radius: 30;" visible="false">
+                                    <Pane fx:id="confirmMessagePane" layoutX="700.0" layoutY="667.0" prefHeight="36.0" prefWidth="180.0" style="-fx-border-color: transparent transparent transparent#435585; -fx-border-width: 3; -fx-background-radius: 30;" visible="false">
                                        <children>
-                                          <Text fx:id="confirmMessage" fill="#435585" layoutX="6.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="136.0">
+                                          <Text fx:id="confirmMessage" fill="#435585" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="169.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

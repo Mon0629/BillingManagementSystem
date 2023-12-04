@@ -111,15 +111,13 @@ public class BillingsController implements Initializable {
 	@FXML
 	private CheckBox VAT;
 	@FXML
-	private Button TEST;
-	@FXML
 	private AnchorPane billingpane;
 	@FXML
 	private TextField firstNameShip, lastNameShip, contactShip, emailShip, addressShip, townShip, countryShip, postalShip;
 	@FXML
-	private Button selectCustomerBtn, selectShipCustomerBtn; 
+	private Button selectCustomerBtn, selectShipCustomerBtn, confirmButton; 
 	@FXML
-	private Text docTypeWarning, confirmMessage;
+	private Text confirmMessage;
 	@FXML
 	private Pane confirmMessagePane;
 
@@ -133,6 +131,7 @@ public class BillingsController implements Initializable {
 		setCurrentDate();
 		setDueDate();
 
+		confirmButton.setDisable(true);;
 		docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL, Bill.DocType.INVOICE);
 
 	}    
@@ -193,8 +192,6 @@ public class BillingsController implements Initializable {
 		 postalShip.setText(customer.getPostal());
 	 }
 
-
-
 	@FXML
 	private void enterprice(KeyEvent event) {
 		String price = textField2.getText();
@@ -238,8 +235,8 @@ public class BillingsController implements Initializable {
 		String quantity = textField3.getText();
 		String amount = textField5.getText();
 
-		System.out.println("Adding to order - Product ID: " + productID + ", Product Name: " + productName +
-				", Price: " + price + ", Quantity: " + quantity + ", Amount: " + amount);
+//		System.out.println("Adding to order - Product ID: " + productID + ", Product Name: " + productName +
+//				", Price: " + price + ", Quantity: " + quantity + ", Amount: " + amount);
 
 		if (!productID.isEmpty() && !productName.isEmpty() && !price.isEmpty() && !quantity.isEmpty() && !amount.isEmpty()) {
 			OrderList orderlist = new OrderList(productID, productName, Double.parseDouble(price), Double.parseDouble(quantity), Double.parseDouble(amount));
@@ -260,6 +257,8 @@ public class BillingsController implements Initializable {
 			textField2.clear();
 			textField3.clear();
 			textField5.clear();
+			
+			confirmButton.setDisable(false);
 		} else {
 			System.out.println("One or more fields are empty. Not adding to order.");
 		}
@@ -392,9 +391,13 @@ public class BillingsController implements Initializable {
 		Bill bill = buildBill();
 		
 		//Insert bill to database
-		if (docTypeComboBox.getValue() == null) docTypeWarning.setText("Select Document Type");
+		if (docTypeComboBox.getValue() == null) {
+			confirmMessage.setText("Select Document Type");
+			confirmMessage.setStyle("-fx-fill: #D33434;");
+			confirmMessagePane.setVisible(true);
+		}
 		else {
-			docTypeWarning.setText(null);
+			confirmMessage.setText(null);
 			billDAO.addBill(bill);
 		
 			//Populate lineItemList for adding lineItems to database
@@ -412,6 +415,7 @@ public class BillingsController implements Initializable {
 			
 			pdfGenerator.createPDF();
 			
+			confirmMessage.setStyle("-fx-fill: #435585;");
 			confirmMessage.setText(createdBill.getDoctype() + " Created");
 			confirmMessagePane.setVisible(true);
 		}
