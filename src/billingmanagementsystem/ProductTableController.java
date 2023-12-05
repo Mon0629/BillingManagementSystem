@@ -25,6 +25,10 @@ import databaseSQL.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.TableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -43,9 +47,19 @@ public class ProductTableController implements Initializable {
     @FXML
     private TableColumn<ProductData, String> description;
     @FXML
-    private TableColumn<ProductData, String> remarks;
-    @FXML
     private TextField searchbox;
+    @FXML
+    private TableColumn<ProductData, Integer> stocks;
+    @FXML
+    private TableColumn<ProductData, String> swcategory;
+    @FXML
+    private TableColumn<ProductData, String> subcategory;
+    @FXML
+    private TableColumn<ProductData, String> brandcol;
+    @FXML
+    private TableColumn<ProductData, String> otherscol;
+    @FXML
+    private TableColumn<ProductData, Image> imagecol;
 
     /**
      * Initializes the controller class.
@@ -57,28 +71,27 @@ public class ProductTableController implements Initializable {
 
     private void ProductTable(){
     
-        productID.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
-        productName.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
-        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        remarks.setCellValueFactory(new PropertyValueFactory<>("Remarks"));
+        
         
         try
         {
             Connection con = DatabaseManager.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM products");
+            ResultSet rs = st.executeQuery("SELECT * FROM products JOIN productcategory on products.ProductID = productcategory.ProductID");
             
-            while(rs.next()){
-             product_table.getItems().add(new ProductData(
-                     rs.getInt("ProductID"),
-                     rs.getString("ProductName"),
-                     rs.getDouble("Price"),
-                     rs.getString("Description"),
-                     rs.getString("Remarks"),
-                     (Blob)rs.getBlob("Image")
-                    
-             ));
+            while (rs.next()) {
+                product_table.getItems().add(new ProductData(
+                        rs.getInt("ProductID"),
+                        rs.getString("ProductName"),
+                        rs.getDouble("Price"),
+                        rs.getInt("Stocks"),
+                        rs.getString("Description"),
+                        (Blob) rs.getBlob("Image"),
+                        rs.getString("parentType"),
+                        rs.getString("type"),
+                        rs.getString("Brand"),
+                rs.getString("otherAttributes")
+                ));
             }
             
             
@@ -86,6 +99,34 @@ public class ProductTableController implements Initializable {
         {
             Logger.getLogger(ProductTableController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        productID.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
+        productName.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        stocks.setCellValueFactory(new PropertyValueFactory<>("Stocks"));
+        swcategory.setCellValueFactory(new PropertyValueFactory<>("parentType"));
+        subcategory.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        brandcol.setCellValueFactory(new PropertyValueFactory<>("Brand"));
+        otherscol.setCellValueFactory(new PropertyValueFactory<>("otherAttributes"));
+        imagecol.setCellValueFactory(new PropertyValueFactory<>("Image"));
+        imagecol.setCellFactory(param -> new TableCell<ProductData, Image>() {
+   
+            private final ImageView imageView = new ImageView();
+
+             @Override
+             protected void updateItem(Image item, boolean empty) {
+              super.updateItem(item, empty);
+               if (empty || item == null) {
+            setGraphic(null);
+            } else {
+            imageView.setImage(item);
+            imageView.setFitWidth(50); // Set the desired width
+            imageView.setPreserveRatio(true);
+            setGraphic(imageView);
+          }
+         }
+        });
     
     
     }
@@ -130,6 +171,12 @@ public class ProductTableController implements Initializable {
         ProductTable(); // Load all data again
     }
     
+    }
+
+    @FXML
+    private void Close(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

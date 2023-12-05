@@ -21,20 +21,25 @@
             <TableView fx:id="product_table" layoutX="14.0" layoutY="157.0" prefHeight="493.0" prefWidth="1044.0" style="-fx-background-color: #eec5c5;">
                <columns>
                   <TableColumn fx:id="editcolumn" prefWidth="65.0" text="Actions" />
-                  <TableColumn fx:id="productID" prefWidth="86.0" text="ID" />
-                  <TableColumn fx:id="productName" prefWidth="267.0" text="Product Name" />
-                  <TableColumn fx:id="price" prefWidth="155.0" text="Price" />
-                  <TableColumn fx:id="Description" prefWidth="265.0" text="Description" />
-                  <TableColumn fx:id="Remarks" prefWidth="272.0" text="Remarks" />
+                  <TableColumn fx:id="productID" prefWidth="57.0" text="ID" />
+                  <TableColumn fx:id="productName" prefWidth="198.0" text="Product Name" />
+                  <TableColumn fx:id="price" prefWidth="65.0" text="Price" />
+                  <TableColumn fx:id="Stocks" minWidth="0.0" prefWidth="46.0" text="Stocks" />
+                  <TableColumn fx:id="Description" prefWidth="205.0" text="Description" />
+                  <TableColumn fx:id="parentType" minWidth="1.0" prefWidth="131.0" text="Sportswear Category" />
+                  <TableColumn fx:id="type" prefWidth="99.0" text="Sub Category" />
+                  <TableColumn fx:id="Brand" prefWidth="69.0" text="Brand" />
+                  <TableColumn fx:id="othersAttributes" prefWidth="52.0" text="Others" />
+                  <TableColumn fx:id="ImageCol" prefWidth="56.0" text="Image" />
                </columns>
             </TableView>
-            <TextField fx:id="searchbox" layoutX="121.0" layoutY="121.0" onKeyReleased="#SearchProduct" prefHeight="25.0" prefWidth="296.0" promptText="Search ID, Product Name:" style="-fx-background-radius: 10 10 10 10;" />
-            <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="392.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="searchbox" layoutX="121.0" layoutY="121.0" onKeyReleased="#SearchProduct" prefHeight="26.0" prefWidth="423.0" promptText="ID, Product Name, Categories (Footwear Shoes Men)" style="-fx-background-radius: 10 10 10 10;" />
+            <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="518.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Graphics/search.png" />
                </image>
             </ImageView>
-            <Separator layoutX="380.0" layoutY="125.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="0.0" />
+            <Separator layoutX="511.0" layoutY="125.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="0.0" />
             <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="19.0" layoutY="114.0" onMouseClicked="#OpenProductDetails" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Graphics/add-product%20(1).png" />

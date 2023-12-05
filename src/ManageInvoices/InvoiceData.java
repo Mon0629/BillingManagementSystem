@@ -17,5 +17,8 @@ public class InvoiceData {
     private String firstName, lastName, email, address, town, country, docType, productName;
     private Date issueDate, dueDate;
 
+    public InvoiceData (int customerID){
+    this.customerID = customerID;
     
+    }
 }
