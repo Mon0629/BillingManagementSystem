@@ -50,8 +50,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	        		resultSet.getString("lastName"),
 	        		resultSet.getString("contactNumber"),
 	        		resultSet.getString("email"),
-	        		resultSet.getString("town"),
 	        		resultSet.getString("address"),
+	        		resultSet.getString("town"),
 	        		resultSet.getString("country"),
 	        		resultSet.getString("postal")
 	        		);

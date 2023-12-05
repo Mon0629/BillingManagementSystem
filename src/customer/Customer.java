@@ -12,7 +12,7 @@ public class Customer {
 	private String country;
 	private String postal;
 	
-	public Customer(int customerId, String creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(int customerId, String creationDate, String firstName, String lastName, String contactNumber, String email, String address,   String town,
 			String country, String postal) {
 		this.customerId = customerId;
 		this.creationDate = creationDate;
@@ -26,7 +26,7 @@ public class Customer {
 		this.postal = postal;
 	}
 	
-	public Customer(String creationDate, String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(String creationDate, String firstName, String lastName, String contactNumber, String email, String address, String town,
 			String country, String postal) {
 		this.creationDate = creationDate;
 		this.firstName = firstName;
@@ -39,7 +39,7 @@ public class Customer {
 		this.postal = postal;
 	}
 	
-	public Customer(String firstName, String lastName, String contactNumber, String email,  String town, String address,
+	public Customer(String firstName, String lastName, String contactNumber, String email, String address, String town,
 			String country, String postal) {
 		this.firstName = firstName;
 		this.lastName = lastName;

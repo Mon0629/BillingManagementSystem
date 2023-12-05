@@ -101,7 +101,6 @@ public class CustomerDetailsController implements Initializable {
             			countryFid.getText(), 
             			postalFid.getText()
             			);
-            	
     			CustomerDAO.addCustomer(customer);
             	messageBox.setText("Successfully added "+ customer.getFirstName() +" "+ customer.getLastName());
     		}
