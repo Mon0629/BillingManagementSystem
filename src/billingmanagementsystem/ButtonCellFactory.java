@@ -32,6 +32,7 @@ import java.util.logging.Logger;
  */
 public class ButtonCellFactory implements Callback<TableColumn<ProductData, Boolean>, TableCell<ProductData, Boolean>> {
     
+    
     @Override
     public TableCell<ProductData, Boolean> call(TableColumn<ProductData, Boolean> param) {
         return new ButtonTableCell();
@@ -94,12 +95,11 @@ public class ButtonCellFactory implements Callback<TableColumn<ProductData, Bool
     loader.setLocation(getClass().getResource("ProductDetails.fxml"));
 
     try {
-        loader.load();
+        Parent parent = loader.load();
         ProductDetailsController productDetailsController = loader.getController();
         productDetailsController.setProductData(productData);
         
 
-        Parent parent = loader.getRoot();
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -115,8 +115,11 @@ public class ButtonCellFactory implements Callback<TableColumn<ProductData, Bool
 
 
 
+
         
     }
+    
+    
     
 }
 

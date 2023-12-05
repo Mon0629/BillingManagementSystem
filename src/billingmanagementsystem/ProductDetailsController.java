@@ -74,10 +74,24 @@ public class ProductDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       SUPERCATEGORY();
        otherAttributes();
        Spinner();
+       handleBrand();
+        ObservableList<String> parentTypeOptions = FXCollections.observableArrayList("Footwear", "Clothing", "Accessories");
+    prodParentType.setItems(parentTypeOptions);
+
+    // Set a listener to handle changes in the parentType combo box
+    prodParentType.valueProperty().addListener((observable, oldValue, newValue) -> {
+        handleParentTypeChange();
+    });
+
+    // Set default values for the subcategory combo box
+    
+       
     }    
+    
+    
+    
     
     private boolean isEditMode = false;
     private ProductData existingProductData;
@@ -86,43 +100,31 @@ public class ProductDetailsController implements Initializable {
     
     
     
-   public void setProductData(ProductData productData) {
-       
-        if (productData != null) {
-            // Populate your UI components with the data from productData
-            prodID.setText(String.valueOf(productData.getProductID()));
-            prodName.setText(productData.getProductName());
-            prodPrice.setText(String.valueOf(productData.getPrice()));
-            prodDesc.setText(productData.getDescription());
-            
-            
-                prodImage.setImage(productData.getImage());
-                
-                
-            existingProductData = productData;
-            isEditMode = true;
-            
-        } else {
-            // Clear UI components if it's in add mode
-            prodID.clear();
-            prodName.clear();
-            prodPrice.clear();
-            prodDesc.clear();
-            prodImage.setImage(null);
-            isEditMode = false; 
-        }
-       
-       
     
+   public void setProductData(ProductData productData) {
+    if (productData != null) {
+        existingProductData = productData;
+        isEditMode = true;
+
+        // Populate your UI components with the data from productData
         prodID.setText(String.valueOf(productData.getProductID()));
         prodName.setText(productData.getProductName());
         prodPrice.setText(String.valueOf(productData.getPrice()));
+        NoOfStocks.getValueFactory().setValue(productData.getStocks());
         prodDesc.setText(productData.getDescription());
-      
+        prodParentType.setValue(productData.getParentType());
+        prodSubcategory.setValue(productData.getType());
+        prodBrand.setValue(productData.getBrand());
+        otherAtt.setValue(productData.getOtherAttributes());
+     
         
-       
-       
+        prodImage.setImage(productData.getImage());
+    } else {
+        // Clear UI components if it's in add mode
+        ClearFields();
+        isEditMode = false;
     }
+}
    
    private Image convertBlobToImage(Blob blob) {
         if (blob != null) {
@@ -200,32 +202,43 @@ public class ProductDetailsController implements Initializable {
 }
 
      
-    private void updateProductInDatabase(int productId, String productName, double price,int Stocks, String description, byte[] image) throws SQLException {
-        Connection connection = DatabaseManager.getConnection();
+   private void updateProductInDatabase(int productId, String productName, double price, int Stocks, String description, byte[] image, String parentType, String type, String brand, String otherAttributes ) throws SQLException {
+    Connection connection = DatabaseManager.getConnection();
 
-        String query = "UPDATE products SET ProductName=?, Price=?, Description=?, Remarks=?, Image=? WHERE ProductID=?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, productName);
-            preparedStatement.setDouble(2, price);
-            preparedStatement.setInt(3, Stocks);
-            preparedStatement.setString(4, description);
-            preparedStatement.setBytes(5, image);
-            preparedStatement.setInt(6, productId);
+    String query = "UPDATE products SET ProductName=?, Price=?, Description=?, Image=? WHERE ProductID=?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setString(1, productName);
+        preparedStatement.setDouble(2, price);
+        preparedStatement.setString(3, description);
+        preparedStatement.setBytes(4, image);
+        preparedStatement.setInt(5, productId);
 
         preparedStatement.executeUpdate();
+
+        String query1 = "UPDATE productcategory SET parentType=?, type=?, Brand=?, otherAttributes=? WHERE ProductID=?";
+        try (PreparedStatement preparedStatement1 = connection.prepareStatement(query1)) {
+            preparedStatement1.setString(1, parentType);
+            preparedStatement1.setString(2, type);
+            preparedStatement1.setString(3, brand);
+            preparedStatement1.setString(4, otherAttributes);
+            preparedStatement1.setInt(5, productId);
+
+            preparedStatement1.executeUpdate();
+        }
+
+        ClearFields();
+        msgconfirmation.setText("Product Updated");
+        msgconfirmation.setStyle("-fx-text-fill: green;");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                msgconfirmation.setText(null);
+            }
+        }));
+        timeline.play();
     }
-       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, productName);
-            preparedStatement.setDouble(2, price);
-            preparedStatement.setInt(3, Stocks);
-            preparedStatement.setString(4, description);
-            preparedStatement.setBytes(5, image);
-            preparedStatement.setInt(6, productId);
-
-        preparedStatement.executeUpdate();
-    } 
-        
 }
+
 
      private void ClearFields(){
          prodID.setText(null);
@@ -297,7 +310,7 @@ public class ProductDetailsController implements Initializable {
             double price = Double.parseDouble(priceText);
 
             if (isEditMode) {
-                updateProductInDatabase(existingProductData.getProductID(), productName, price, spinnervalue, description, prodImageBytes);
+                updateProductInDatabase(existingProductData.getProductID(), productName, price, spinnervalue, description, prodImageBytes, pt, sb, brand, oa);
                 msgconfirmation.setText(" Product updated successfully");
                 msgconfirmation.setStyle("-fx-text-fill: green;");
                 ClearFields();
@@ -340,70 +353,7 @@ public class ProductDetailsController implements Initializable {
     }
     
     
-    private void SUPERCATEGORY(){
-        ObservableList<String> parentType = FXCollections.observableArrayList("Footwear","Clothing", "Accessories");
-        prodParentType.setItems(parentType);
-        
-        prodParentType.setOnAction(event -> handleSubCategory());
 
-}
-    private void handleSubCategory(){
-    String selectedSuperCategory = prodParentType.getValue();
-    ObservableList<String> subcat = getSubcategory(selectedSuperCategory);
-   prodSubcategory.setItems(subcat);
-   prodSubcategory.setOnAction(event-> handleBrand());
-    }
-   private ObservableList<String> getSubcategory(String category) {
-        switch (category) {
-            case "Footwear":
-                return FXCollections.observableArrayList("Shoes", "Flops", "Sneakers");
-            case "Clothing":
-                return FXCollections.observableArrayList("Shorts", "Tops", "Underwear");
-            case "Accessories":
-                
-                return FXCollections.observableArrayList("Pads", "Hats", "Gloves");
-            default:
-                return FXCollections.observableArrayList();
-        }
-        
-    }
-   private void handleBrand(){
-    String selectedSubcat = prodSubcategory.getValue();
-    ObservableList<String> brand = getBrand(selectedSubcat);
-   prodBrand.setItems(brand);
-    }
-   private ObservableList<String> getBrand(String Brand) {
-        switch (Brand) {
-            case "Shoes":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-               
-            case "Flops":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Sneakers":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Shorts":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Tops":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Underwear":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Hats":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Pads":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            case "Gloves":
-                return FXCollections.observableArrayList("Nike", "Converse", "Vans");
-            default:
-                return FXCollections.observableArrayList();
-        }
-        
-    }
-   
-        private void otherAttributes(){
-        ObservableList<String> others = FXCollections.observableArrayList("Men","Women", "Kids");
-        otherAtt.setItems(others);
-
-}
         private void Spinner(){
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         NoOfStocks.setValueFactory(valueFactory);
@@ -417,6 +367,49 @@ public class ProductDetailsController implements Initializable {
         });
         
         }
+
+    
+        private void handleBrand(){
+        ObservableList<String> others = FXCollections.observableArrayList("Nike","Adidas", "Vans");
+        prodBrand.setItems(others);
+        }
+        private void otherAttributes(){
+        ObservableList<String> others = FXCollections.observableArrayList("Men","Women", "Kids");
+        otherAtt.setItems(others);
+
+}
+
+
+   
+    private void handleParentTypeChange() {
+        String selectedParentType = prodParentType.getValue();
+
+        ObservableList<String> subcategoryOptions = getSubcategory(selectedParentType);
+        prodSubcategory.setItems(subcategoryOptions);
+
+        prodSubcategory.getSelectionModel().selectFirst();
+    }
+
+   
+
+    private ObservableList<String> getSubcategory(String parentType) {
+    if (parentType == null) {
+        return FXCollections.observableArrayList();  // or return an appropriate default value
+    }
+
+    switch (parentType) {
+        case "Footwear":
+            return FXCollections.observableArrayList("Shoes", "Flops", "Sneakers");
+        case "Clothing":
+            return FXCollections.observableArrayList("Shorts", "Tops", "Underwear");
+        case "Accessories":
+            return FXCollections.observableArrayList("Pads", "Hats", "Gloves");
+        default:
+            return FXCollections.observableArrayList();
+    }
+}
+
+    
    
     
 }
