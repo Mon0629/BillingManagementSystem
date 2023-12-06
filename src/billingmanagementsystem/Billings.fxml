@@ -233,16 +233,16 @@
                                     </Label>
                                     <Separator layoutX="21.0" layoutY="73.0" prefHeight="11.0" prefWidth="998.0" />
                                     <TextField layoutX="21.0" layoutY="102.0" prefHeight="25.0" prefWidth="296.0" style="-fx-background-radius: 20 20 20 20;" text="Search" />
-                                    <TableView layoutX="22.0" layoutY="154.0" prefHeight="434.0" prefWidth="998.0">
+                                    <TableView fx:id="InvoiceTable" layoutX="22.0" layoutY="154.0" prefHeight="434.0" prefWidth="998.0">
                                       <columns>
-                                        <TableColumn text="Actions" />
-                                        <TableColumn prefWidth="93.0" text="Customer ID" />
-                                          <TableColumn prefWidth="85.0" text="Bill ID" />
-                                          <TableColumn prefWidth="105.0" text="First Name" />
-                                          <TableColumn prefWidth="143.0" text="Last Name" />
-                                          <TableColumn prefWidth="141.0" text="Total Amount" />
-                                          <TableColumn minWidth="0.0" prefWidth="193.0" text="Note(Paid/ Not)" />
-                                          <TableColumn prefWidth="157.0" text="Invoice" />
+                                        <TableColumn fx:id="actionColumn" text="Actions" />
+                                        <TableColumn fx:id="customerIDColumn" prefWidth="93.0" text="Customer ID" />
+                                          <TableColumn fx:id="billIDColumn" prefWidth="85.0" text="Bill ID" />
+                                          <TableColumn fx:id="firstNameColumn" prefWidth="105.0" text="First Name" />
+                                          <TableColumn fx:id="lastNameColumn" prefWidth="143.0" text="Last Name" />
+                                          <TableColumn fx:id="totalAmountColumn" prefWidth="141.0" text="Total Amount" />
+                                          <TableColumn fx:id="noteColumn" minWidth="0.0" prefWidth="193.0" text="Note(Paid/ Not)" />
+                                          <TableColumn fx:id="invoiceColumn" prefWidth="157.0" text="Invoice" />
                                       </columns>
                                     </TableView>
                                  </children>
