@@ -6,12 +6,25 @@
   <a href="https://github.com/Mon0629/BillingManagementSystem/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/Mon0629/BillingManagementSystem?style=flat-square" alt="Billing Management System stars"/></a>
   <a href="https://github.com/Mon0629/BillingManagementSystem/issues" target="_blank"><img src="https://img.shields.io/github/issues/Mon0629/BillingManagementSystem?style=flat-square" alt="Billing Management System issues"/></a>
   <a href="https://github.com/Mon0629/BillingManagementSystem/pulls" target="_blank"><img src="https://img.shields.io/github/issues-pr/Mon0629/BillingManagementSystem?style=flat-square" alt="Billing Management System pull-requests"/></a>
-  <a href="https://github.com/Mon0629/BillingManagementSystem" target="_blank"><img src="https://visitor-badge.glitch.me/badge?page_id=Mon0629.BillingManagementSystem" alt="Billing Management System Visitors"/></a>
   <a href="https://github.com/Mon0629/BillingManagementSystem/releases" target="_blank"><img src="https://img.shields.io/github/downloads/Mon0629/BillingManagementSystem/total.svg?style=flat-square" alt="Billing Management System downloads"/></a>
 </p>
 
-# __Billing Management System__ - _A system for managing billing, invoices, and financial transactions_
-Billing Management System is a software application or platform designed to facilitate the process of generating invoices, managing billing information, and handling financial transactions for businesses and organizations
+<br />
+<p align="center">
+  <a href="https://github.com/PP-Namias/Calendar-2023">
+    <img src="./images/dashboardlogo.png" alt="CSD Bot" width="200" height="200">
+  </a>
+
+  <h1 align="center"><b>Billing Management System</b> - <i>A System for Managing Billing, Invoices, and Financial Transactions</h1>
+
+  <p align="center">
+    Billing Management System is a software application or platform designed to facilitate the process of generating invoices, managing billing information, and handling financial transactions for businesses and organizations
+    <br />
+    <a href="https://github.com/PP-Namias/Calendar-2023/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/PP-Namias/Calendar-2023/issues">Request Feature</a>
+  </p>
+</p>
 
 ## Features
 Planned (✘) and currently working (✘) - but not necessarily fully completed - features:
