@@ -5,22 +5,30 @@
 package billingmanagementsystem;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.concurrent.Worker;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
+import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.pdmodel.PDDocument;
 /**
  * FXML Controller class
  *
@@ -28,8 +36,10 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
  */
 public class InvoiceController implements Initializable {
 
-    @FXML
     private AnchorPane InvoicePane;
+    @FXML
+    private ImageView webview;
+   
 
     /**
      * Initializes the controller class.
@@ -38,50 +48,20 @@ public class InvoiceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+   public void setPdfPath(String pdfPath) {
+    
+}
+
+
+
+
+
 
     @FXML
-    private void RenderToPDF(ActionEvent event) {
-        
-        try {
-	
-				 PDDocument document = new PDDocument();
-				 PDPage page = new PDPage();
-				 document.addPage(page);
-	
-				 PDPageContentStream contentStream = new PDPageContentStream(document, page);
-	
-				 //eto yung i kokonvert mo sa image na node
-				 AnchorPane invoicePane = InvoicePane;
-	
-				 WritableImage snapshot = invoicePane.snapshot(new SnapshotParameters(), null);
-				 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
-				 PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
-	
-				 // suakt nya sa pdf file like location nung image
-				 float pageWidth = 612; 
-				 float pageHeight = 792; 
-	
-				 float imageWidth = 7.5f * 72; 
-				 float imageHeight = 10f * 72;
-	
-				 // para nasa gitna yungimage
-				 float x = (pageWidth - imageWidth) / 2; 
-				 float y = (pageHeight - imageHeight) / 2; 
-				 contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
-	
-				 contentStream.close();
-	
-				 // kung saan mo isesave na folder
-				 String outputPath = "C:\\Users\\User\\Downloads/Invoice.pdf";
-				 document.save(outputPath);
-	
-				 document.close();
-	
-				 System.out.println("PDF created successfully!");
-	
-			 } catch (IOException e) {
-				 e.printStackTrace();
-		 }
+    private void Close(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

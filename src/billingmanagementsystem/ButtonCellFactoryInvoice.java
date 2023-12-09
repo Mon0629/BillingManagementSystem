@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
@@ -17,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javafx.util.Pair;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -29,6 +31,12 @@ import javafx.util.Callback;
  */
 public class ButtonCellFactoryInvoice implements Callback<TableColumn<ManageInvoiceData, Boolean>, TableCell<ManageInvoiceData, Boolean>> {
 
+    private BillingsController billingsController;
+
+    public ButtonCellFactoryInvoice(BillingsController billingsController) {
+        this.billingsController = billingsController;
+    }
+    
     @Override
     public TableCell<ManageInvoiceData, Boolean> call(TableColumn<ManageInvoiceData, Boolean> param) {
          return new ButtonTableCell();
@@ -36,7 +44,7 @@ public class ButtonCellFactoryInvoice implements Callback<TableColumn<ManageInvo
     
     private class ButtonTableCell extends TableCell<ManageInvoiceData, Boolean> {
         final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/bin.png")));
-        final ImageView updateIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/pen.png")));
+        //final ImageView updateIcon = new ImageView(new Image(getClass().getResourceAsStream("/Graphics/pen.png")));
 
         ButtonTableCell() {
            
@@ -48,14 +56,14 @@ public class ButtonCellFactoryInvoice implements Callback<TableColumn<ManageInvo
             });
 
             
-            updateIcon.setOnMouseClicked(event -> {
+            /*updateIcon.setOnMouseClicked(event -> {
                 ManageInvoiceData invoicedata = getTableView().getItems().get(getIndex());
                 
                 handleUpdate(invoicedata);
-            });
+            });*/
 
             // Set icons side by side
-            HBox buttonHBox = new HBox(deleteIcon, updateIcon);
+            HBox buttonHBox = new HBox(deleteIcon);
             HBox.setMargin(deleteIcon, new Insets(0, 5, 0, 0));
             setGraphic(buttonHBox);
         }
@@ -64,7 +72,7 @@ public class ButtonCellFactoryInvoice implements Callback<TableColumn<ManageInvo
         protected void updateItem(Boolean item, boolean empty) {
             super.updateItem(item, empty);
             if (!empty) {
-                setGraphic(new HBox(deleteIcon, updateIcon));
+                setGraphic(new HBox(deleteIcon));
             } else {
                 setGraphic(null);
             }
@@ -97,32 +105,22 @@ public class ButtonCellFactoryInvoice implements Callback<TableColumn<ManageInvo
     }
 }
 
-
-
-      private void handleUpdate(ManageInvoiceData invoicedata) {
-            try
-            {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("ProductDetails.fxml"));
+private void handleUpdate(ManageInvoiceData invoicedata) {
+           
                 
-                
-                Parent parent = loader.load();
-                BillingsController billingsController = loader.getController();
                 billingsController.setInvoiceData(invoicedata);
-                
-                
-                Scene scene = new Scene(parent);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UTILITY);
-                stage.show();
-            } catch (IOException ex)
-            {
-                java.util.logging.Logger.getLogger(ButtonCellFactoryInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-    
-    
-}
+
+        
+                TabPane tabPane = billingsController.getTabPane();
+                 System.out.println("Before selecting tab: " + tabPane.getSelectionModel().getSelectedIndex());
+              
+                tabPane.getSelectionModel().select(0);
+                System.out.println("After selecting tab: " + tabPane.getSelectionModel().getSelectedIndex());
+                // ... other code
+            
+        }
+
+
+     
     }
 }

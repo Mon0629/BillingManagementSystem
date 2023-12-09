@@ -8,8 +8,9 @@ package billingmanagementsystem;
  *
  * @author User
  */
-public class OrderList {
+public class OrderList implements DisplayableItem{
     
+    private int billID;
      private String productID;
     private String productName;
     private double price;
@@ -69,6 +70,13 @@ public class OrderList {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String getDisplayText() {
+    return String.format("Product ID: %s, Product Name: %s, Price: %.2f, Quantity: %.0f, Amount: %.2f",
+            productID, productName, price, quantity, amount);
+}
+
     
 }
 

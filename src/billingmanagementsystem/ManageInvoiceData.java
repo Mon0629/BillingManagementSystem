@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
  *
  * @author User
  */
-public class ManageInvoiceData {
+public class ManageInvoiceData implements DisplayableItem{
    
    private int customerID;
     private Timestamp creationDate;
@@ -29,6 +29,7 @@ public class ManageInvoiceData {
     private String email;
     private String address;
     private String town;
+    private String country;
     private int postal;
 
     private int billID;
@@ -46,7 +47,7 @@ public class ManageInvoiceData {
     private double lineItemTotal;
     
     public ManageInvoiceData(int customerID, Timestamp creationDate, String firstName, String lastName,
-                                String contactNumber, String email, String address, String town, int postal,
+                                String contactNumber, String email, String address, String town,String country, int postal,
                                 int billID, int shipCustomerID, Date issueDate, Date dueDate, String docType,
                                 Timestamp transactionAdded, int lineItemID, int productID, String productName,
                                 int quantity, double unitPrice, double lineItemTotal) {
@@ -58,6 +59,7 @@ public class ManageInvoiceData {
         this.email = email;
         this.address = address;
         this.town = town;
+        this.country = country;
         this.postal = postal;
 
         this.billID = billID;
@@ -138,6 +140,14 @@ public class ManageInvoiceData {
 
     public void setTown(String town) {
         this.town = town;
+    }
+    
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public int getPostal() {
@@ -245,6 +255,14 @@ public class ManageInvoiceData {
     public void setLineItemTotal(double lineItemTotal){
     this.lineItemTotal = lineItemTotal;
     }
+
+    @Override
+    public String getDisplayText() {
+       
+       return null;
+       
+    }
+    
     
     
     

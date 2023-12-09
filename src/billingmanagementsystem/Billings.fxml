@@ -23,7 +23,7 @@
    <children>
       <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
-            <TabPane layoutX="9.0" layoutY="8.0" prefHeight="651.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" layoutX="9.0" layoutY="8.0" prefHeight="768.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Create Invoice">
                      <content>
@@ -193,12 +193,12 @@
                                           </Label>
                                           <AnchorPane layoutX="329.0" layoutY="62.0" prefHeight="155.0" prefWidth="155.0" style="-fx-border-color: black;">
                                              <children>
-                                                <ImageView fx:id="productImageView" fitHeight="155.0" fitWidth="155.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="productImageView" fitHeight="155.0" fitWidth="153.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </AnchorPane>
                                        </children>
                                     </AnchorPane>
-                                    <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="882.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
+                                    <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="885.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -210,7 +210,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font></Button>
                                     <ComboBox fx:id="docTypeComboBox" layoutX="401.0" layoutY="81.0" prefWidth="150.0" promptText="Document Type" />
-                                    <Pane fx:id="confirmMessagePane" layoutX="700.0" layoutY="667.0" prefHeight="36.0" prefWidth="180.0" style="-fx-border-color: transparent transparent transparent#435585; -fx-border-width: 3; -fx-background-radius: 30;" visible="false">
+                                    <Pane fx:id="confirmMessagePane" layoutX="684.0" layoutY="667.0" prefHeight="36.0" prefWidth="199.0" style="-fx-border-color: transparent transparent transparent#435585; -fx-border-width: 3; -fx-background-radius: 30;" visible="false">
                                        <children>
                                           <Text fx:id="confirmMessage" fill="#435585" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="169.0">
                                              <font>
@@ -225,7 +225,7 @@
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab text="Manage Invoice">
+                  <Tab onSelectionChanged="#changetoTab2" text="Manage Invoice">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="1039.0">
                            <children>
