@@ -156,27 +156,27 @@
                                                 </Button>
                                              </children>
                                           </AnchorPane>
-                                          <Label layoutX="25.0" layoutY="57.0" text="Product ID:">
+                                          <Label layoutX="24.0" layoutY="70.0" text="Product ID:">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="prodID" editable="false" layoutX="105.0" layoutY="54.0" prefHeight="25.0" prefWidth="50.0" />
-                                          <TextField fx:id="textField1" layoutX="19.0" layoutY="80.0" prefHeight="26.0" prefWidth="287.0" promptText="Product Name" />
-                                          <TextField fx:id="textField2" layoutX="19.0" layoutY="108.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="140.0" promptText="Price ($):" />
-                                          <TextField fx:id="textField3" layoutX="167.0" layoutY="108.0" onKeyReleased="#subtotal" prefHeight="26.0" prefWidth="140.0" promptText="Quantity" />
+                                          <TextField fx:id="prodID" editable="false" layoutX="104.0" layoutY="67.0" prefHeight="25.0" prefWidth="50.0" />
+                                          <TextField fx:id="textField1" layoutX="24.0" layoutY="98.0" prefHeight="26.0" prefWidth="287.0" promptText="Product Name" />
+                                          <TextField fx:id="textField2" layoutX="24.0" layoutY="133.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="130.0" promptText="Price ($):" />
+                                          <TextField fx:id="textField3" layoutX="182.0" layoutY="133.0" onKeyReleased="#subtotal" prefHeight="26.0" prefWidth="130.0" promptText="Quantity" />
                                           <AnchorPane layoutX="324.0" layoutY="67.0" prefHeight="155.0" prefWidth="155.0" style="-fx-border-color: black;">
                                              <children>
                                                 <ImageView fx:id="productImageView" fitHeight="155.0" fitWidth="153.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </AnchorPane>
-                                          <Label layoutX="167.0" layoutY="146.0" text="SubTotal:">
+                                          <Label layoutX="178.0" layoutY="176.0" text="SubTotal:">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="textField5" editable="false" layoutX="237.0" layoutY="143.0" prefHeight="26.0" prefWidth="70.0" />
-                                          <Button layoutX="114.0" layoutY="187.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
+                                          <TextField fx:id="textField5" editable="false" layoutX="236.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" />
+                                          <Button layoutX="114.0" layoutY="209.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
                                              <graphic>
                                                 <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
