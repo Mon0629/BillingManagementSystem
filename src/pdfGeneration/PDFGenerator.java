@@ -24,15 +24,14 @@ import lineItems.LineItem;
 public class PDFGenerator {
 	
 	private Bill bill;
-	private Customer customer, shipCustomer;
+	private Customer customer;
 	private List<LineItem> lineItemList;
 	private String path;
 	
 	
-	public PDFGenerator(Bill bill, Customer customer, Customer shipCustomer, List<LineItem> lineItemList) {
+	public PDFGenerator(Bill bill, Customer customer, List<LineItem> lineItemList) {
 		this.bill = bill;
 		this.customer = customer;
-		this.shipCustomer = shipCustomer;
 		this.lineItemList = lineItemList;
 	}
 	
@@ -55,14 +54,6 @@ public class PDFGenerator {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public Customer getShipCustomer() {
-		return shipCustomer;
-	}
-
-	public void setShipCustomer(Customer shipCustomer) {
-		this.shipCustomer = shipCustomer;
 	}
 
 	public List<LineItem> getLineItemList() {
@@ -164,26 +155,7 @@ public class PDFGenerator {
         customerTable.addCell(new Cell().add( new Paragraph("Postal")).addStyle(paragraph));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getPostal()))).addStyle(paragraph));
         
-        Table customerShipTable = new Table(UnitValue.createPercentArray(2)).useAllAvailableWidth();
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Shipping Information")).addStyle(header2));
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Name")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getFirstName()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getLastName()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph("Contact Number")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph("Email")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getContactNumber()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getEmail()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph("Address")).addStyle(header3));
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph(String.valueOf(shipCustomer.getAddress()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph("City")).addStyle(header3));
-        customerShipTable.addCell(new Cell(1,2).add( new Paragraph(String.valueOf(shipCustomer.getTown()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph("Country")).addStyle(header3));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getCountry()))).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph("Postal")).addStyle(paragraph));
-        customerShipTable.addCell(new Cell().add( new Paragraph(String.valueOf(shipCustomer.getPostal()))).addStyle(paragraph));
-        
         customerDataTable.addCell(new Cell().add(customerTable).setBorder(Border.NO_BORDER));
-        customerDataTable.addCell(new Cell().add(customerShipTable).setBorder(Border.NO_BORDER));
         
         document.add(customerDataTable.setBorderBottom(separator));
         document.add(new Paragraph("Products").addStyle(header2));
