@@ -137,7 +137,7 @@ public class PDFGenerator {
         
         document.add(docTypeTable.setBorderBottom(separator));
         
-        Table customerTable = new Table(UnitValue.createPercentArray(new float[] {30,70})).useAllAvailableWidth();
+        Table customerTable = new Table(UnitValue.createPercentArray(new float[] {25,75})).useAllAvailableWidth();
         customerTable.addCell(new Cell(1,2).add( new Paragraph("Customer Information")).addStyle(header2));
         customerTable.addCell(new Cell().add( new Paragraph("Name")).addStyle(header3));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getFirstName()) + " " + String.valueOf(customer.getLastName()))).addStyle(paragraph));

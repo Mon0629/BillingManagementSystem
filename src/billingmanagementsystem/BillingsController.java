@@ -631,7 +631,12 @@ public class BillingsController implements Initializable {
 			 confirmMessage.setStyle("-fx-fill: #D33434;");
 			 confirmMessagePane.setVisible(true);
 		 }
-		 else {
+		 if (paymentTypeComboBox.getValue() == null) {
+			 confirmMessage.setText("Select Payment Type");
+			 confirmMessage.setStyle("-fx-fill: #D33434;");
+			 confirmMessagePane.setVisible(true);
+		 }
+		 if (docTypeComboBox.getValue() != null && paymentTypeComboBox.getValue() != null) {
 			 confirmMessage.setText(null);
 			 billDAO.addBill(bill);
 
