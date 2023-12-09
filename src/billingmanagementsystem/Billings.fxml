@@ -23,7 +23,7 @@
    <children>
       <AnchorPane prefHeight="665.0" prefWidth="1057.0" styleClass="anchor_pane" stylesheets="@dashboard.css">
          <children>
-            <TabPane fx:id="tabPane" layoutX="9.0" layoutY="8.0" prefHeight="768.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" layoutX="9.0" layoutY="8.0" prefHeight="640.0" prefWidth="1039.0" style="-fx-border-radius: 20;" styleClass="tabpane" stylesheets="@dashboard.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Create Invoice">
                      <content>
@@ -125,10 +125,9 @@
                                           </AnchorPane>
                                           <TextField fx:id="textField1" layoutX="21.0" layoutY="79.0" prefHeight="25.0" prefWidth="224.0" promptText="Product Name" />
                                           <Separator layoutX="493.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="251.0" prefWidth="6.0" />
-                                          <TextField fx:id="textField2" layoutX="254.0" layoutY="79.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="60.0" promptText="Price ($):" />
-                                          <TextField fx:id="textField4" layoutX="21.0" layoutY="115.0" prefHeight="25.0" prefWidth="225.0" promptText="Discounts" />
+                                          <TextField fx:id="textField2" layoutX="21.0" layoutY="112.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="111.0" promptText="Price ($):" />
                                           <TextField fx:id="textField5" editable="false" layoutX="252.0" layoutY="150.0" prefHeight="25.0" prefWidth="63.0" />
-                                          <TextField fx:id="textField3" layoutX="253.0" layoutY="115.0" onKeyReleased="#subtotal" prefHeight="25.0" prefWidth="61.0" promptText="Quantity" />
+                                          <TextField fx:id="textField3" layoutX="146.0" layoutY="112.0" onKeyReleased="#subtotal" prefHeight="25.0" prefWidth="97.0" promptText="Quantity" />
                                           <Button layoutX="121.0" layoutY="194.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
                                              <graphic>
                                                 <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
@@ -163,24 +162,14 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="883.0" layoutY="180.0" text="12% VAT:">
+                                          <Label layoutX="883.0" layoutY="180.0" text="12% VAT:" visible="false">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <CheckBox fx:id="VAT" layoutX="946.0" layoutY="181.0" mnemonicParsing="false" onAction="#VATButton" prefHeight="17.0" prefWidth="17.0" />
-                                          <Label layoutX="884.0" layoutY="154.0" text="Discount:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
+                                          <CheckBox fx:id="VAT" layoutX="946.0" layoutY="181.0" mnemonicParsing="false" onAction="#VATButton" prefHeight="17.0" prefWidth="17.0" visible="false" />
                                           <TextField fx:id="prodID" editable="false" layoutX="96.0" layoutY="47.0" prefHeight="25.0" prefWidth="50.0" />
                                           <Label layoutX="21.0" layoutY="50.0" text="Product ID:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="943.0" layoutY="154.0" text="Total:">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

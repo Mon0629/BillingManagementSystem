@@ -15,6 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -29,6 +32,11 @@ import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import pdfGeneration.PDFGenerator;
+import customer.Customer;
+import billings.Bill;
+import java.sql.Date;
+import lineItems.LineItem;
 /**
  * FXML Controller class
  *
@@ -38,8 +46,57 @@ public class InvoiceController implements Initializable {
 
     private AnchorPane InvoicePane;
     @FXML
-    private ImageView webview;
+    private Label previewID;
+    @FXML
+    private Label dueDate;
+    @FXML
+    private Label dateIssued;
+    @FXML
+    private Label firsName;
+    @FXML
+    private Label email;
+    @FXML
+    private Label contactNumber;
+    @FXML
+    private TableView<?> previewTable;
+    @FXML
+    private TableColumn<?, ?> productName;
+    @FXML
+    private TableColumn<?, ?> quantity;
+    @FXML
+    private TableColumn<?, ?> price;
+    @FXML
+    private TableColumn<?, ?> subtotal;
+    @FXML
+    private Label totalamount;
+    @FXML
+    private Label address;
+    @FXML
+    private Label country;
+    @FXML
+    private Label city;
+    @FXML
+    private Label postal;
+    @FXML
+    private Label shipfirstName;
+    @FXML
+    private Label shipemail;
+    @FXML
+    private Label shipContactNumber;
+    @FXML
+    private Label shipAddress;
+    @FXML
+    private Label shipCountry;
+    @FXML
+    private Label shipCity;
+    @FXML
+    private Label shipPostal;
+    @FXML
+    private Label lastName;
+    @FXML
+    private Label shiplastName;
    
+    private Bill bill;
 
     /**
      * Initializes the controller class.
@@ -49,14 +106,15 @@ public class InvoiceController implements Initializable {
         // TODO
     }    
     
-   public void setPdfPath(String pdfPath) {
-    
-}
+   public void setInvoiceData(Bill bill) {
+        this.bill = bill;
 
+        // Now you can access the non-static method on the instance
+        previewID.setText(String.valueOf(bill.getBillID()));
+        // Set other labels using bill instance as needed
+    }
 
-
-
-
+ 
 
     @FXML
     private void Close(MouseEvent event) {

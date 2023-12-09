@@ -69,10 +69,9 @@ public class ProductTableController implements Initializable {
        ProductTable();
     }    
 
-    private void ProductTable(){
     
-        
-        
+    
+    private void ProductTable(){
         try
         {
             Connection con = DatabaseManager.getConnection();

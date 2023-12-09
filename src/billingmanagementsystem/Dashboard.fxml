@@ -99,15 +99,15 @@
                   </AnchorPane>
                   <AnchorPane layoutX="540.0" layoutY="128.0" prefHeight="245.0" prefWidth="227.0" style="-fx-background-color: white;">
                      <children>
-                        <LineChart fx:id="chart2" layoutX="4.0" layoutY="48.0" prefHeight="196.0" prefWidth="227.0">
-                          <xAxis>   
-                            <NumberAxis fx:id="xAxisChart2" />
+                        <LineChart fx:id="chart1" layoutX="39.0" layoutY="60.0" prefHeight="157.0" prefWidth="170.0">
+                          <xAxis>
+                            <CategoryAxis fx:id="xAxisChart1" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <Label layoutX="14.0" layoutY="14.0" text="Product Analysis" textFill="#45b6fe">
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="214.0" text="Customer Data Analysis" textFill="#45b6fe">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -116,7 +116,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="782.0" layoutY="128.0" prefHeight="245.0" prefWidth="227.0" style="-fx-background-color: white;">
                      <children>
-                        <Label layoutX="17.0" layoutY="16.0" text="Pie Chart" textFill="#45b6fe">
+                        <Label layoutX="17.0" layoutY="16.0" text="Product Chart" textFill="#45b6fe">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -157,14 +157,14 @@
                      </children></AnchorPane>
                   <AnchorPane layoutX="24.0" layoutY="128.0" prefHeight="441.0" prefWidth="503.0" style="-fx-background-color: white;">
                      <children>
-                        <Label layoutX="27.0" layoutY="14.0" prefHeight="41.0" prefWidth="214.0" text="Customer Data Analysis" textFill="#45b6fe">
+                        <Label layoutX="27.0" layoutY="14.0" prefHeight="41.0" prefWidth="214.0" text="Product Analysis" textFill="#45b6fe">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <LineChart fx:id="chart1" layoutX="15.0" layoutY="67.0" prefHeight="359.0" prefWidth="474.0">
-                          <xAxis>
-                            <CategoryAxis fx:id="xAxisChart1" />
+                        <LineChart fx:id="chart2" layoutX="27.0" layoutY="62.0" prefHeight="368.0" prefWidth="458.0">
+                          <xAxis>   
+                            <NumberAxis fx:id="xAxisChart2" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
