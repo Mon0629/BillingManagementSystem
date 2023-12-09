@@ -117,6 +117,7 @@
                                           </Label>
                                           <CheckBox fx:id="VAT" layoutX="946.0" layoutY="181.0" mnemonicParsing="false" onAction="#VATButton" prefHeight="17.0" prefWidth="17.0" visible="false" />
                                           <Separator layoutX="7.0" layoutY="250.0" prefHeight="3.0" prefWidth="979.0" />
+                                          <ComboBox fx:id="paymentTypeComboBox" layoutX="826.0" layoutY="64.0" prefWidth="150.0" promptText="Payment Mode" />
                                        </children>
                                     </AnchorPane>
                                     <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="885.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
