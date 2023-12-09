@@ -24,7 +24,7 @@ public class BillDAOImpl implements BillDAO{
 	
 	@Override
 	public void addBill(Bill bill) {
-		String insertQuery = "INSERT INTO bills (customerID, issueDate, dueDate, docType) values(?,?,?,?)";
+		String insertQuery = "INSERT INTO bills (customerID, issueDate, dueDate, docType, paymentType) values(?,?,?,?,?)";
 		try (
 			Connection connection = DatabaseManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -32,6 +32,7 @@ public class BillDAOImpl implements BillDAO{
 			statement.setDate(2, bill.getIssueDate());
 			statement.setDate(3, bill.getDueDate());
 			statement.setString(4, String.valueOf(bill.getDoctype()));
+			statement.setString(5, String.valueOf(bill.getPaymentType()));
 
 			statement.executeUpdate();
 
@@ -60,6 +61,7 @@ public class BillDAOImpl implements BillDAO{
 				bill.setIssueDate(resultSet.getDate("issueDate"));
 				bill.setDueDate(resultSet.getDate("dueDate"));
 				bill.setDoctype(Bill.DocType.valueOf(resultSet.getString("docType")));
+				bill.setPaymentType(Bill.PaymentType.valueOf(resultSet.getString("paymentType")));
 			}
 			resultSet.close();
 			statement.close();

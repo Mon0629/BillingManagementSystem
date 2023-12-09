@@ -7,6 +7,10 @@ public class Bill {
 	
 	public enum DocType{
 		RECEIPT, INVOICE, BILL
+	}
+	
+	public enum PaymentType{
+		CASH, GCASH, CHECK
 	}	
 	
 	private int billID;
@@ -15,16 +19,26 @@ public class Bill {
 	private Date dueDate;
 	private Timestamp transactionAdded;
 	private DocType doctype;
+	private PaymentType paymentType;
 	
-	public Bill(int customerID, Date issueDate, Date dueDate, DocType doctype) {
+	public Bill(int customerID, Date issueDate, Date dueDate, DocType doctype, PaymentType paymentType) {
 		this.customerID = customerID;
 		this.issueDate = issueDate;
 		this.dueDate = dueDate;
 		this.doctype = doctype;
+		this.paymentType = paymentType;
 	}
 	
 	public Bill() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public PaymentType getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
 	}
 
 	public Timestamp getTransactionAdded() {

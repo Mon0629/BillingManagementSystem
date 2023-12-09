@@ -75,6 +75,8 @@ public class BillingsController implements Initializable {
 	@FXML
 	private ComboBox<Bill.DocType> docTypeComboBox;
 	@FXML
+	private ComboBox<Bill.PaymentType> paymentTypeComboBox;
+	@FXML
 	private DatePicker current_datepicker;
 	@FXML
 	private DatePicker due_datepicker;
@@ -173,7 +175,8 @@ public class BillingsController implements Initializable {
 		 setDueDate();
 
 		 confirmButton.setDisable(true);;
-		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL, Bill.DocType.INVOICE);
+		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL);
+		 paymentTypeComboBox.getItems().addAll(Bill.PaymentType.CASH, Bill.PaymentType.CHECK, Bill.PaymentType.GCASH);
 		 InvoiceTable();
 	 }    
 
@@ -564,7 +567,8 @@ public class BillingsController implements Initializable {
 				 customer.getCustomerId(),
 				 issueDate,
 				 dueDate,
-				 docTypeComboBox.getValue()
+				 docTypeComboBox.getValue(),
+				 paymentTypeComboBox.getValue()
 				 );
 
 		 return bill;
