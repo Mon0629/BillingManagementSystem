@@ -4,16 +4,8 @@
  */
 package billingmanagementsystem;
 
-import databaseSQL.DatabaseManager;
 import java.sql.Timestamp;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -33,7 +25,6 @@ public class ManageInvoiceData implements DisplayableItem{
     private int postal;
 
     private int billID;
-    private int shipCustomerID;
     private Date issueDate;
     private Date dueDate;
     private String docType;
@@ -48,7 +39,7 @@ public class ManageInvoiceData implements DisplayableItem{
     
     public ManageInvoiceData(int customerID, Timestamp creationDate, String firstName, String lastName,
                                 String contactNumber, String email, String address, String town,String country, int postal,
-                                int billID, int shipCustomerID, Date issueDate, Date dueDate, String docType,
+                                int billID, Date issueDate, Date dueDate, String docType,
                                 Timestamp transactionAdded, int lineItemID, int productID, String productName,
                                 int quantity, double unitPrice, double lineItemTotal) {
         this.customerID = customerID;
@@ -63,7 +54,6 @@ public class ManageInvoiceData implements DisplayableItem{
         this.postal = postal;
 
         this.billID = billID;
-        this.shipCustomerID = shipCustomerID;
         this.issueDate = issueDate;
         this.dueDate = dueDate;
         this.docType = docType;
@@ -165,14 +155,6 @@ public class ManageInvoiceData implements DisplayableItem{
 
     public void setBillID(int billID) {
         this.billID = billID;
-    }
-
-    public int getShipCustomerID() {
-        return shipCustomerID;
-    }
-
-    public void setShipCustomerID(int shipCustomerID) {
-        this.shipCustomerID = shipCustomerID;
     }
 
     public Date getIssueDate() {

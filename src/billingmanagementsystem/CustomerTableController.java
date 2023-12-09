@@ -74,11 +74,7 @@ public class CustomerTableController implements Initializable {
 		 if (event.getClickCount() == 1) {
 			 Customer customer = customer_table.getSelectionModel().getSelectedItem();
 			 if (customer != null && billingsController != null) {
-				 if (customerFlag == true) {
-					 billingsController.setCustomerData(customer);
-				 }else {
-					 billingsController.setShipCustomerData(customer);
-				 }
+				 billingsController.setCustomerData(customer);
 				 
 				 ((Node) (event.getSource())).getScene().getWindow().hide();
 			 }
