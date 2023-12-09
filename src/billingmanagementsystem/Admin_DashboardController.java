@@ -27,7 +27,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -137,11 +139,13 @@ private void changestyle(MouseEvent event) {
     if (result.isPresent() && result.get() == ButtonType.OK) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
+        	Parent parent = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+			Scene scene = new Scene(parent);
+			Stage stage = new Stage();
+			stage.setTitle("Billing Management System");
             stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace(); 
