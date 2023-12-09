@@ -130,34 +130,31 @@ public class PDFGenerator {
         docInfoTable.addCell(new Cell().add( new Paragraph(String.valueOf(bill.getIssueDate()))).addStyle(docInfoStyle));
         docInfoTable.addCell(new Cell().add( new Paragraph("Due Date: ")).addStyle(docInfoStyle));
         docInfoTable.addCell(new Cell().add( new Paragraph(String.valueOf(bill.getDueDate()))).addStyle(docInfoStyle));
+        docInfoTable.addCell(new Cell().add( new Paragraph("Payment Mode: ")).addStyle(docInfoStyle));
+        docInfoTable.addCell(new Cell().add( new Paragraph(String.valueOf(bill.getPaymentType()))).addStyle(docInfoStyle));
         
         docTypeTable.addCell(new Cell().add(docInfoTable).setBorder(Border.NO_BORDER));
         
         document.add(docTypeTable.setBorderBottom(separator));
         
-        Table customerDataTable = new Table(UnitValue.createPercentArray(2)).useAllAvailableWidth();
-        
-        Table customerTable = new Table(UnitValue.createPercentArray(2)).useAllAvailableWidth();
+        Table customerTable = new Table(UnitValue.createPercentArray(new float[] {30,70})).useAllAvailableWidth();
         customerTable.addCell(new Cell(1,2).add( new Paragraph("Customer Information")).addStyle(header2));
-        customerTable.addCell(new Cell(1,2).add( new Paragraph("Name")).addStyle(header3));
-        customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getFirstName()))).addStyle(paragraph));
-        customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getLastName()))).addStyle(paragraph));
+        customerTable.addCell(new Cell().add( new Paragraph("Name")).addStyle(header3));
+        customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getFirstName()) + " " + String.valueOf(customer.getLastName()))).addStyle(paragraph));
         customerTable.addCell(new Cell().add( new Paragraph("Contact Number")).addStyle(header3));
-        customerTable.addCell(new Cell().add( new Paragraph("Email")).addStyle(header3));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getContactNumber()))).addStyle(paragraph));
+        customerTable.addCell(new Cell().add( new Paragraph("Email")).addStyle(header3));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getEmail()))).addStyle(paragraph));
-        customerTable.addCell(new Cell(1,2).add( new Paragraph("Address")).addStyle(header3));
-        customerTable.addCell(new Cell(1,2).add( new Paragraph(String.valueOf(customer.getAddress()))).addStyle(paragraph));
-        customerTable.addCell(new Cell(1,2).add( new Paragraph("City")).addStyle(header3));
-        customerTable.addCell(new Cell(1,2).add( new Paragraph(String.valueOf(customer.getTown()))).addStyle(paragraph));
+        customerTable.addCell(new Cell().add( new Paragraph("Address")).addStyle(header3));
+        customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getAddress()))).addStyle(paragraph));
+        customerTable.addCell(new Cell().add( new Paragraph("City")).addStyle(header3));
+        customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getTown()))).addStyle(paragraph));
         customerTable.addCell(new Cell().add( new Paragraph("Country")).addStyle(header3));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getCountry()))).addStyle(paragraph));
         customerTable.addCell(new Cell().add( new Paragraph("Postal")).addStyle(paragraph));
         customerTable.addCell(new Cell().add( new Paragraph(String.valueOf(customer.getPostal()))).addStyle(paragraph));
         
-        customerDataTable.addCell(new Cell().add(customerTable).setBorder(Border.NO_BORDER));
-        
-        document.add(customerDataTable.setBorderBottom(separator));
+        document.add(customerTable.setBorderBottom(separator));
         document.add(new Paragraph("Products").addStyle(header2));
         
         Table productsTable = new Table(UnitValue.createPercentArray(new float[] {44, 16, 20, 20})).useAllAvailableWidth();
