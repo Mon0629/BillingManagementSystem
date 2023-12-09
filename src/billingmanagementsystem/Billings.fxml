@@ -72,29 +72,6 @@
                                           <TextField fx:id="telephone" layoutX="254.0" layoutY="210.0" prefHeight="25.0" prefWidth="225.0" promptText="Telephone" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="521.0" layoutY="117.0" prefHeight="268.0" prefWidth="478.0" styleClass="pane1" stylesheets="@dashboard.css">
-                                       <children>
-                                          <AnchorPane id="fieldPane" prefHeight="40.0" prefWidth="481.0" stylesheets="@../cssFiles/billingsStylesheet.css">
-                                             <children>
-                                                <Label id="label" layoutX="14.0" layoutY="10.0" style="-fx-text-fill: #eee;" stylesheets="@../cssFiles/billingsStylesheet.css" text="Shipping Information">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button fx:id="selectShipCustomerBtn" alignment="CENTER" layoutX="347.0" layoutY="8.0" mnemonicParsing="false" onAction="#opencustomertable" prefHeight="30.0" prefWidth="128.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Customer" textAlignment="CENTER" />
-                                             </children>
-                                          </AnchorPane>
-                                          <TextField fx:id="firstNameShip" layoutX="27.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="First Name" />
-                                          <TextField fx:id="addressShip" layoutX="22.0" layoutY="134.0" prefHeight="25.0" prefWidth="439.0" promptText="Unit/ Block/ Lot No. / Street/ Brgy." />
-                                          <TextField fx:id="contactShip" layoutX="22.0" layoutY="96.0" prefHeight="25.0" prefWidth="213.0" promptText="Contact Number" />
-                                          <TextField fx:id="townShip" layoutX="24.0" layoutY="168.0" prefHeight="25.0" prefWidth="211.0" promptText="City Address" />
-                                          <TextField fx:id="countryShip" layoutX="252.0" layoutY="168.0" prefHeight="25.0" prefWidth="208.0" promptText="Country" />
-                                          <TextField fx:id="postalShip" layoutX="23.0" layoutY="207.0" prefHeight="25.0" prefWidth="211.0" promptText="Postal Code" />
-                                          <TextField fx:id="telephoneShip" layoutX="252.0" layoutY="207.0" prefHeight="25.0" prefWidth="209.0" promptText="Telephone" />
-                                          <TextField fx:id="emailShip" layoutX="250.0" layoutY="96.0" prefHeight="25.0" prefWidth="212.0" promptText="Email" />
-                                          <TextField fx:id="lastNameShip" layoutX="250.0" layoutY="60.0" prefHeight="25.0" prefWidth="212.0" promptText="Last Name" />
-                                       </children>
-                                    </AnchorPane>
                                     <DatePicker fx:id="due_datepicker" layoutX="830.0" layoutY="81.0" promptText="Due Date" />
                                     <DatePicker fx:id="current_datepicker" disable="true" editable="false" layoutX="571.0" layoutY="81.0" promptText="Current Date" />
                                     <Text layoutX="768.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date:">
@@ -106,58 +83,29 @@
                                        <children>
                                           <AnchorPane id="fieldPane" prefHeight="40.0" prefWidth="991.0" stylesheets="@../cssFiles/billingsStylesheet.css">
                                              <children>
-                                                <Label id="label" layoutX="20.0" layoutY="10.0" text="Product Information">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label id="label" layoutX="511.0" layoutY="10.0" text="Order List">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="329.0" layoutY="10.0" onMouseClicked="#openproducttable" style="-fx-text-fill: #eee;" text="Select Product" underline="true">
+                                                <Label id="label" layoutX="20.0" layoutY="10.0" text="Order List">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
                                              </children>
                                           </AnchorPane>
-                                          <TextField fx:id="textField1" layoutX="21.0" layoutY="79.0" prefHeight="25.0" prefWidth="224.0" promptText="Product Name" />
-                                          <Separator layoutX="493.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="251.0" prefWidth="6.0" />
-                                          <TextField fx:id="textField2" layoutX="21.0" layoutY="112.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="111.0" promptText="Price ($):" />
-                                          <TextField fx:id="textField5" editable="false" layoutX="252.0" layoutY="150.0" prefHeight="25.0" prefWidth="63.0" />
-                                          <TextField fx:id="textField3" layoutX="146.0" layoutY="112.0" onKeyReleased="#subtotal" prefHeight="25.0" prefWidth="97.0" promptText="Quantity" />
-                                          <Button layoutX="121.0" layoutY="194.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
-                                             <graphic>
-                                                <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Graphics/shopping-cart-add.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Label layoutX="187.0" layoutY="152.0" text="SubTotal:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TableView fx:id="OrderListTable" layoutX="512.0" layoutY="48.0" prefHeight="181.0" prefWidth="368.0">
+                                          <TableView fx:id="OrderListTable" layoutX="14.0" layoutY="53.0" prefHeight="181.0" prefWidth="760.0">
                                              <columns>
                                                 <TableColumn fx:id="order_product_id" prefWidth="48.0" text="ID" />
-                                                <TableColumn fx:id="order_product_name" prefWidth="116.0" text="ProductName" />
-                                                <TableColumn fx:id="order_price" prefWidth="62.0" text="Price" />
-                                                <TableColumn fx:id="order_qty" prefWidth="33.0" text="Qty." />
-                                                <TableColumn fx:id="order_amount" prefWidth="59.0" text="Amount" />
+                                                <TableColumn fx:id="order_product_name" prefWidth="250.0" text="ProductName" />
+                                                <TableColumn fx:id="order_price" prefWidth="150.0" text="Price" />
+                                                <TableColumn fx:id="order_qty" prefWidth="100.0" text="Qty." />
+                                                <TableColumn fx:id="order_amount" prefWidth="150.0" text="Sub Total" />
                                                 <TableColumn fx:id="actionColumnOrder" prefWidth="48.0" text="Delete" />
                                              </columns>
                                           </TableView>
-                                          <Label layoutX="895.0" layoutY="206.0" text="Total:">
+                                          <Label layoutX="809.0" layoutY="206.0" text="Total:">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalamount" layoutX="942.0" layoutY="206.0" text="Total:">
+                                          <Label fx:id="totalamount" layoutX="849.0" layoutY="206.0" prefHeight="20.0" prefWidth="133.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -168,23 +116,7 @@
                                              </font>
                                           </Label>
                                           <CheckBox fx:id="VAT" layoutX="946.0" layoutY="181.0" mnemonicParsing="false" onAction="#VATButton" prefHeight="17.0" prefWidth="17.0" visible="false" />
-                                          <TextField fx:id="prodID" editable="false" layoutX="96.0" layoutY="47.0" prefHeight="25.0" prefWidth="50.0" />
-                                          <Label layoutX="21.0" layoutY="50.0" text="Product ID:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
                                           <Separator layoutX="7.0" layoutY="250.0" prefHeight="3.0" prefWidth="979.0" />
-                                          <Label fx:id="warningtext" layoutX="329.0" layoutY="44.0" prefHeight="17.0" prefWidth="159.0" textFill="#d03b3b">
-                                             <font>
-                                                <Font size="11.0" />
-                                             </font>
-                                          </Label>
-                                          <AnchorPane layoutX="329.0" layoutY="62.0" prefHeight="155.0" prefWidth="155.0" style="-fx-border-color: black;">
-                                             <children>
-                                                <ImageView fx:id="productImageView" fitHeight="155.0" fitWidth="153.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                             </children>
-                                          </AnchorPane>
                                        </children>
                                     </AnchorPane>
                                     <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="885.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
@@ -208,6 +140,58 @@
                                           </Text>
                                        </children>
                                     </Pane>
+                                    <AnchorPane layoutX="521.0" layoutY="117.0" prefHeight="267.0" prefWidth="494.0" style="-fx-border-color: #f2f3f5;">
+                                       <children>
+                                          <AnchorPane id="fieldPane" layoutX="1.0" prefHeight="47.0" prefWidth="492.0" stylesheets="@../cssFiles/billingsStylesheet.css">
+                                             <children>
+                                                <Label id="label" layoutX="14.0" layoutY="10.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Product Information" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button fx:id="selectProductBtn" alignment="CENTER" layoutX="352.0" layoutY="8.0" mnemonicParsing="false" onAction="#openproducttable" prefHeight="29.0" prefWidth="133.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Select Product" textAlignment="CENTER" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Franklin Gothic Book" size="12.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </AnchorPane>
+                                          <Label layoutX="25.0" layoutY="57.0" text="Product ID:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="prodID" editable="false" layoutX="105.0" layoutY="54.0" prefHeight="25.0" prefWidth="50.0" />
+                                          <TextField fx:id="textField1" layoutX="19.0" layoutY="80.0" prefHeight="26.0" prefWidth="287.0" promptText="Product Name" />
+                                          <TextField fx:id="textField2" layoutX="19.0" layoutY="108.0" onKeyReleased="#enterprice" prefHeight="25.0" prefWidth="140.0" promptText="Price ($):" />
+                                          <TextField fx:id="textField3" layoutX="167.0" layoutY="108.0" onKeyReleased="#subtotal" prefHeight="26.0" prefWidth="140.0" promptText="Quantity" />
+                                          <AnchorPane layoutX="324.0" layoutY="67.0" prefHeight="155.0" prefWidth="155.0" style="-fx-border-color: black;">
+                                             <children>
+                                                <ImageView fx:id="productImageView" fitHeight="155.0" fitWidth="153.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                             </children>
+                                          </AnchorPane>
+                                          <Label layoutX="167.0" layoutY="146.0" text="SubTotal:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="textField5" editable="false" layoutX="237.0" layoutY="143.0" prefHeight="26.0" prefWidth="70.0" />
+                                          <Button layoutX="114.0" layoutY="187.0" mnemonicParsing="false" onAction="#addtoorder" prefHeight="44.0" prefWidth="146.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Add to Order">
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Graphics/shopping-cart-add.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label fx:id="warningtext" layoutX="326.0" layoutY="47.0" prefHeight="17.0" prefWidth="159.0" textFill="#d03b3b">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
                            </content>

@@ -126,6 +126,7 @@ public class BillingsController implements Initializable {
 
 	CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
+	
 	/**
 	 * Initializes the controller class.
 	 */
