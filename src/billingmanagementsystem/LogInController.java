@@ -18,11 +18,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -48,6 +50,18 @@ public class LogInController implements Initializable {
 	boolean isShow = false;
     @FXML
     private TextField usernameField;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button signUpButton;
+    @FXML
+    private AnchorPane loginPane;
+    @FXML
+    private TextField usernameSignUp;
+    @FXML
+    private PasswordField passwordSignUp;
+    @FXML
+    private PasswordField confirmpasswordSignUp;
 	/**
 	 * Initializes the controller class.
 	 */
@@ -115,5 +129,13 @@ public class LogInController implements Initializable {
 	private void forgetpassword(MouseEvent event) {
 
 	}
+
+    @FXML
+    private void switchLoginPane(ActionEvent event) {
+    }
+
+    @FXML
+    private void switchSignUpPane(ActionEvent event) {
+    }
 
 }

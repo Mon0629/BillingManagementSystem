@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.LogInController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="20.0" prefHeight="483.0" prefWidth="775.0" styleClass="mainFxmlClass">
          <stylesheets>
@@ -53,7 +53,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="loginPane" prefHeight="406.0" prefWidth="327.0" style="-fx-border-color: grey;" visible="false">
+                        <AnchorPane fx:id="loginPane" prefHeight="406.0" prefWidth="327.0" style="-fx-border-color: grey;">
                            <children>
                               <ImageView fitHeight="82.0" fitWidth="230.0" layoutX="56.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -91,7 +91,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="406.0" prefWidth="327.0" style="-fx-border-color: black;">
+                        <AnchorPane prefHeight="406.0" prefWidth="327.0" style="-fx-border-color: black;" visible="false">
                            <children>
                               <Label layoutX="82.0" layoutY="237.0" text="Confirm Password:" textFill="#077f97" />
                               <Label layoutX="85.0" layoutY="124.0" text="Username:" textFill="#077f97" />
@@ -112,7 +112,7 @@
                                     <Image url="@../Graphics/unlock.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="82.0" fitWidth="230.0" layoutX="55.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="230.0" layoutX="76.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Graphics/Welcome.png" />
                                  </image>
@@ -123,11 +123,14 @@
                                     <Image url="@../Graphics/unlock.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="64.0" layoutY="329.0" mnemonicParsing="false" onAction="#login" prefHeight="53.0" prefWidth="218.0" stylesheets="@login.css" text="SIGN IN">
+                              <Button layoutX="64.0" layoutY="329.0" mnemonicParsing="false" onAction="#login" prefHeight="53.0" prefWidth="218.0" stylesheets="@login.css" text="SIGN UP">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Button>
+                              <Label layoutX="95.0" layoutY="83.0" prefHeight="17.0" prefWidth="36.0" text="Create" textFill="#077f97" />
+                              <Label layoutX="132.0" layoutY="83.0" prefHeight="17.0" prefWidth="57.0" text="Employee" textFill="#077f97" />
+                              <Label layoutX="187.0" layoutY="83.0" prefHeight="17.0" prefWidth="57.0" text="Account" textFill="#077f97" />
                            </children>
                         </AnchorPane>
                      </children>
