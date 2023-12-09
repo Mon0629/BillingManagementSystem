@@ -9,23 +9,24 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import billings.Bill;
 import billings.BillDAOImpl;
 import customer.Customer;
 import customer.CustomerDAOImpl;
 import databaseSQL.DatabaseManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -50,12 +51,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -125,7 +125,7 @@ public class BillingsController implements Initializable {
 	@FXML
 	private TextField postal;
 	@FXML
-	private TextField telephone;
+	private TextField telephone, cashField;
 	@FXML
 	private CheckBox VAT;
 	@FXML
@@ -135,7 +135,11 @@ public class BillingsController implements Initializable {
 	@FXML
 	private Text confirmMessage;
 	@FXML
+	private Label changeText;
+	@FXML
 	private Pane confirmMessagePane;
+	@FXML
+	private VBox cashPane;
 
 	CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 	@FXML
@@ -175,9 +179,23 @@ public class BillingsController implements Initializable {
 		 setDueDate();
 
 		 confirmButton.setDisable(true);;
-		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.BILL);
+		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.INVOICE);
 		 paymentTypeComboBox.getItems().addAll(Bill.PaymentType.CASH, Bill.PaymentType.CHECK, Bill.PaymentType.GCASH);
 		 InvoiceTable();
+		 
+		 paymentTypeComboBox.setOnAction(event -> {
+			 if (paymentTypeComboBox.getValue().equals(Bill.PaymentType.CASH)) {
+				 cashPane.setVisible(true);
+			 }else {
+				 cashPane.setVisible(false);
+			 }
+		 });
+		 
+		 cashField.setOnAction(event -> {
+			 BigDecimal total = new BigDecimal(totalamount.getText());
+			 BigDecimal cash = new BigDecimal(cashField.getText());
+			 changeText.setText(String.valueOf(cash.subtract(total)));
+		 });
 	 }    
 
 	 //For current and due date
@@ -799,7 +817,6 @@ public class BillingsController implements Initializable {
 		 }
 
 	 }
-
-
+	 
 
 }		
