@@ -11,16 +11,13 @@ public class Bill {
 	
 	private int billID;
 	private int customerID;
-	private int shipCustomerID;
 	private Date issueDate;
 	private Date dueDate;
 	private Timestamp transactionAdded;
 	private DocType doctype;
 	
-	public Bill(int customerID, int shipCustomerID, Date issueDate, Date dueDate, DocType doctype) {
-		super();
+	public Bill(int customerID, Date issueDate, Date dueDate, DocType doctype) {
 		this.customerID = customerID;
-		this.shipCustomerID = shipCustomerID;
 		this.issueDate = issueDate;
 		this.dueDate = dueDate;
 		this.doctype = doctype;
@@ -55,12 +52,6 @@ public class Bill {
 	}
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
-	}
-	public int getShipCustomerID() {
-		return shipCustomerID;
-	}
-	public void setShipCustomerID(int shipCustomerID) {
-		this.shipCustomerID = shipCustomerID;
 	}
 	public Date getIssueDate() {
 		return issueDate;
