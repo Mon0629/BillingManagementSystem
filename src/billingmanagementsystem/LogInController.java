@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -62,14 +65,59 @@ public class LogInController implements Initializable {
     private PasswordField passwordSignUp;
     @FXML
     private PasswordField confirmpasswordSignUp;
+    @FXML
+    private ComboBox<String> selectRole;
+    @FXML
+    private TextField usernameSignUp1;
+    @FXML
+    private PasswordField passwordSignUp1;
+    @FXML
+    private Label adminText;
+    @FXML
+    private AnchorPane signUpPane;
+    @FXML
+    private AnchorPane adminPane;
+    @FXML
+    private Label employeeSignUp;
+    @FXML
+    private Label warningtext;
+    @FXML
+    private Label confirmTxt;
+    @FXML
+    private Label warningtext1;
 	/**
 	 * Initializes the controller class.
 	 */
 	@Override
 
 	public void initialize(URL url, ResourceBundle rb) {
-
+            
+         
+            selectRole.getItems().addAll("Admin", "Employee");
+            
 	}
+        
+        
+        private void setLoginStyle() {
+         loginButton.setStyle(
+            "-fx-background-color: linear-gradient(to bottom left, #F88379, #DE3163);" +
+            "-fx-background-radius: 3 3 3 3;" +
+            "-fx-border-color: black;" +
+            "-fx-border-radius: 3 3 3 3;"
+    );
+         signUpButton.setStyle("-fx-background-color: white");
+}
+
+    private void setSignUpStyle() {
+        signUpButton.setStyle(
+            "-fx-background-color: linear-gradient(to bottom left, #F88379, #DE3163);" +
+            "-fx-background-radius: 3 3 3 3;" +
+            "-fx-border-color: black;" +
+            "-fx-border-radius: 3 3 3 3;"
+    );
+        loginButton.setStyle("-fx-background-color: white");
+}
+
 
 	@FXML
 	void showPassword(MouseEvent event) {
@@ -85,44 +133,87 @@ public class LogInController implements Initializable {
 		
 	}
 
-	@FXML
-	private void login(ActionEvent event) {
-		try {
-        String username = usernameField.getText(); // Assuming you have a usernameField in your FXML
-        String password = passwordField.getText(); // Assuming you have a passwordField in your FXML
+	
 
-        // Your SQL query to check username and password
-        String query = "SELECT * FROM Login WHERE username=? AND password=?";
+    @FXML
+    private void login(ActionEvent event) {
+    try {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String selectedUserType = selectRole.getValue();
+
+        if (selectedUserType == null) {
+            System.out.println("Please select user type");
+            return;
+        }
+
+        String query = "SELECT * FROM Login WHERE username=? AND password=? AND userType=?";
         try (
-                Connection connection = DatabaseManager.getConnection();
-                PreparedStatement pst = connection.prepareStatement(query)) {
+            Connection connection = DatabaseManager.getConnection();
+            PreparedStatement pst = connection.prepareStatement(query)) {
 
-                 pst.setString(1, username);
-                 pst.setString(2, password);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, selectedUserType);
 
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    // Successful login, open Admin Dashboard
-                    Parent root = FXMLLoader.load(getClass().getResource("Admin_Dashboard.fxml"));
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Billing Management System");
-                    primaryStage.setScene(scene);
-                    primaryStage.initStyle(StageStyle.UNDECORATED);
-                    primaryStage.show();
-
-                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    
+                    openDashboard(selectedUserType, event);
+                   
                 } else {
                     System.out.println("Incorrect username or password");
+                    warningtext.setText("Invalid Credentials");
+                    warningtext.setStyle("-fx-text-fill: red");
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error loading Admin_Dashboard.fxml", ex);
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error loading dashboard FXML", ex);
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
-	}
+}
+
+    private void openDashboard(String userType, ActionEvent event) throws IOException {
+    String fxmlPath = null;
+
+    switch (userType) {
+        case "Admin":
+            fxmlPath = "Admin_Dashboard.fxml";
+             warningtext.setText("Login Sucess!");
+            break;
+        case "Employee":
+            fxmlPath = "Admin_Dashboard.fxml";
+             warningtext.setText("Login Sucess!");
+            break;
+        default:
+            warningtext.setText("Unknown user type");
+            warningtext.setStyle("-fx-text-fill:red");
+            return;
+    }
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+    Parent root = loader.load();
+
+   
+    if (userType.equals("Employee")) {
+        Admin_DashboardController adminController = loader.getController();
+        adminController.setEmployeeButtonVisibility(false);
+    }
+
+    Stage primaryStage = new Stage();
+    Scene scene = new Scene(root);
+    primaryStage.setTitle("Billing Management System");
+    primaryStage.setScene(scene);
+    primaryStage.initStyle(StageStyle.UNDECORATED);
+    primaryStage.show();
+
+    ((Node) (event.getSource())).getScene().getWindow().hide();
+}
+
+
+
 
 
 	@FXML
@@ -130,12 +221,105 @@ public class LogInController implements Initializable {
 
 	}
 
-    @FXML
-    private void switchLoginPane(ActionEvent event) {
+         @FXML
+        private void switchLoginPane(ActionEvent event) {
+            setLoginStyle();
+        loginPane.setVisible(true);
+        adminPane.setVisible(false);
+        signUpPane.setVisible(false);
+       
     }
 
     @FXML
     private void switchSignUpPane(ActionEvent event) {
+        setSignUpStyle();
+        loginPane.setVisible(false);
+        adminPane.setVisible(true);
+        signUpPane.setVisible(false);
+        setSignUpStyle();
     }
+
+    @FXML
+    private void checkAdminCredentials(ActionEvent event) {
+        
+        try {
+        String username = usernameSignUp1.getText();
+        String password = passwordSignUp1.getText();
+        String admin = "Admin";
+        String query = "SELECT * FROM Login WHERE username=? AND password=? AND userType=?";
+        try (
+            Connection connection = DatabaseManager.getConnection();
+            PreparedStatement pst = connection.prepareStatement(query)) {
+
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, admin);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                        warningtext1.setText("Sucess!");
+                        loginPane.setVisible(false);
+                        adminPane.setVisible(false);
+                        signUpPane.setVisible(true);
+                        usernameSignUp1.setText(null);
+                        passwordSignUp1.setText(null);
+                } else {
+                    System.out.println("Incorrect username, password, or userType is not Admin");
+                    warningtext1.setStyle("-fx-text-fill");
+                    warningtext1.setText("Invalid Credentials");
+                }
+            }
+        }    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    }
+
+    @FXML
+     private void signUp(ActionEvent event) {
+    try {
+        String username = usernameSignUp.getText();
+        String password = passwordSignUp.getText();
+        String confirmPassword = confirmpasswordSignUp.getText();
+        String userType = employeeSignUp.getText(); 
+
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            confirmTxt.setText("Fill up all fields.");
+            confirmTxt.setStyle("-fx-text-fill: red");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            confirmTxt.setText("Passwords do not match");
+            confirmTxt.setStyle("-fx-text-fill: red");
+            return;
+        }
+
+        String query = "INSERT INTO Login (username, password, userType) VALUES (?, ?, ?)";
+        try (
+            Connection connection = DatabaseManager.getConnection();
+            PreparedStatement pst = connection.prepareStatement(query)) {
+
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, userType);
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                usernameSignUp.setText(null);
+                passwordSignUp.setText(null);
+                confirmpasswordSignUp.setText(null);
+                confirmTxt.setText("Account Created");
+            } else {
+                System.out.println("Signup failed. No rows were affected.");
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+    
+    
 
 }

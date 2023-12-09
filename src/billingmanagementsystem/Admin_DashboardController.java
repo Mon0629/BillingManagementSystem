@@ -45,7 +45,6 @@ public class Admin_DashboardController implements Initializable {
     private Button product_btn;
     @FXML
     private Button billing_btn;
-    @FXML
     private Button about_us_btn;
     @FXML
     private Button sign_out_btn;
@@ -71,6 +70,8 @@ public class Admin_DashboardController implements Initializable {
     private ImageView maximize;
     @FXML
     private ImageView minimize;
+    @FXML
+    private Button employeeBttn;
 
     /**
      * Initializes the controller class.
@@ -86,6 +87,10 @@ public class Admin_DashboardController implements Initializable {
        loadFXML("Dashboard.fxml");
 
     }    
+    
+    public void setEmployeeButtonVisibility(boolean isVisible) {
+        employeeBttn.setVisible(isVisible);
+    }
 
     
     private void loadFXML(String SwitchFXML) {
@@ -109,7 +114,7 @@ public class Admin_DashboardController implements Initializable {
         }else if (event.getSource() == billing_btn) {
             loadFXML("Billings.fxml");
         }
-      else if (event.getSource() == about_us_btn) {
+      else if (event.getSource() == employeeBttn) {
             loadFXML("aboutUs.fxml");
         }
     }
@@ -122,7 +127,7 @@ private void changestyle(MouseEvent event) {
     customer_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == customer_btn);
     product_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == product_btn);
     billing_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == billing_btn);
-    about_us_btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == about_us_btn);
+    employeeBttn.pseudoClassStateChanged(PseudoClass.getPseudoClass("active"), event.getSource() == about_us_btn);
   
 }
 
