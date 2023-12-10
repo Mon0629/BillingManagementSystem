@@ -34,6 +34,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -138,18 +139,35 @@ public class ProductDetailsController implements Initializable {
    
    //para sa pagconvert ng imgae to byyte
      private byte[] ImageToByteArray() throws IOException {
- 
-        Image image = prodImage.getImage();
+    Image image = prodImage.getImage();
 
-        if (image != null) {
-            File tempFile = File.createTempFile("temp", null);
-            tempFile.deleteOnExit();
+    if (image != null) {
+        PixelReader pixelReader = image.getPixelReader();
+        int width = (int) image.getWidth();
+        int height = (int) image.getHeight();
 
-            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", tempFile);
-            return Files.readAllBytes(tempFile.toPath());
+        byte[] result = new byte[width * height * 4]; // Assuming RGBA format
+
+        int bufferIndex = 0;
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int pixel = pixelReader.getArgb(x, y);
+
+                // Extract each channel (ARGB)
+                result[bufferIndex++] = (byte) ((pixel >> 16) & 0xFF); // Red
+                result[bufferIndex++] = (byte) ((pixel >> 8) & 0xFF);  // Green
+                result[bufferIndex++] = (byte) (pixel & 0xFF);         // Blue
+                result[bufferIndex++] = (byte) ((pixel >> 24) & 0xFF); // Alpha
+            }
         }
-        return null;
+
+        return result;
     }
+
+    return null;
+}
+
    
      private int insertProductInDatabase(String ProductName, double Price, int Stocks, String Description, byte[] Image, String parentType, String type, String Brand, String otherAttributes) throws SQLException {
     Connection connection = DatabaseManager.getConnection();
@@ -205,13 +223,14 @@ public class ProductDetailsController implements Initializable {
    private void updateProductInDatabase(int productId, String productName, double price, int Stocks, String description, byte[] image, String parentType, String type, String brand, String otherAttributes ) throws SQLException {
     Connection connection = DatabaseManager.getConnection();
 
-    String query = "UPDATE products SET ProductName=?, Price=?, Description=?, Image=? WHERE ProductID=?";
+    String query = "UPDATE products SET ProductName=?, Price=?, Stocks=?, Description=?, Image=? WHERE ProductID=?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         preparedStatement.setString(1, productName);
         preparedStatement.setDouble(2, price);
-        preparedStatement.setString(3, description);
-        preparedStatement.setBytes(4, image);
-        preparedStatement.setInt(5, productId);
+        preparedStatement.setDouble(3, Stocks);
+        preparedStatement.setString(4, description);
+        preparedStatement.setBytes(5, image);
+        preparedStatement.setInt(6, productId);
 
         preparedStatement.executeUpdate();
 

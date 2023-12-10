@@ -160,7 +160,7 @@ private void changestyle(MouseEvent event) {
             
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
             stage.show();
-            
+          
            
         } catch (IOException e) {
             e.printStackTrace(); 
