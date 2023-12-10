@@ -6,11 +6,12 @@ package billingmanagementsystem;
 
 import java.sql.*;
 import databaseSQL.DatabaseManager;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -34,7 +35,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -138,31 +138,16 @@ public class ProductDetailsController implements Initializable {
     }
    
    //para sa pagconvert ng imgae to byyte
-     private byte[] ImageToByteArray() throws IOException {
+    private byte[] ImageToByteArray() throws IOException {
     Image image = prodImage.getImage();
 
     if (image != null) {
-        PixelReader pixelReader = image.getPixelReader();
-        int width = (int) image.getWidth();
-        int height = (int) image.getHeight();
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
-        byte[] result = new byte[width * height * 4]; // Assuming RGBA format
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
 
-        int bufferIndex = 0;
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int pixel = pixelReader.getArgb(x, y);
-
-                // Extract each channel (ARGB)
-                result[bufferIndex++] = (byte) ((pixel >> 16) & 0xFF); // Red
-                result[bufferIndex++] = (byte) ((pixel >> 8) & 0xFF);  // Green
-                result[bufferIndex++] = (byte) (pixel & 0xFF);         // Blue
-                result[bufferIndex++] = (byte) ((pixel >> 24) & 0xFF); // Alpha
-            }
-        }
-
-        return result;
+        return byteArrayOutputStream.toByteArray();
     }
 
     return null;
