@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="billingmanagementsystem.AboutUsController">
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1057.0" style="-fx-background-color: #040720;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="billingmanagementsystem.AboutUsController">
     <stylesheets>
         <URL value="@aboutus.css" />
     </stylesheets>
@@ -51,7 +51,7 @@
                </image>
             </ImageView>
             <Label fx:id="confirmTxt" layoutX="801.0" layoutY="75.0" prefHeight="17.0" prefWidth="207.0" textFill="#2dd027" />
-            <Label fx:id="userIDLabel" layoutX="487.0" layoutY="121.0" prefHeight="17.0" prefWidth="30.0" />
+            <Label fx:id="userIDLabel" layoutX="487.0" layoutY="121.0" prefHeight="17.0" prefWidth="30.0" visible="false" />
          </children>
       </AnchorPane>
    </children>

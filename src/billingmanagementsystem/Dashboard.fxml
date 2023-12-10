@@ -176,11 +176,6 @@
             </AnchorPane>
             <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="41.0" prefWidth="1036.0" style="-fx-background-color: whitesmoke; -fx-background-radius: 20 20 0 0;">
                <children>
-                  <Label layoutX="20.0" layoutY="6.0" text="Welcome!" textFill="#45b6fe">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
                   <ImageView accessibleText="Print Report" fitHeight="30.0" fitWidth="37.0" layoutX="982.0" layoutY="5.0" onMouseClicked="#PrintREPORT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Graphics/printer.png" />

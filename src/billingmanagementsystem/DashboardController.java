@@ -75,6 +75,8 @@ public class DashboardController implements Initializable {
     private AnchorPane dashboardPane;
     @FXML
     private Label msgLabel;
+    @FXML
+    private Label greetingText;
    
 
     /**
@@ -90,6 +92,8 @@ public class DashboardController implements Initializable {
        PopulatePieChart();
        COUNTTOTALORDERS();
     }    
+    
+    
     
     private int COUNTTOTALPRODUCTS() {
         int count = 0;

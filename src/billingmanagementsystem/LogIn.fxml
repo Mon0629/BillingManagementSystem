@@ -192,6 +192,11 @@
                   <Font size="44.0" />
                </font>
             </Label>
+            <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="648.0" layoutY="2.0" onMouseClicked="#exitLogin" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../Graphics/exit.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

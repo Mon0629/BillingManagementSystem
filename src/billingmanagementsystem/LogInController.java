@@ -31,7 +31,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import billingmanagementsystem.Admin_DashboardController;
+import billingmanagementsystem.DashboardController;
 /**
  * FXML Controller class
  *
@@ -158,8 +159,8 @@ public class LogInController implements Initializable {
 
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    
-                    openDashboard(selectedUserType, event);
+                   
+                    openDashboard(selectedUserType, username, event);
                    
                 } else {
                     System.out.println("Incorrect username or password");
@@ -175,17 +176,15 @@ public class LogInController implements Initializable {
     }
 }
 
-    private void openDashboard(String userType, ActionEvent event) throws IOException {
+   private void openDashboard(String userType, String username, ActionEvent event) throws IOException {
     String fxmlPath = null;
 
     switch (userType) {
         case "Admin":
             fxmlPath = "Admin_Dashboard.fxml";
-             warningtext.setText("Login Sucess!");
             break;
         case "Employee":
             fxmlPath = "Admin_Dashboard.fxml";
-             warningtext.setText("Login Sucess!");
             break;
         default:
             warningtext.setText("Unknown user type");
@@ -195,13 +194,16 @@ public class LogInController implements Initializable {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
     Parent root = loader.load();
-
-   
+ 
     if (userType.equals("Employee")) {
         Admin_DashboardController adminController = loader.getController();
         adminController.setEmployeeButtonVisibility(false);
     }
 
+    Admin_DashboardController adminController = loader.getController();
+    adminController.setGreetingText(username );
+
+    warningtext.setText("Login Success!");
     Stage primaryStage = new Stage();
     Scene scene = new Scene(root);
     primaryStage.setTitle("Billing Management System");
@@ -211,6 +213,7 @@ public class LogInController implements Initializable {
 
     ((Node) (event.getSource())).getScene().getWindow().hide();
 }
+
 
 
 
@@ -258,6 +261,7 @@ public class LogInController implements Initializable {
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                         warningtext1.setText("Sucess!");
+                        warningtext1.setStyle("-fx-text-fill: #9ACD32");
                         loginPane.setVisible(false);
                         adminPane.setVisible(false);
                         signUpPane.setVisible(true);
@@ -310,6 +314,7 @@ public class LogInController implements Initializable {
                 passwordSignUp.setText(null);
                 confirmpasswordSignUp.setText(null);
                 confirmTxt.setText("Account Created");
+                confirmTxt.setStyle("-fx-text-fill: #9ACD32");
             } else {
                 System.out.println("Signup failed. No rows were affected.");
             }
@@ -318,6 +323,12 @@ public class LogInController implements Initializable {
         ex.printStackTrace();
     }
 }
+
+    @FXML
+    private void exitLogin(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 
     
     
