@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -37,7 +38,7 @@ import javafx.stage.StageStyle;
  * @author User
  */
 
-public class Admin_DashboardController implements Initializable {
+public class Admin_DashboardController implements Initializable{
 
     @FXML
     private Button dashboard_btn;
@@ -72,6 +73,8 @@ public class Admin_DashboardController implements Initializable {
     private ImageView minimize;
     @FXML
     private Button employeeBttn;
+    @FXML
+    private Label greetingText;
 
     /**
      * Initializes the controller class.
@@ -91,7 +94,10 @@ public class Admin_DashboardController implements Initializable {
     public void setEmployeeButtonVisibility(boolean isVisible) {
         employeeBttn.setVisible(isVisible);
     }
-
+    
+     public void setGreetingText(String text) {
+        greetingText.setText(text);
+    }
     
     private void loadFXML(String SwitchFXML) {
         try {
@@ -151,7 +157,11 @@ private void changestyle(MouseEvent event) {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UTILITY);
+            
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
             stage.show();
+            
+           
         } catch (IOException e) {
             e.printStackTrace(); 
         }
