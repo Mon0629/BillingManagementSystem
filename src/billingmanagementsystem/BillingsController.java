@@ -648,18 +648,28 @@ public class BillingsController implements Initializable {
 		 customerDataChecker();
 		 Bill bill = buildBill();
 
+		 BigDecimal cashAmount = new BigDecimal(cashField.getText());
+		 BigDecimal total = new BigDecimal(totalamount.getText());
+		 int result = cashAmount.compareTo(total);
+		 
 		 //Insert bill to database
 		 if (docTypeComboBox.getValue() == null) {
 			 confirmMessage.setText("Select Document Type");
 			 confirmMessage.setStyle("-fx-fill: #D33434;");
 			 confirmMessagePane.setVisible(true);
 		 }
-		 if (paymentTypeComboBox.getValue() == null) {
+		 else if (paymentTypeComboBox.getValue() == null) {
 			 confirmMessage.setText("Select Payment Type");
 			 confirmMessage.setStyle("-fx-fill: #D33434;");
 			 confirmMessagePane.setVisible(true);
 		 }
-		 if (docTypeComboBox.getValue() != null && paymentTypeComboBox.getValue() != null) {
+		 else if (result < 0) {
+			 confirmMessage.setText("Insufficient Cash");
+			 confirmMessage.setStyle("-fx-fill: #D33434;");
+			 confirmMessagePane.setVisible(true);
+		 }
+		 //(docTypeComboBox.getValue() != null && paymentTypeComboBox.getValue() != null)
+		 else {
 			 confirmMessage.setText(null);
 			 billDAO.addBill(bill);
 
@@ -674,7 +684,6 @@ public class BillingsController implements Initializable {
 			 Bill.PaymentType paymentType = paymentTypeComboBox.getValue(); 
 			 String cash = cashField.getText();
 			 String totalAmount = totalamount.getText();
-			 System.out.println(cash);
 			 PDFGenerator pdfGen = new PDFGenerator();
 			 
 			 if (paymentType.equals(Bill.PaymentType.CASH)) {
