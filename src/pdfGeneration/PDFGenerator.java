@@ -18,6 +18,8 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 
 import billings.Bill;
+import billings.Bill.DocType;
+import billings.Bill.PaymentType;
 import customer.Customer;
 import lineItems.LineItem;
 
@@ -27,15 +29,74 @@ public class PDFGenerator {
 	private Customer customer;
 	private List<LineItem> lineItemList;
 	private String path;
+	private String refNumber;
+	private Bill.PaymentType paymentType;
+	private String cash;
+	private String total;
 	
-	
-	public PDFGenerator(Bill bill, Customer customer, List<LineItem> lineItemList) {
+	public PDFGenerator(Bill bill, Customer customer, List<LineItem> lineItemList, String refNumber,
+			PaymentType paymentType, String total) {
+		super();
 		this.bill = bill;
 		this.customer = customer;
 		this.lineItemList = lineItemList;
+		this.refNumber = refNumber;
+		this.paymentType = paymentType;
+		this.total = total;
 	}
+
+	public PDFGenerator(Bill bill, Customer customer, List<LineItem> lineItemList, PaymentType paymentType,
+			String cash, String total) {
+		super();
+		this.bill = bill;
+		this.customer = customer;
+		this.lineItemList = lineItemList;
+		this.paymentType = paymentType;
+		this.cash = cash;
+		this.total = total;
+	}
+
 	
-	
+	public PDFGenerator() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getRefNumber() {
+		return refNumber;
+	}
+
+	public void setRefNumber(String refNumber) {
+		this.refNumber = refNumber;
+	}
+
+	public Bill.PaymentType getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(Bill.PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public String getCash() {
+		return cash;
+	}
+
+	public void setCash(String cash) {
+		this.cash = cash;
+	}
+
+	public String getTotal() {
+		return total;
+	}
+
+	public void setTotal(String total) {
+		this.total = total;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 	public String getPath() {
 		return path;
 	}
@@ -48,11 +109,11 @@ public class PDFGenerator {
 		this.bill = bill;
 	}
 
-	public Customer getCustomer() {
+	public Customer getBillCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setBillCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
@@ -132,7 +193,11 @@ public class PDFGenerator {
         docInfoTable.addCell(new Cell().add( new Paragraph(String.valueOf(bill.getDueDate()))).addStyle(docInfoStyle));
         docInfoTable.addCell(new Cell().add( new Paragraph("Payment Mode: ")).addStyle(docInfoStyle));
         docInfoTable.addCell(new Cell().add( new Paragraph(String.valueOf(bill.getPaymentType()))).addStyle(docInfoStyle));
-        
+        if (!(paymentType.equals(PaymentType.CASH))) {
+        	docInfoTable.addCell(new Cell().add( new Paragraph("Reference Number: ")).addStyle(docInfoStyle));
+            docInfoTable.addCell(new Cell().add( new Paragraph(refNumber)).addStyle(docInfoStyle));
+            
+        }
         docTypeTable.addCell(new Cell().add(docInfoTable).setBorder(Border.NO_BORDER));
         
         document.add(docTypeTable.setBorderBottom(separator));
@@ -173,9 +238,32 @@ public class PDFGenerator {
             totalAmount = totalAmount.add(lineItem.getLineItemTotal());
         }
         
-        productsTable.addCell(new Cell(1,2).add( new Paragraph("Note: Pay the amount on or before the Due Date.")).addStyle(paragraph));
-        productsTable.addCell(new Cell().add( new Paragraph("Total Amount:")).addStyle(cellTotal));
-        productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(totalAmount))).addStyle(cellTotal));
+        
+        if (paymentType.equals(PaymentType.CASH)) {
+
+            BigDecimal recCash = new BigDecimal(cash);
+            BigDecimal recTotal = new BigDecimal(total);
+        	productsTable.addCell(new Cell(1,2).add( new Paragraph("")).addStyle(paragraph));
+        	productsTable.addCell(new Cell().add( new Paragraph("Total Amount:")).addStyle(cellTotal));
+            productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(totalAmount))).addStyle(cellTotal));
+            productsTable.addCell(new Cell(1,2).add( new Paragraph("")).addStyle(paragraph));
+        	productsTable.addCell(new Cell().add( new Paragraph("Cash:")).addStyle(cellTotal));
+            productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(cash))).addStyle(cellTotal));
+            productsTable.addCell(new Cell(1,2).add( new Paragraph("")).addStyle(paragraph));
+        	productsTable.addCell(new Cell().add( new Paragraph("Change:")).addStyle(cellTotal));
+            productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(recCash.subtract(recTotal)))).addStyle(cellTotal));
+        } else if (bill.getDoctype().equals(DocType.RECEIPT)) {
+        	productsTable.addCell(new Cell(1,2).add( new Paragraph("")).addStyle(paragraph));
+        	productsTable.addCell(new Cell().add( new Paragraph("Total Amount:")).addStyle(cellTotal));
+            productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(totalAmount))).addStyle(cellTotal));
+            
+        }
+        else {
+        	productsTable.addCell(new Cell(1,2).add( new Paragraph("Note: Pay the amount on or before the Due Date.")).addStyle(paragraph));
+        	productsTable.addCell(new Cell().add( new Paragraph("Total Amount:")).addStyle(cellTotal));
+            productsTable.addCell(new Cell().add( new Paragraph("PHP " + String.valueOf(totalAmount))).addStyle(cellTotal));
+            
+        }
         
         
         document.add(productsTable);

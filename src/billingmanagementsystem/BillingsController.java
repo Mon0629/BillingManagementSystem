@@ -125,7 +125,7 @@ public class BillingsController implements Initializable {
 	@FXML
 	private TextField postal;
 	@FXML
-	private TextField telephone, cashField;
+	private TextField telephone, cashField, refField;
 	@FXML
 	private CheckBox VAT;
 	@FXML
@@ -186,9 +186,13 @@ public class BillingsController implements Initializable {
 		 paymentTypeComboBox.setOnAction(event -> {
 			 if (paymentTypeComboBox.getValue().equals(Bill.PaymentType.CASH)) {
 				 cashPane.setVisible(true);
-			 }else {
+				 refField.setVisible(false);
+			 }
+			 else if (paymentTypeComboBox.getValue().equals(Bill.PaymentType.CHECK) || paymentTypeComboBox.getValue().equals(Bill.PaymentType.GCASH)) {
+				 refField.setVisible(true) ;
 				 cashPane.setVisible(false);
 			 }
+			 else cashPane.setVisible(false);
 		 });
 		 
 		 cashField.setOnAction(event -> {
@@ -196,6 +200,7 @@ public class BillingsController implements Initializable {
 			 BigDecimal cash = new BigDecimal(cashField.getText());
 			 changeText.setText(String.valueOf(cash.subtract(total)));
 		 });
+		 
 	 }    
 
 	 //For current and due date
@@ -666,18 +671,36 @@ public class BillingsController implements Initializable {
 			 lineItemDAO.addLineItems(lineItemList);
 			 updateProductStocks(lineItemList);
 
-			 PDFGenerator pdfGenerator = new PDFGenerator(
-					 createdBill, 
-					 customerDAO.getCustomerByID(createdBill.getCustomerID()), 
-					 lineItemList);
-
-			 pdfGenerator.createPDF();
+			 Bill.PaymentType paymentType = paymentTypeComboBox.getValue(); 
+			 String cash = cashField.getText();
+			 String totalAmount = totalamount.getText();
+			 System.out.println(cash);
+			 PDFGenerator pdfGen = new PDFGenerator();
+			 
+			 if (paymentType.equals(Bill.PaymentType.CASH)) {
+				 	pdfGen.setBill(createdBill);
+				 	pdfGen.setBillCustomer(customerDAO.getCustomerByID(createdBill.getCustomerID())); 
+				 	pdfGen.setLineItemList(lineItemList);
+				 	pdfGen.setPaymentType(paymentType);
+				 	pdfGen.setCash(cash);
+				 	pdfGen.setTotal(totalAmount);
+			 } 
+			 else {
+					pdfGen.setBill(createdBill);
+				 	pdfGen.setBillCustomer(customerDAO.getCustomerByID(createdBill.getCustomerID())); 
+				 	pdfGen.setLineItemList(lineItemList);
+				 	pdfGen.setRefNumber(refField.getText());
+				 	pdfGen.setPaymentType(paymentType);
+				 	pdfGen.setTotal(totalAmount);
+			 }
+			 
+			 pdfGen.createPDF();
 
 			 confirmMessage.setStyle("-fx-fill: #435585;");
 			 confirmMessage.setText(createdBill.getDoctype() + " Created");
 			 confirmMessagePane.setVisible(true);
 			 ClearFields();
-			 openFile(pdfGenerator.getPath());
+			 openFile(pdfGen.getPath());
 
 
 

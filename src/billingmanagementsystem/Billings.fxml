@@ -104,7 +104,7 @@
                                           <CheckBox fx:id="VAT" layoutX="946.0" layoutY="181.0" mnemonicParsing="false" onAction="#VATButton" prefHeight="17.0" prefWidth="17.0" visible="false" />
                                           <Separator layoutX="7.0" layoutY="250.0" prefHeight="3.0" prefWidth="979.0" />
                                           <ComboBox fx:id="paymentTypeComboBox" layoutX="787.0" layoutY="64.0" prefHeight="27.0" prefWidth="189.0" promptText="Payment Mode" />
-                                          <VBox fx:id="cashPane" layoutX="779.0" layoutY="131.0" prefHeight="62.0" prefWidth="210.0" visible="false">
+                                          <VBox fx:id="cashPane" layoutX="779.0" layoutY="160.0" prefHeight="68.0" prefWidth="210.0" visible="false">
                                              <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
@@ -146,6 +146,7 @@
                                                 </Label>
                                              </children>
                                           </HBox>
+                                          <TextField fx:id="refField" layoutX="782.0" layoutY="118.0" prefHeight="26.0" prefWidth="202.0" promptText="Reference  No." visible="false" />
                                        </children>
                                     </AnchorPane>
                                     <Button id="confirm" fx:id="confirmButton" alignment="TOP_LEFT" layoutX="885.0" layoutY="664.0" mnemonicParsing="false" onAction="#CREATEINVOICE" prefHeight="42.0" prefWidth="119.0" stylesheets="@../cssFiles/billingsStylesheet.css" text="Confirm" textAlignment="CENTER">
