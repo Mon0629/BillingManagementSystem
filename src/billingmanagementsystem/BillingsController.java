@@ -798,53 +798,54 @@ public class BillingsController implements Initializable {
 
 	 //for updating stocks in database
 
-	 private void updateProductStocks(List<LineItem> lineItemList) {
-		 try (Connection con = DatabaseManager.getConnection()) {
-			 for (LineItem lineItem : lineItemList) {
-				 int productId = lineItem.getProductID();
-				 int quantity = lineItem.getQuantity();
+	private void updateProductStocks(List<LineItem> lineItemList) {
+    try (Connection con = DatabaseManager.getConnection()) {
+        for (LineItem lineItem : lineItemList) {
+            int productId = lineItem.getProductID();
+            int quantity = lineItem.getQuantity();
 
-				 // Retrieve current stock
-				 int currentStock = getCurrentStock(con, productId);
+            // Ensure that prodID and textField3 are not null
+            if (prodID != null && textField3 != null) {
+                int currentStock = getCurrentStock(con, productId);
 
-				 if (quantity > currentStock){
+                if (quantity > currentStock) {
+                    warningtext.setText(currentStock + " left");
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> warningtext.setText(null)));
+                    timeline.play();
+                } else {
+                    int updatedStock = currentStock - quantity;
+                    updateStockInDatabase(con, productId, updatedStock);
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
-					 warningtext.setText(currentStock + " left");
-					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
-						 @Override
-						 public void handle(ActionEvent event) {
-							 warningtext.setText(null);
-						 }
-					 }));
-					 timeline.play();
-
-				 }else{
-					 int updatedStock = currentStock - quantity;
-					 updateStockInDatabase(con, productId, updatedStock);
-				 }
-
-
-			 }
-		 } catch (SQLException e) {
-			 e.printStackTrace();
-
-		 }
-	 }
 
 
 
 	 private int getCurrentStock(Connection con, int productId) throws SQLException {
-		 String query = "SELECT stocks FROM Products WHERE productID = ?";
-		 try (PreparedStatement pst = con.prepareStatement(query)) {
-			 pst.setInt(1, productId);
-			 try (ResultSet rs = pst.executeQuery()) {
-				 if (rs.next()) {
-					 return rs.getInt("stocks");
-				 }
-			 }
-		 }
-		 return 0;
-	 }
+    String query = "SELECT stocks FROM Products WHERE productID = ?";
+    try (PreparedStatement pst = con.prepareStatement(query)) {
+        pst.setInt(1, productId);
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                // Check if "stocks" column is not null
+                int stocks = rs.getInt("stocks");
+                if (!rs.wasNull()) {
+                    return stocks;
+                } else {
+                    warningtext.setText("Insufficient Stocks");
+                    return 0; // Return a default value or handle it as needed
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 
 	 private void updateStockInDatabase(Connection con, int productId, int updatedStock) throws SQLException {
 		 String query = "UPDATE Products SET Stocks = ? WHERE ProductID = ?";
@@ -864,37 +865,42 @@ public class BillingsController implements Initializable {
 	 }
 
 
-	 private boolean checkProductStocks(){
-		 boolean haveStock = false;
-		 try
-		 {
-			 DatabaseManager db = new DatabaseManager();
-			 Connection con = db.getConnection();
+	 private boolean checkProductStocks() {
+    boolean haveStock = false;
 
-			 int quantity = Integer.valueOf(textField3.getText());
+    try {
+        DatabaseManager db = new DatabaseManager();
+        Connection con = db.getConnection();
 
-			 int stocks = getCurrentStock(con, Integer.valueOf(prodID.getText()));
-			 if(quantity > stocks){
-				 warningtext.setText(stocks + " stock/s left");
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
-					 @Override
-					 public void handle(ActionEvent event) {
-						 warningtext.setText(null);
-					 }
-				 }));
-				 timeline.play();
+        String quantityText = textField3.getText();
 
-				 haveStock = false;   
-			 }
-			 else{
-				 haveStock = true;
-			 }} catch (SQLException ex)
-		 {
-				 Logger.getLogger(BillingsController.class.getName()).log(Level.SEVERE, null, ex);
-		 }
+        if (!quantityText.isEmpty()) {
+            int quantity = Integer.parseInt(quantityText);
 
-		 return haveStock;
-	 }
+            int stocks = getCurrentStock(con, Integer.valueOf(prodID.getText()));
+
+            if (quantity > stocks) {
+                warningtext.setText(stocks + " stock/s left");
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> warningtext.setText(null)));
+                timeline.play();
+                haveStock = false;
+            } else {
+                haveStock = true;
+            }
+        } else {
+            warningtext.setText("Enter a valid quantity");
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> warningtext.setText(null)));
+            timeline.play();
+        }
+    } catch (NumberFormatException | SQLException ex) {
+        warningtext.setText("Enter a valid quantity");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> warningtext.setText(null)));
+        timeline.play();
+    }
+
+    return haveStock;
+}
+
 
 
 	 private void deductStocks(int productID){
