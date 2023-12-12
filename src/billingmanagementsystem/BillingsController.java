@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import billings.Bill;
+import billings.Bill.PaymentType;
 import billings.BillDAOImpl;
 import customer.Customer;
 import customer.CustomerDAOImpl;
@@ -648,9 +649,13 @@ public class BillingsController implements Initializable {
 		 customerDataChecker();
 		 Bill bill = buildBill();
 
-		 BigDecimal cashAmount = new BigDecimal(cashField.getText());
-		 BigDecimal total = new BigDecimal(totalamount.getText());
-		 int result = cashAmount.compareTo(total);
+		 int result = 0;
+		 
+		 if (paymentTypeComboBox.getValue() == PaymentType.CASH) {
+			 BigDecimal cashAmount = new BigDecimal(cashField.getText());
+			 BigDecimal total = new BigDecimal(totalamount.getText());
+			 result = cashAmount.compareTo(total);
+		 }
 		 
 		 //Insert bill to database
 		 if (docTypeComboBox.getValue() == null) {
