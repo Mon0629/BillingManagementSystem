@@ -5,8 +5,13 @@
 package billingmanagementsystem;
 
 import databaseSQL.DatabaseManager;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -67,7 +72,7 @@ public class ProductController implements Initializable {
 	@FXML
 	private TableColumn<ProductData, String> othersAttributes;
 	@FXML
-	private TableColumn<ProductData, Image> ImageCol;
+	private TableColumn<ProductData, String> ImageCol;
 
 	/**
 	 * Initializes the controller class.
@@ -93,7 +98,7 @@ public class ProductController implements Initializable {
 						 rs.getDouble("Price"),
 						 rs.getInt("Stocks"),
 						 rs.getString("Description"),
-						 (Blob) rs.getBlob("Image"),
+						 rs.getString("Image"),
 						 rs.getString("parentType"),
 						 rs.getString("type"),
 						 rs.getString("Brand"),
@@ -119,25 +124,7 @@ public class ProductController implements Initializable {
 			 type.setCellValueFactory(new PropertyValueFactory("type"));
 			 Brand.setCellValueFactory(new PropertyValueFactory("Brand"));
 			 othersAttributes.setCellValueFactory(new PropertyValueFactory("otherAttributes"));
-			 ImageCol.setCellValueFactory(new PropertyValueFactory("Image"));
-			 ImageCol.setCellFactory(param -> new TableCell<ProductData, Image>() {
-
-				 private final ImageView imageView = new ImageView();
-
-				 @Override
-				 protected void updateItem(Image item, boolean empty) {
-					 super.updateItem(item, empty);
-					 if (empty || item == null) {
-						 setGraphic(null);
-					 } else {
-						 imageView.setImage(item);
-						 imageView.setFitWidth(50); // Set the desired width
-						 imageView.setPreserveRatio(true);
-						 setGraphic(imageView);
-					 }
-				 }
-			 });
-
+			 ImageCol.setCellValueFactory(new PropertyValueFactory("imagePath"));
 			 editcolumn.setCellFactory(new ButtonCellFactory());
 			 editcolumn.setCellFactory(new ButtonCellFactory()); 
 		 } catch (SQLException ex) {

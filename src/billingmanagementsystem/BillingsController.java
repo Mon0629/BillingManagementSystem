@@ -50,6 +50,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -546,7 +547,8 @@ public class BillingsController implements Initializable {
 		 prodID.setText(String.valueOf(productData.getProductID()));
 		 textField1.setText(productData.getProductName());
 		 textField2.setText(String.valueOf(productData.getPrice()));
-		 productImageView.setImage(productData.getImage());
+		  Image currentImage = new Image(productData.getImagePath());
+                  productImageView.setImage(currentImage);
 
 	 }
 

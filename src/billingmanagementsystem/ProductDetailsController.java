@@ -69,6 +69,8 @@ public class ProductDetailsController implements Initializable {
     private ComboBox<String> prodBrand;
     @FXML
     private ComboBox<String> otherAtt;
+    @FXML
+    private TextField pathFile;
 
     /**
      * Initializes the controller class.
@@ -81,12 +83,10 @@ public class ProductDetailsController implements Initializable {
         ObservableList<String> parentTypeOptions = FXCollections.observableArrayList("Footwear", "Clothing", "Accessories");
     prodParentType.setItems(parentTypeOptions);
 
-    // Set a listener to handle changes in the parentType combo box
     prodParentType.valueProperty().addListener((observable, oldValue, newValue) -> {
         handleParentTypeChange();
     });
 
-    // Set default values for the subcategory combo box
     
        
     }    
@@ -96,18 +96,17 @@ public class ProductDetailsController implements Initializable {
     
     private boolean isEditMode = false;
     private ProductData existingProductData;
+
     
     
     
     
     
-    
-   public void setProductData(ProductData productData) {
+  public void setProductData(ProductData productData) {
     if (productData != null) {
         existingProductData = productData;
         isEditMode = true;
 
-        // Populate your UI components with the data from productData
         prodID.setText(String.valueOf(productData.getProductID()));
         prodName.setText(productData.getProductName());
         prodPrice.setText(String.valueOf(productData.getPrice()));
@@ -117,44 +116,20 @@ public class ProductDetailsController implements Initializable {
         prodSubcategory.setValue(productData.getType());
         prodBrand.setValue(productData.getBrand());
         otherAtt.setValue(productData.getOtherAttributes());
-     
+
+        Image currentImage = new Image(productData.getImagePath());
+        prodImage.setImage(currentImage);
+        pathFile.setText(productData.getImagePath());
         
-        prodImage.setImage(productData.getImage());
     } else {
-        // Clear UI components if it's in add mode
+
         ClearFields();
         isEditMode = false;
     }
 }
-   
-   private Image convertBlobToImage(Blob blob) {
-        if (blob != null) {
-            try (InputStream inputStream = blob.getBinaryStream()) {
-                return new Image(inputStream);
-            } catch (SQLException | IOException e) {
-            }
-        }
-        return null;
-    }
-   
-   //para sa pagconvert ng imgae to byyte
-    private byte[] ImageToByteArray() throws IOException {
-    Image image = prodImage.getImage();
-
-    if (image != null) {
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
-
-        return byteArrayOutputStream.toByteArray();
-    }
-
-    return null;
-}
 
    
-     private int insertProductInDatabase(String ProductName, double Price, int Stocks, String Description, byte[] Image, String parentType, String type, String Brand, String otherAttributes) throws SQLException {
+     private int insertProductInDatabase(String ProductName, double Price, int Stocks, String Description, String parentType, String type, String Brand, String otherAttributes) throws SQLException {
     Connection connection = DatabaseManager.getConnection();
 
     String query = "INSERT INTO products (ProductName, Price, Stocks, Description, Image) VALUES (?, ?, ?, ?, ?)";
@@ -163,14 +138,13 @@ public class ProductDetailsController implements Initializable {
         preparedStatement.setDouble(2, Price);
         preparedStatement.setInt(3, Stocks);
         preparedStatement.setString(4, Description);
-        preparedStatement.setBytes(5, Image);
+        preparedStatement.setString(5, pathFile.getText()); 
 
         int affectedRows = preparedStatement.executeUpdate();
 
         if (affectedRows > 0) {
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-
                     int generatedProductID = generatedKeys.getInt(1);
 
                     String query1 = "INSERT INTO productcategory (ProductID, parentType, type, Brand, otherAttributes) VALUES (?, ?, ?, ?, ?)";
@@ -185,14 +159,14 @@ public class ProductDetailsController implements Initializable {
                     }
                     ClearFields();
                     msgconfirmation.setText("Product Saved");
-                     msgconfirmation.setStyle("-fx-text-fill: green;");
-                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    msgconfirmation.setText(null);
-                }
-                 }));
-                     timeline.play();
+                    msgconfirmation.setStyle("-fx-text-fill: green;");
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            msgconfirmation.setText(null);
+                        }
+                    }));
+                    timeline.play();
                     return generatedProductID;
                 } else {
                     throw new SQLException("Failed to retrieve auto-generated ProductID.");
@@ -204,9 +178,10 @@ public class ProductDetailsController implements Initializable {
     }
 }
 
-     
-   private void updateProductInDatabase(int productId, String productName, double price, int Stocks, String description, byte[] image, String parentType, String type, String brand, String otherAttributes ) throws SQLException {
+
+private void updateProductInDatabase(int productId, String productName, double price, int Stocks,String imagePath, String description, String parentType, String type, String brand, String otherAttributes) throws SQLException {
     Connection connection = DatabaseManager.getConnection();
+
 
     String query = "UPDATE products SET ProductName=?, Price=?, Stocks=?, Description=?, Image=? WHERE ProductID=?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -214,7 +189,9 @@ public class ProductDetailsController implements Initializable {
         preparedStatement.setDouble(2, price);
         preparedStatement.setDouble(3, Stocks);
         preparedStatement.setString(4, description);
-        preparedStatement.setBytes(5, image);
+
+        preparedStatement.setString(5, (imagePath));
+
         preparedStatement.setInt(6, productId);
 
         preparedStatement.executeUpdate();
@@ -243,7 +220,6 @@ public class ProductDetailsController implements Initializable {
     }
 }
 
-
      private void ClearFields(){
          prodID.setText(null);
          prodName.setText(null);
@@ -267,26 +243,34 @@ public class ProductDetailsController implements Initializable {
         this.productController = productController;
     }
     
+    
+    
+    private File file;
     @FXML
-    private void imageChooser(ActionEvent event) {
-        
-        FileChooser fileChooser = new FileChooser();
-        
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
-        fileChooser.getExtensionFilters().add(extFilter);
+private void imageChooser(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
+    fileChooser.getExtensionFilters().add(extFilter);
 
-        File file = fileChooser.showOpenDialog(new Stage());
-        
-        if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            prodImage.setImage(image);
-        }
+    File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+    if (selectedFile != null) {
+        String imagePath = selectedFile.toURI().toString();
+
+        Image image = new Image(imagePath);
+        prodImage.setImage(image);
+
+        file = selectedFile;
+
+        pathFile.setText(imagePath);
     }
+}
+
 
     
 
     @FXML
-    private void saveproduct(ActionEvent event) {
+private void saveproduct(ActionEvent event) {
     try {
         // Extract values from UI components
         String productName = prodName.getText();
@@ -297,8 +281,7 @@ public class ProductDetailsController implements Initializable {
         String sb = prodSubcategory.getValue();
         String brand = prodBrand.getValue();
         String oa = otherAtt.getValue();
-        byte[] prodImageBytes = ImageToByteArray();
-        
+        String imagePath = pathFile.getText();
 
         if (productName.isEmpty() || priceText.isEmpty()  || description.isEmpty() || isImageViewEmpty(prodImage)) {
             msgconfirmation.setText("Please fill up all fields");
@@ -314,13 +297,13 @@ public class ProductDetailsController implements Initializable {
             double price = Double.parseDouble(priceText);
 
             if (isEditMode) {
-                updateProductInDatabase(existingProductData.getProductID(), productName, price, spinnervalue, description, prodImageBytes, pt, sb, brand, oa);
+                updateProductInDatabase(existingProductData.getProductID(), productName, price, spinnervalue, imagePath, description, pt, sb, brand, oa);
                 msgconfirmation.setText(" Product updated successfully");
                 msgconfirmation.setStyle("-fx-text-fill: green;");
                 ClearFields();
-                
+
             } else {
-                insertProductInDatabase(productName, price, spinnervalue, description, prodImageBytes, pt, sb, brand, oa);
+                insertProductInDatabase(productName, price, spinnervalue, description,  pt, sb, brand, oa);
                 msgconfirmation.setText(productName + " added successfully");
                 msgconfirmation.setStyle("-fx-text-fill: green;");
                 ClearFields();
@@ -336,7 +319,7 @@ public class ProductDetailsController implements Initializable {
             timeline.play();
         }
 
-    } catch (IOException | SQLException | NumberFormatException ex) {
+    } catch (SQLException | NumberFormatException ex) {
         msgconfirmation.setText("Error: Invalid input");
         msgconfirmation.setStyle("-fx-text-fill: red;");
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {

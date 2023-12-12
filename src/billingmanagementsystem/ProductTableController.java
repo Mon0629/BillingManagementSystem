@@ -22,6 +22,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import databaseSQL.DatabaseManager;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -59,7 +62,7 @@ public class ProductTableController implements Initializable {
 	@FXML
 	private TableColumn<ProductData, String> otherscol;
 	@FXML
-	private TableColumn<ProductData, Image> imagecol;
+	private TableColumn<ProductData, String> imagecol;
 
 	/**
 	 * Initializes the controller class.
@@ -85,7 +88,7 @@ public class ProductTableController implements Initializable {
 						 rs.getDouble("Price"),
 						 rs.getInt("Stocks"),
 						 rs.getString("Description"),
-						 (Blob) rs.getBlob("Image"),
+						 rs.getString("Image"),
 						 rs.getString("parentType"),
 						 rs.getString("type"),
 						 rs.getString("Brand"),
@@ -108,26 +111,8 @@ public class ProductTableController implements Initializable {
 		 subcategory.setCellValueFactory(new PropertyValueFactory<>("Type"));
 		 brandcol.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 		 otherscol.setCellValueFactory(new PropertyValueFactory<>("otherAttributes"));
-		 imagecol.setCellValueFactory(new PropertyValueFactory<>("Image"));
-		 imagecol.setCellFactory(param -> new TableCell<ProductData, Image>() {
-
-			 private final ImageView imageView = new ImageView();
-
-			 @Override
-			 protected void updateItem(Image item, boolean empty) {
-				 super.updateItem(item, empty);
-				 if (empty || item == null) {
-					 setGraphic(null);
-				 } else {
-					 imageView.setImage(item);
-					 imageView.setFitWidth(50); // Set the desired width
-					 imageView.setPreserveRatio(true);
-					 setGraphic(imageView);
-				 }
-			 }
-		 });
-
-
+		 imagecol.setCellValueFactory(new PropertyValueFactory<>("imagePath"));
+		 
 	 }
 
 	 @FXML
@@ -210,7 +195,7 @@ public class ProductTableController implements Initializable {
 						 rs.getDouble("Price"),
 						 rs.getInt("Stocks"),
 						 rs.getString("Description"),
-						 (Blob) rs.getBlob("Image"),
+						 rs.getString("Image"),
 						 rs.getString("parentType"),
 						 rs.getString("type"),
 						 rs.getString("Brand"),

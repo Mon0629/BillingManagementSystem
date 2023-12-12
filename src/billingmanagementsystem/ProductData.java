@@ -17,31 +17,21 @@ public class ProductData {
      private int ProductID, Stocks;
     private String ProductName, Description, parentType, type, Brand, otherAttributes;
     private double Price;
-    private Image Image;
-    
-    public ProductData(int ProductID, String ProductName, double Price,int Stocks,String Description, Blob Image, String parentType, String type, String Brand, String otherAttributes){
+    private String imagePath;  // New field for storing the image path
+
+    public ProductData(int ProductID, String ProductName, double Price, int Stocks, String Description, String imagePath, String parentType, String type, String Brand, String otherAttributes) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Price = Price;
         this.Stocks = Stocks;
         this.Description = Description;
-        this.Image = convertBlobToImage(Image);
-        this.parentType=parentType;
-        this.type=type;
-        this.Brand=Brand;
-        this.otherAttributes=otherAttributes;
+        this.parentType = parentType;
+        this.type = type;
+        this.Brand = Brand;
+        this.otherAttributes = otherAttributes;
+        this.imagePath = imagePath;
     }
     
-    private Image convertBlobToImage(Blob blob) {
-        try (InputStream inputStream = blob.getBinaryStream()) {
-            byte[] data = new byte[inputStream.available()];
-            inputStream.read(data);
-            return new Image(new ByteArrayInputStream(data));
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     
     public int getProductID(){
         return ProductID;
@@ -60,10 +50,6 @@ public class ProductData {
         return Description;
     }
    
-    public Image getImage(){
-        return Image;
-    }
-    
     
     public void setProductID(int ProductID){
         this.ProductID = ProductID;
@@ -83,10 +69,13 @@ public class ProductData {
         this.Description = Description;
     }
    
-    public void setImage(Image Image){
-        this.Image = Image;
+   public String getImagePath() {
+        return imagePath;
     }
-    
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
     
     
     

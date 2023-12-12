@@ -276,11 +276,9 @@
                                         <TableColumn fx:id="actionColumn" text="Actions" />
                                         <TableColumn fx:id="customerIDColumn" prefWidth="93.0" text="Customer ID" />
                                           <TableColumn fx:id="billIDColumn" prefWidth="85.0" text="Bill ID" />
-                                          <TableColumn fx:id="firstNameColumn" prefWidth="105.0" text="First Name" />
-                                          <TableColumn fx:id="lastNameColumn" prefWidth="143.0" text="Last Name" />
-                                          <TableColumn fx:id="totalAmountColumn" prefWidth="141.0" text="Total Amount" />
-                                          <TableColumn fx:id="noteColumn" minWidth="0.0" prefWidth="193.0" text="Note(Paid/ Not)" />
-                                          <TableColumn fx:id="invoiceColumn" prefWidth="157.0" text="Invoice" />
+                                          <TableColumn fx:id="firstNameColumn" prefWidth="243.0" text="First Name" />
+                                          <TableColumn fx:id="lastNameColumn" prefWidth="320.0" text="Last Name" />
+                                          <TableColumn fx:id="totalAmountColumn" prefWidth="176.0" text="Total Amount" />
                                       </columns>
                                     </TableView>
                                  </children>
