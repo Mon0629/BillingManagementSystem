@@ -64,19 +64,19 @@
             <ComboBox fx:id="prodSubcategory" layoutX="279.0" layoutY="118.0" prefHeight="25.0" prefWidth="132.0" promptText="Subcategory" />
             <ComboBox fx:id="prodBrand" layoutX="279.0" layoutY="152.0" prefHeight="25.0" prefWidth="132.0" promptText="Brand" />
             <ComboBox fx:id="otherAtt" layoutX="279.0" layoutY="185.0" prefHeight="25.0" prefWidth="132.0" promptText="Others" />
-            <Button layoutX="102.0" layoutY="220.0" mnemonicParsing="false" onAction="#saveproduct" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: rgb(67, 85, 133);" text="Save">
+            <Button layoutX="102.0" layoutY="220.0" mnemonicParsing="false" onAction="#saveproduct" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: rgb(67, 85, 133);" text="Save" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="331.0" layoutY="219.0" mnemonicParsing="false" onAction="#clearfields" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: rgb(67, 85, 133);" text="Clear">
+            <Button layoutX="331.0" layoutY="219.0" mnemonicParsing="false" onAction="#clearfields" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: rgb(67, 85, 133);" text="Clear" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Button layoutX="468.0" layoutY="310.0" mnemonicParsing="false" onAction="#imageChooser" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: rgb(67, 85, 133);" text="Upload">
+      <Button layoutX="468.0" layoutY="310.0" mnemonicParsing="false" onAction="#imageChooser" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: rgb(67, 85, 133);" text="Upload" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
