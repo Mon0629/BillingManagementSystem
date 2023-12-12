@@ -132,11 +132,11 @@ public class BillingsController implements Initializable {
 	@FXML
 	private AnchorPane billingpane;
 	@FXML
-	private Button selectCustomerBtn, confirmButton; 
+	private Button selectCustomerBtn, confirmButton, addOrder; 
 	@FXML
 	private Text confirmMessage;
 	@FXML
-	private Label changeText;
+	private Label changeText, paymentMessage;
 	@FXML
 	private Pane confirmMessagePane;
 	@FXML
@@ -174,33 +174,84 @@ public class BillingsController implements Initializable {
 	/**
 	 * Initializes the controller class.
 	 */
+	boolean isPayValid= false;
+	boolean isRefValid = false;
 	 @Override
 	 public void initialize(URL url, ResourceBundle rb) {
 		 setCurrentDate();
 		 setDueDate();
 
-		 confirmButton.setDisable(true);;
+		 
+		 
+		 confirmButton.setDisable(true);
+		 paymentTypeComboBox.setDisable(true);
+		 due_datepicker.setVisible(false);
+		 
 		 docTypeComboBox.getItems().addAll(Bill.DocType.RECEIPT, Bill.DocType.INVOICE);
 		 paymentTypeComboBox.getItems().addAll(Bill.PaymentType.CASH, Bill.PaymentType.CHECK, Bill.PaymentType.GCASH);
 		 InvoiceTable();
+		 
+		 docTypeComboBox.setOnAction(event ->{
+			 if (docTypeComboBox.getValue().equals(Bill.DocType.RECEIPT)) {
+				 due_datepicker.setVisible(false);
+			 }else due_datepicker.setVisible(true);
+		 });
 		 
 		 paymentTypeComboBox.setOnAction(event -> {
 			 if (paymentTypeComboBox.getValue().equals(Bill.PaymentType.CASH)) {
 				 cashPane.setVisible(true);
 				 refField.setVisible(false);
+				 isRefValid = true;
 			 }
 			 else if (paymentTypeComboBox.getValue().equals(Bill.PaymentType.CHECK) || paymentTypeComboBox.getValue().equals(Bill.PaymentType.GCASH)) {
 				 refField.setVisible(true) ;
 				 cashPane.setVisible(false);
+				 isPayValid = true;
 			 }
 			 else cashPane.setVisible(false);
 		 });
 		 
-		 cashField.setOnAction(event -> {
-			 BigDecimal total = new BigDecimal(totalamount.getText());
-			 BigDecimal cash = new BigDecimal(cashField.getText());
-			 changeText.setText(String.valueOf(cash.subtract(total)));
+		 refField.setOnKeyTyped(event -> {
+			 Bill.PaymentType paymentType = paymentTypeComboBox.getValue();
+			 String refNumber = refField.getText();
+			 if (paymentType.equals(Bill.PaymentType.CHECK) && (refNumber.length() < 20)) {
+				 confirmMessage.setText("Reference Number is too short");
+				 confirmMessage.setStyle("-fx-fill: #D33434;");
+				 confirmMessagePane.setVisible(true);
+				 isRefValid = true;
+			 }
+			 else if (paymentType.equals(Bill.PaymentType.GCASH) && (refNumber.length() < 8)) {
+				 confirmMessage.setText("Reference Number is too short");
+				 confirmMessage.setStyle("-fx-fill: #D33434;");
+				 confirmMessagePane.setVisible(true);
+				 isRefValid = true;
+			 }else isRefValid = true;
 		 });
+		 
+		 cashField.setOnKeyTyped(event -> {
+			 BigDecimal cash = new BigDecimal(cashField.getText());
+	            BigDecimal total = new BigDecimal(totalamount.getText());
+	            BigDecimal one = new BigDecimal("1");
+	            int lessResult = cash.compareTo(one);
+	            int changeResult = cash.compareTo(total);
+	            if (!isValidNumber(cashField.getText())) {
+	            	paymentMessage.setText("Invalid Number");
+	                event.consume(); 
+	                isPayValid = false;
+	            }
+	            else if (lessResult < 0) {
+	            	paymentMessage.setText("Invalid Number");
+	            	isPayValid = false;
+	            }
+	            else if (changeResult < 0) {
+	            	paymentMessage.setText("Insufficient Cash");
+	            	isPayValid = false;
+	            }
+	            else {
+	            	isPayValid = true;
+	            	changeText.setText(String.valueOf(cash.subtract(total)));
+	            }
+	        });
 		 
 	 }    
 
@@ -393,7 +444,12 @@ public class BillingsController implements Initializable {
 
 
 	 private void ClearFields(){
-		 docTypeComboBox.getSelectionModel().select(null);
+		 docTypeComboBox.setValue(null);
+		 paymentTypeComboBox.setValue(null);
+		 cashPane.setVisible(false);
+		 refField.setVisible(false);
+		 cashField.setText(null);
+		 refField.setText(null);
 		 fname.setText(null);
 		 lname.setText(null);
 		 cnumber.setText(null);
@@ -459,6 +515,9 @@ public class BillingsController implements Initializable {
 		 String price = textField2.getText();
 		 String quantity = textField3.getText();
 		 String amount = textField5.getText();
+		 
+		 paymentTypeComboBox.setDisable(false);
+		 
 		 if(checkProductStocks()){
 			 //		System.out.println("Adding to order - Product ID: " + productID + ", Product Name: " + productName +
 			 //				", Price: " + price + ", Quantity: " + quantity + ", Amount: " + amount);
@@ -648,15 +707,9 @@ public class BillingsController implements Initializable {
 		 //Check if customers are already exists
 		 customerDataChecker();
 		 Bill bill = buildBill();
-
-		 int result = 0;
+		
 		 
-		 if (paymentTypeComboBox.getValue() == PaymentType.CASH) {
-			 BigDecimal cashAmount = new BigDecimal(cashField.getText());
-			 BigDecimal total = new BigDecimal(totalamount.getText());
-			 result = cashAmount.compareTo(total);
-		 }
-		 
+		  
 		 //Insert bill to database
 		 if (docTypeComboBox.getValue() == null) {
 			 confirmMessage.setText("Select Document Type");
@@ -668,8 +721,13 @@ public class BillingsController implements Initializable {
 			 confirmMessage.setStyle("-fx-fill: #D33434;");
 			 confirmMessagePane.setVisible(true);
 		 }
-		 else if (result < 0) {
+		 else if (!isPayValid) {
 			 confirmMessage.setText("Insufficient Cash");
+			 confirmMessage.setStyle("-fx-fill: #D33434;");
+			 confirmMessagePane.setVisible(true);
+		 }
+		 else if (!isRefValid) {
+			 confirmMessage.setText("Invalid Reference Number");
 			 confirmMessage.setStyle("-fx-fill: #D33434;");
 			 confirmMessagePane.setVisible(true);
 		 }
@@ -848,11 +906,22 @@ public class BillingsController implements Initializable {
 
 			 PreparedStatement ps = con.prepareStatement("Update products SET Stocks = " + quantity + " WHERE productID = " +productID );
 			 ps.executeUpdate();
-		 } catch (SQLException ex)
-		 {
+		 } catch (SQLException ex){
 			 Logger.getLogger(BillingsController.class.getName()).log(Level.SEVERE, null, ex);
 		 }
 
+	 }
+	 
+	 private boolean isValidNumber(String input) {
+	        try {
+	            // Attempt to parse the input as a double
+	            Double.parseDouble(input);
+	            return true;
+	        } catch (NumberFormatException e) {
+	            // Show an error alert if parsing fails
+	            System.out.println("Please enter a valid number.");
+	            return false;
+	        }
 	 }
 	 
 
